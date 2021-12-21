@@ -38,9 +38,9 @@
                   <td class="align-middle">Designer</td>
                   <td class="align-middle">5 Desember 2021</td>
                   <td class="d-flex justify-content-center gap-1">
-                    <a type="button" class="btn btn-secondary"><i class="bi bi-eye"></i></a>
-                    <a type="button" class="btn btn-warning"><i class="bi bi-pencil"></i></a>
-                    <a type="button" class="btn btn-danger"><i class="bi bi-trash"></i></a>
+                    <a href="#" class="btn btn-secondary"><i class="bi bi-eye"></i></a>
+                    <a href="#" class="btn btn-warning"><i class="bi bi-pencil"></i></a>
+                    <a href="#" class="btn btn-danger"><i class="bi bi-trash"></i></a>
                   </td>
                 </tr>
                 <tr>

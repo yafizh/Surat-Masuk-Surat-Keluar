@@ -55,7 +55,7 @@
                     <div class="row mb-3">
                         <label for="inputNumber" class="col-sm-2 col-form-label">Dokumen Surat</label>
                         <div class="col-sm-10">
-                            <input class="form-control" type="file" id="formFile" required>
+                            <input class="form-control" type="file" accept=".pdf" required>
                             <div class="invalid-feedback">
                                 Harap Tambahkan Dokumen Surat.
                             </div>

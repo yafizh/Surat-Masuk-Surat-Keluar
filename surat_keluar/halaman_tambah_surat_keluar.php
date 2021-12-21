@@ -19,7 +19,7 @@
                     <div class="row mb-3">
                         <label for="inputText" class="col-sm-2 col-form-label">Unit Pengolah</label>
                         <div class="col-sm-10">
-                            <input type="text" class="form-control" required>
+                            <input type="text" class="form-control" name="unit_pengolah" required>
                             <div class="invalid-feedback">
                                 Harap isi Unt Pengolah Surat.
                             </div>
@@ -28,7 +28,7 @@
                     <div class="row mb-3">
                         <label for="inputEmail" class="col-sm-2 col-form-label">Nomor Surat Keluar</label>
                         <div class="col-sm-10">
-                            <input type="text" class="form-control" required>
+                            <input type="text" class="form-control" name="nomor_surat" required>
                             <div class="invalid-feedback">
                                 Harap isi Nomor Surat.
                             </div>
@@ -37,7 +37,7 @@
                     <div class="row mb-3">
                         <label for="inputPassword" class="col-sm-2 col-form-label">Tanggal Surat</label>
                         <div class="col-sm-10">
-                            <input type="date" class="form-control" required>
+                            <input type="date" class="form-control" name="tanggal_surat" required>
                             <div class="invalid-feedback">
                                 Harap isi Tanggal Surat.
                             </div>
@@ -46,7 +46,7 @@
                     <div class="row mb-3">
                         <label for="inputNumber" class="col-sm-2 col-form-label">Perihal</label>
                         <div class="col-sm-10">
-                            <input type="text" class="form-control" required>
+                            <input type="text" class="form-control" name="perihal" required>
                             <div class="invalid-feedback">
                                 Harap isi Perihal Surat.
                             </div>
@@ -55,7 +55,7 @@
                     <div class="row mb-3">
                         <label for="inputNumber" class="col-sm-2 col-form-label">Tujuan</label>
                         <div class="col-sm-10">
-                            <input type="text" class="form-control" required>
+                            <input type="text" class="form-control" name="tujuan" required>
                             <div class="invalid-feedback">
                                 Harap isi Tujuan Surat.
                             </div>
@@ -64,7 +64,7 @@
                     <div class="row mb-3">
                         <label for="inputNumber" class="col-sm-2 col-form-label">Dokumen Surat</label>
                         <div class="col-sm-10">
-                            <input class="form-control" type="file" id="formFile" required>
+                            <input class="form-control" type="file" name="dokumen" accept=".pdf" required>
                             <div class="invalid-feedback">
                                 Harap Tambahkan Dokumen Surat.
                             </div>
