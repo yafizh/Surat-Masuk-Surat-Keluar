@@ -15,25 +15,42 @@
 <script>
     const queryString = window.location.search;
     const urlParams = new URLSearchParams(queryString);
-    console.log(urlParams.get('page'))
-    document.querySelectorAll('.nav-link').forEach(function(value, index) {
-        if (value.id == urlParams.get('page')) {
-            value.style.color = "#4154F1";
-            value.style.backgroundColor = "#F6F9FF";
-            value.classList.remove("collapsed");
-            value.setAttribute("aria-expanded", "false");
 
-            value.nextElementSibling.classList.add("show");
-            for (let item of value.nextElementSibling.children) {
-                if (urlParams.get('item') == item.children[0].id) {
-                    item.children[0].classList.add("active");
+    if (urlParams.get('page')) {
+        document.querySelectorAll('.nav-link').forEach(function(value, index) {
+            if (value.id == urlParams.get('page')) {
+                value.style.color = "#4154F1";
+                value.style.backgroundColor = "#F6F9FF";
+                value.classList.remove("collapsed");
+                value.setAttribute("aria-expanded", "false");
+
+                value.nextElementSibling.classList.add("show");
+                for (let item of value.nextElementSibling.children) {
+                    if (urlParams.get('item') == item.children[0].id) {
+                        item.children[0].classList.add("active");
+                    }
                 }
+            } else {
+                value.style.color = "#012960";
+                value.style.backgroundColor = "#FFFFFF";
             }
-        } else {
-            value.style.color = "#012960";
-            value.style.backgroundColor = "#FFFFFF";
-        }
-    });
+        });
+    }
+
+    if (urlParams.get('page') == 'edit_surat') {
+        const value = document.querySelector('#tampil_surat');
+        value.style.color = "#4154F1";
+        value.style.backgroundColor = "#F6F9FF";
+        value.classList.remove("collapsed");
+        value.setAttribute("aria-expanded", "false");
+
+        value.nextElementSibling.classList.add("show");
+
+        if (urlParams.get('item') == "edit_surat_masuk")
+            document.querySelector("#tampil_surat_masuk").classList.add("active");
+        else if (urlParams.get('item') == "edit_surat_keluar")
+            document.querySelector("#tampil_surat_keluar").classList.add("active");
+    }
 </script>
 </body>
 
