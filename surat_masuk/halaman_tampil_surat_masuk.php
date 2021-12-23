@@ -85,23 +85,23 @@
       <div class="modal-body">
         <div class="row mb-3">
           <label class="col-sm-4 col-form-label">Asal Surat</label>
-          <label class="col-sm-8 col-form-label">: <span id="asal_surat"></span></label>
+          <label class="col-sm-8 col-form-label" id="asal_surat"></label>
         </div>
         <div class="row mb-3">
           <label class="col-sm-4 col-form-label">Nomor Surat</label>
-          <label class="col-sm-8 col-form-label">: <span id="nomor_surat"></span></label>
+          <label class="col-sm-8 col-form-label" id="nomor_surat"></label>
         </div>
         <div class="row mb-3">
           <label class="col-sm-4 col-form-label">Tanggal Surat</label>
-          <label class="col-sm-8 col-form-label">: <span id="tanggal_surat"></span></label>
+          <label class="col-sm-8 col-form-label" id="tanggal_surat"></label>
         </div>
         <div class="row mb-3">
           <label class="col-sm-4 col-form-label">Perihal</label>
-          <label class="col-sm-8 col-form-label">: <span id="perihal"></span></label>
+          <label class="col-sm-8 col-form-label" id="perihal"></label>
         </div>
         <div class="row mb-3">
           <label class="col-sm-4 col-form-label">Dokumen Surat</label>
-          <label class="col-sm-8 col-form-label">: <a href="#" target="_blank" id="dokumen_surat">Klik Disini</a></label>
+          <label class="col-sm-8 col-form-label"><a href="#" target="_blank" id="dokumen_surat">Klik Disini</a></label>
         </div>
       </div>
     </div>
