@@ -62,45 +62,45 @@ if (isset($_POST['submit'])) {
                 <!-- General Form Elements -->
                 <form class="needs-validation" novalidate action="" method="POST" enctype="multipart/form-data">
                     <div class="row mb-3">
-                        <label for="inputText" class="col-sm-2 col-form-label">Asal Surat</label>
+                        <label for="asal_surat" class="col-sm-2 col-form-label">Asal Surat</label>
                         <div class="col-sm-10">
-                            <input type="text" class="form-control" required name="asal_surat">
+                            <input type="text" class="form-control" id="asal_surat" required name="asal_surat">
                             <div class="invalid-feedback">
                                 Harap isi Asal Surat.
                             </div>
                         </div>
                     </div>
                     <div class="row mb-3">
-                        <label for="inputEmail" class="col-sm-2 col-form-label">Nomor Surat</label>
+                        <label for="nomor_surat" class="col-sm-2 col-form-label">Nomor Surat</label>
                         <div class="col-sm-10">
-                            <input type="text" class="form-control" required name="nomor_surat">
+                            <input type="text" class="form-control" id="nomor_surat" required name="nomor_surat">
                             <div class="invalid-feedback">
                                 Harap isi Nomor Surat.
                             </div>
                         </div>
                     </div>
                     <div class="row mb-3">
-                        <label for="inputPassword" class="col-sm-2 col-form-label">Tanggal Surat</label>
+                        <label for="tanggal_surat" class="col-sm-2 col-form-label">Tanggal Surat</label>
                         <div class="col-sm-10">
-                            <input type="date" class="form-control" required name="tanggal_surat">
+                            <input type="date" class="form-control" id="tanggal_surat" required name="tanggal_surat">
                             <div class="invalid-feedback">
                                 Harap isi Tanggal Surat.
                             </div>
                         </div>
                     </div>
                     <div class="row mb-3">
-                        <label for="inputNumber" class="col-sm-2 col-form-label">Perihal</label>
+                        <label for="perihal" class="col-sm-2 col-form-label">Perihal</label>
                         <div class="col-sm-10">
-                            <input type="text" class="form-control" required name="perihal">
+                            <input type="text" class="form-control" id="perihal" required name="perihal">
                             <div class="invalid-feedback">
                                 Harap isi Perihal Surat.
                             </div>
                         </div>
                     </div>
                     <div class="row mb-3">
-                        <label for="inputNumber" class="col-sm-2 col-form-label">Dokumen Surat</label>
+                        <label for="dokumen_surat" class="col-sm-2 col-form-label">Dokumen Surat</label>
                         <div class="col-sm-10">
-                            <input class="form-control" type="file" accept=".pdf" required name="dokumen_surat">
+                            <input class="form-control" type="file" accept=".pdf" id="dokumen_surat" required name="dokumen_surat">
                             <div class="invalid-feedback">
                                 Harap Tambahkan Dokumen Surat.
                             </div>
