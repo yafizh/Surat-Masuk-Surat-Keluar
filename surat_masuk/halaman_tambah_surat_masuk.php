@@ -36,7 +36,7 @@ if (isset($_POST['submit'])) {
                     '$file_name'
                 )";
 
-            if ($mysqli->query($sql) === TRUE) "<script>alert('Surat Masuk berhasil ditambahkan.')</script>";
+            if ($mysqli->query($sql) === TRUE) echo "<script>alert('Surat Masuk berhasil ditambahkan.')</script>";
             else echo "Error: " . $sql . "<br>" . $mysqli->error;
         }
     }

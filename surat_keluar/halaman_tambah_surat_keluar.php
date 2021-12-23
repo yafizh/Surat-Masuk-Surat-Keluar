@@ -1,3 +1,51 @@
+<?php
+
+if (isset($_POST['submit'])) {
+    require_once "koneksi.php";
+    require_once "utils.php";
+
+    $unit_pengolah = $_POST['unit_pengolah'];
+    $tanggal_surat = $_POST['tanggal_surat'];
+    $nomor_surat = $_POST['nomor_surat'];
+    $perihal = $_POST['perihal'];
+    $tujuan_surat = $_POST['tujuan_surat'];
+
+    $target_dir = "surat_keluar/uploads/";
+    $file_name = Date("YmdHis_") . basename($_FILES["dokumen_surat"]["name"]);
+    $target_file = $target_dir . $file_name;
+    $uploadOk = 1;
+    $file_type = strtolower(pathinfo($target_file, PATHINFO_EXTENSION));
+
+    $sizeOk = checkFileSize($_FILES["dokumen_surat"]["size"], 500000);
+    $typeOk = allowedFileType($file_type, ['pdf']);
+
+    // Check if $uploadOk is set to 0 by an error
+    if ($sizeOk != 0 && $typeOk != 0) {
+        if (move_uploaded_file($_FILES["dokumen_surat"]["tmp_name"], $target_file)) {
+            $sql = "
+                INSERT INTO tabel_surat_keluar (
+                    unit_pengolah, 
+                    tanggal_surat, 
+                    nomor_surat, 
+                    perihal, 
+                    tujuan_surat, 
+                    dokumen_surat
+                ) VALUES (
+                    '$unit_pengolah', 
+                    '$tanggal_surat',
+                    '$nomor_surat', 
+                    '$perihal',
+                    '$tujuan_surat',
+                    '$file_name'
+                )";
+
+            if ($mysqli->query($sql) === TRUE) echo "<script>alert('Surat Keluar berhasil ditambahkan.')</script>";
+            else echo "Error: " . $sql . "<br>" . $mysqli->error;
+        }
+    }
+}
+
+?>
 <main id="main" class="main">
     <div class="pagetitle">
         <h1>Tambah Surat</h1>
@@ -15,7 +63,7 @@
                 <h5 class="card-title">Surat Keluar</h5>
 
                 <!-- General Form Elements -->
-                <form class="needs-validation" novalidate>
+                <form class="needs-validation" novalidate action="" method="POST" enctype="multipart/form-data">
                     <div class="row mb-3">
                         <label for="inputText" class="col-sm-2 col-form-label">Unit Pengolah</label>
                         <div class="col-sm-10">
@@ -55,7 +103,7 @@
                     <div class="row mb-3">
                         <label for="inputNumber" class="col-sm-2 col-form-label">Tujuan</label>
                         <div class="col-sm-10">
-                            <input type="text" class="form-control" name="tujuan" required>
+                            <input type="text" class="form-control" name="tujuan_surat" required>
                             <div class="invalid-feedback">
                                 Harap isi Tujuan Surat.
                             </div>
@@ -64,7 +112,7 @@
                     <div class="row mb-3">
                         <label for="inputNumber" class="col-sm-2 col-form-label">Dokumen Surat</label>
                         <div class="col-sm-10">
-                            <input class="form-control" type="file" name="dokumen" accept=".pdf" required>
+                            <input class="form-control" type="file" name="dokumen_surat" accept=".pdf" required>
                             <div class="invalid-feedback">
                                 Harap Tambahkan Dokumen Surat.
                             </div>
@@ -73,7 +121,7 @@
 
                     <div class="row mb-3">
                         <div class="col-sm-12 justify-content-end d-flex">
-                            <button type="submit" class="btn btn-primary">Tambah Surat</button>
+                            <button type="submit" name="submit" class="btn btn-primary">Tambah Surat</button>
                         </div>
                     </div>
 

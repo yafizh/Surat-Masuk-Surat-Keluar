@@ -3,7 +3,7 @@
 function checkFileSize($size, $max_size)
 {
     if ($size > $max_size) {
-        echo "<script>alert('File yang diupload harus kurang dari " . $max_size . "KB')</script>";
+        echo "<script>alert('File yang diupload harus kurang dari " . ($max_size/1000) . "KB')</script>";
         return 0;
     } else return 1;
 }
