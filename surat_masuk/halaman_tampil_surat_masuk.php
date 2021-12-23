@@ -57,7 +57,7 @@
                           'dokumen_surat' : '<?= $row['dokumen_surat']; ?>'
                         })" class="btn btn-secondary" data-bs-toggle="modal" data-bs-target="#basicModal"><i class="bi bi-eye"></i></button>
                       <a href="index.php?page=edit_surat&item=edit_surat_masuk&id_surat_masuk=<?= $row['id_surat_masuk']; ?>" class="btn btn-warning"><i class="bi bi-pencil"></i></a>
-                      <a href="index.php?page=delete_surat&item=delete_surat_masuk" class="btn btn-danger" onclick="return confirm('Yakin ingin menghapus data ini?')"><i class="bi bi-trash"></i></a>
+                      <a href="index.php?page=delete_surat&item=delete_surat_masuk&id_surat_masuk=<?= $row['id_surat_masuk']; ?>" class="btn btn-danger" onclick="return confirm('Yakin ingin menghapus data ini?')"><i class="bi bi-trash"></i></a>
                     </td>
                   </tr>
                 <?php endwhile; ?>
