@@ -56,7 +56,7 @@
                           'perihal' : '<?= $row['perihal']; ?>',
                           'dokumen_surat' : '<?= $row['dokumen_surat']; ?>'
                         })" class="btn btn-secondary" data-bs-toggle="modal" data-bs-target="#basicModal"><i class="bi bi-eye"></i></button>
-                      <a href="index.php?page=edit_surat&item=edit_surat_masuk" class="btn btn-warning"><i class="bi bi-pencil"></i></a>
+                      <a href="index.php?page=edit_surat&item=edit_surat_masuk&id_surat_masuk=<?= $row['id_surat_masuk']; ?>" class="btn btn-warning"><i class="bi bi-pencil"></i></a>
                       <a href="index.php?page=delete_surat&item=delete_surat_masuk" class="btn btn-danger" onclick="return confirm('Yakin ingin menghapus data ini?')"><i class="bi bi-trash"></i></a>
                     </td>
                   </tr>
@@ -109,12 +109,12 @@
 </div><!-- End Basic Modal-->
 
 <script>
-  const showDetail = (data) => {
-    document.querySelector(".modal-title #judul_nomor_surat").textContent = data.nomor_surat;
-    document.querySelector(".modal-body #asal_surat").textContent = data.asal_surat;
-    document.querySelector(".modal-body #nomor_surat").textContent = data.nomor_surat;
-    document.querySelector(".modal-body #tanggal_surat").textContent = data.tanggal_surat;
-    document.querySelector(".modal-body #perihal").textContent = data.perihal;
-    document.querySelector(".modal-body #dokumen_surat").setAttribute('href', 'surat_masuk/uploads/' + data.dokumen_surat);
+  const showDetail = (surat_masuk) => {
+    document.querySelector(".modal-title #judul_nomor_surat").textContent = surat_masuk.nomor_surat;
+    document.querySelector(".modal-body #asal_surat").textContent = surat_masuk.asal_surat;
+    document.querySelector(".modal-body #nomor_surat").textContent = surat_masuk.nomor_surat;
+    document.querySelector(".modal-body #tanggal_surat").textContent = surat_masuk.tanggal_surat;
+    document.querySelector(".modal-body #perihal").textContent = surat_masuk.perihal;
+    document.querySelector(".modal-body #dokumen_surat").setAttribute('href', 'surat_masuk/uploads/' + surat_masuk.dokumen_surat);
   }
 </script>

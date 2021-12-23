@@ -15,11 +15,11 @@ if (isset($_POST['submit'])) {
     $uploadOk = 1;
     $file_type = strtolower(pathinfo($target_file, PATHINFO_EXTENSION));
 
-    $uploadOk = checkFileSize($_FILES["dokumen_surat"]["size"], 500000);
-    $uploadOk = allowedFileType($file_type, ['pdf']);
+    $sizeOk = checkFileSize($_FILES["dokumen_surat"]["size"], 500000);
+    $typeOk = allowedFileType($file_type, ['pdf']);
 
     // Check if $uploadOk is set to 0 by an error
-    if ($uploadOk != 0) {
+    if ($sizeOk != 0 && $typeOk != 0) {
         if (move_uploaded_file($_FILES["dokumen_surat"]["tmp_name"], $target_file)) {
             $sql = "
                 INSERT INTO tabel_surat_masuk (
