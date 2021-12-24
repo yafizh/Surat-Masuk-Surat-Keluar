@@ -106,23 +106,33 @@
         </a>
         <ul id="forms-nav2" class="nav-content collapse " data-bs-parent="#sidebar-nav">
           <li>
-            <a href="forms-elements.html">
+            <a href="laporan/laporan_surat_masuk_hari_ini.php" target="_blank">
               <i class="bi bi-circle"></i><span>Surat Masuk Hari ini</span>
             </a>
           </li>
           <li>
-            <a href="forms-layouts.html">
+            <a href="laporan/laporan_surat_masuk_bulan_ini.php" target="_blank">
               <i class="bi bi-circle"></i><span>Surat Masuk Bulan ini</span>
             </a>
           </li>
           <li>
-            <a href="forms-editors.html">
+            <a href="laporan/laporan_seluruh_surat_masuk.php" target="_blank">
+              <i class="bi bi-circle"></i><span>Seluruh Surat Masuk</span>
+            </a>
+          </li>
+          <li>
+            <a href="laporan/laporan_surat_keluar_hari_ini.php" target="_blank">
               <i class="bi bi-circle"></i><span>Surat Keluar Hari ini</span>
             </a>
           </li>
           <li>
-            <a href="forms-validation.html">
+            <a href="laporan/laporan_surat_keluar_bulan_ini.php" target="_blank">
               <i class="bi bi-circle"></i><span>Surat Keluar Bulan ini</span>
+            </a>
+          </li>
+          <li>
+            <a href="laporan/laporan_seluruh_surat_keluar.php" target="_blank">
+              <i class="bi bi-circle"></i><span>Seluruh Surat Keluar</span>
             </a>
           </li>
         </ul>

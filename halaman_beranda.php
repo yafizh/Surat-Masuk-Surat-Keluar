@@ -123,9 +123,7 @@
                     <?php endwhile; ?>
                   </tbody>
                 </table>
-
               </div>
-
             </div>
           </div><!-- End Top Selling -->
 
