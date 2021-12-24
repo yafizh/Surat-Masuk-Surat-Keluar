@@ -49,7 +49,7 @@
                     <th class="text-center">No</th>
                     <th>Asal Surat</th>
                     <th>Nomor Surat</th>
-                    <th>Tanggal</th>
+                    <th>Tanggal Surat</th>
                     <th>Perihal</th>
                 </tr>
             </thead>
