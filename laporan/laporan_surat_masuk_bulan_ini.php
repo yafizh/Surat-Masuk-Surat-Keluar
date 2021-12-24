@@ -65,7 +65,7 @@
                             <td class="text-center"><?= $no++; ?></td>
                             <td><?= $row['asal_surat']; ?></td>
                             <td class="text-center"><?= $row['nomor_surat']; ?></td>
-                            <td class="text-center"><?= $row['tanggal']; ?></td>
+                            <td class="text-center"><?= $row['tanggal_surat']; ?></td>
                             <td class="text-center"><?= $row['perihal']; ?></td>
                         </tr>
                     <?php endwhile; ?>
