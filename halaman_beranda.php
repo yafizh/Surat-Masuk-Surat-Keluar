@@ -16,6 +16,7 @@
       <div class="col-lg-12">
         <div class="row">
 
+          <?php require_once "koneksi.php"; ?>
           <!-- Sales Card -->
           <div class="col-xxl-6 col-md-6">
             <div class="card info-card sales-card">
@@ -26,10 +27,20 @@
                   <div class="card-icon rounded-circle d-flex align-items-center justify-content-center">
                     <i class="ri-mail-unread-line"></i>
                   </div>
-                  <div class="ps-3">
-                    <h6>145 Surat</h6>
-                    <span class="text-success small pt-1 fw-bold">12</span> <span class="text-muted small pt-2 ps-1">Surat Hari ini</span>
+                  <?php
+                  $sql = "SELECT COUNT(*) AS surat_masuk FROM tabel_surat_masuk";
+                  $result = $mysqli->query($sql);
+                  $row = $result->fetch_assoc();
+                  $surat_masuk = $row['surat_masuk'];
 
+                  $sql = "SELECT COUNT(*) AS surat_masuk_hari_ini FROM tabel_surat_masuk WHERE tanggal_surat='" . Date("Y-m-d") . "'";
+                  $result = $mysqli->query($sql);
+                  $row = $result->fetch_assoc();
+                  $surat_masuk_hari_ini = $row['surat_masuk_hari_ini'];
+                  ?>
+                  <div class="ps-3">
+                    <h6><?= $surat_masuk; ?> Surat</h6>
+                    <span class="text-success small pt-1 fw-bold"><?= $surat_masuk_hari_ini; ?></span> <span class="text-muted small pt-2 ps-1">Surat Hari ini</span>
                   </div>
                 </div>
               </div>
@@ -47,9 +58,20 @@
                   <div class="card-icon rounded-circle d-flex align-items-center justify-content-center">
                     <i class="ri-mail-send-line"></i>
                   </div>
+                  <?php
+                  $sql = "SELECT COUNT(*) AS surat_keluar FROM tabel_surat_keluar";
+                  $result = $mysqli->query($sql);
+                  $row = $result->fetch_assoc();
+                  $surat_keluar = $row['surat_keluar'];
+
+                  $sql = "SELECT COUNT(*) AS surat_keluar_hari_ini FROM tabel_surat_keluar WHERE tanggal_surat='" . Date("Y-m-d") . "'";
+                  $result = $mysqli->query($sql);
+                  $row = $result->fetch_assoc();
+                  $surat_keluar_hari_ini = $row['surat_keluar_hari_ini'];
+                  ?>
                   <div class="ps-3">
-                    <h6>100 Surat</h6>
-                    <span class="text-success small pt-1 fw-bold">10</span> <span class="text-muted small pt-2 ps-1">Surat Hari ini</span>
+                    <h6><?= $surat_keluar; ?> Surat</h6>
+                    <span class="text-success small pt-1 fw-bold"><?= $surat_keluar_hari_ini; ?></span> <span class="text-muted small pt-2 ps-1">Surat Hari ini</span>
 
                   </div>
                 </div>
@@ -84,40 +106,21 @@
                       <th scope="col">No</th>
                       <th scope="col">Asal Surat</th>
                       <th scope="col">Nomor Surat</th>
-                      <th scope="col">Tanggal Surat</th>
                     </tr>
                   </thead>
                   <tbody>
-                    <tr>
-                      <th class="align-middle" scope="row">1</th>
-                      <td class="align-middle">Brandon Jacob</td>
-                      <td class="align-middle">Designer</td>
-                      <td class="align-middle">5 Desember 2021</td>
-                    </tr>
-                    <tr>
-                      <th class="align-middle" scope="row">2</th>
-                      <td class="align-middle">Bridie Kessler</td>
-                      <td class="align-middle">Developer</td>
-                      <td class="align-middle">9 Desember 2021</td>
-                    </tr>
-                    <tr>
-                      <th class="align-middle" scope="row">3</th>
-                      <td class="align-middle">Ashleigh Langosh</td>
-                      <td class="align-middle">Finance</td>
-                      <td class="align-middle">30 Desember 2021</td>
-                    </tr>
-                    <tr>
-                      <th class="align-middle" scope="row">4</th>
-                      <td class="align-middle">Angus Grady</td>
-                      <td class="align-middle">HR</td>
-                      <td class="align-middle">15 Februari 2022</td>
-                    </tr>
-                    <tr>
-                      <th class="align-middle" scope="row">5</th>
-                      <td class="align-middle">Raheem Lehner</td>
-                      <td class="align-middle">Dynamic Division Officer</td>
-                      <td class="align-middle">1 Januari 2022</td>
-                    </tr>
+                    <?php
+                    $no = 1;
+                    $sql = "SELECT * FROM tabel_surat_masuk";
+                    $result = $mysqli->query($sql);
+                    ?>
+                    <?php while ($row = $result->fetch_assoc()) : ?>
+                      <tr>
+                        <th class="align-middle" scope="row"><?= $no++; ?></th>
+                        <td class="align-middle"><?= $row['asal_surat']; ?></td>
+                        <td class="align-middle"><?= $row['nomor_surat']; ?></td>
+                      </tr>
+                    <?php endwhile; ?>
                   </tbody>
                 </table>
 
@@ -150,41 +153,24 @@
                     <tr>
                       <th scope="col">No</th>
                       <th scope="col">Unit Pengolah</th>
-                      <th scope="col">Tanggal Surat</th>
                       <th scope="col">Nomor Surat</th>
+                      <th scope="col">Tujuan Surat</th>
                     </tr>
                   </thead>
                   <tbody>
-                    <tr>
-                      <th class="align-middle" scope="row">1</th>
-                      <td class="align-middle">Designer</td>
-                      <td class="align-middle">5 Desember 2021</td>
-                      <td class="align-middle">Brandon Jacob</td>
-                    </tr>
-                    <tr>
-                      <th class="align-middle" scope="row">2</th>
-                      <td class="align-middle">Developer</td>
-                      <td class="align-middle">9 Desember 2021</td>
-                      <td class="align-middle">Bridie Kessler</td>
-                    </tr>
-                    <tr>
-                      <th class="align-middle" scope="row">3</th>
-                      <td class="align-middle">Finance</td>
-                      <td class="align-middle">30 Desember 2021</td>
-                      <td class="align-middle">Ashleigh Langosh</td>
-                    </tr>
-                    <tr>
-                      <th class="align-middle" scope="row">4</th>
-                      <td class="align-middle">HR</td>
-                      <td class="align-middle">15 Februari 2022</td>
-                      <td class="align-middle">Angus Grady</td>
-                    </tr>
-                    <tr>
-                      <th class="align-middle" scope="row">5</th>
-                      <td class="align-middle">Dynamic Division Officer</td>
-                      <td class="align-middle">1 Januari 2022</td>
-                      <td class="align-middle">Raheem Lehner</td>
-                    </tr>
+                    <?php
+                    $no = 1;
+                    $sql = "SELECT * FROM tabel_surat_keluar";
+                    $result = $mysqli->query($sql);
+                    ?>
+                    <?php while ($row = $result->fetch_assoc()) : ?>
+                      <tr>
+                        <th class="align-middle" scope="row"><?= $no++; ?></th>
+                        <td class="align-middle"><?= $row['unit_pengolah']; ?></td>
+                        <td class="align-middle"><?= $row['nomor_surat']; ?></td>
+                        <td class="align-middle"><?= $row['tujuan_surat']; ?></td>
+                      </tr>
+                    <?php endwhile; ?>
                   </tbody>
                 </table>
 
