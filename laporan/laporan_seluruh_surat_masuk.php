@@ -57,7 +57,7 @@
                 <?php
                 $no = 1;
                 require_once "../koneksi.php";
-                $result = $mysqli->query("SELECT * FROM tabel_surat_masuk");
+                $result = $mysqli->query("SELECT * FROM tabel_surat_masuk ORDER BY id_surat_masuk DESC");
                 ?>
                 <?php if ($result->num_rows) : ?>
                     <?php while ($row = $result->fetch_assoc()) : ?>

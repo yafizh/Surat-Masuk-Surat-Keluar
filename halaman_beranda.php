@@ -111,7 +111,7 @@
                   <tbody>
                     <?php
                     $no = 1;
-                    $sql = "SELECT * FROM tabel_surat_masuk";
+                    $sql = "SELECT * FROM tabel_surat_masuk ORDER BY id_surat_masuk DESC";
                     $result = $mysqli->query($sql);
                     ?>
                     <?php while ($row = $result->fetch_assoc()) : ?>

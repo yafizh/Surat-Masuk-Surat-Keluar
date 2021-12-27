@@ -57,7 +57,7 @@
                 <?php
                 $no = 1;
                 require_once "../koneksi.php";
-                $result = $mysqli->query("SELECT * FROM tabel_surat_masuk WHERE MONTH(tanggal_surat)='" . Date("m") . "' AND YEAR(tanggal_surat)='" . Date("Y") . "'");
+                $result = $mysqli->query("SELECT * FROM tabel_surat_masuk WHERE MONTH(tanggal_surat)='" . Date("m") . "' AND YEAR(tanggal_surat)='" . Date("Y") . "' ORDER BY id_surat_masuk DESC");
                 ?>
                 <?php if ($result->num_rows) : ?>
                     <?php while ($row = $result->fetch_assoc()) : ?>

@@ -37,7 +37,7 @@
                 require_once "utils.php";
 
                 $no = 1;
-                $sql = "SELECT * FROM tabel_surat_masuk";
+                $sql = "SELECT * FROM tabel_surat_masuk ORDER BY id_surat_masuk DESC";
                 $result = $mysqli->query($sql);
                 ?>
 
