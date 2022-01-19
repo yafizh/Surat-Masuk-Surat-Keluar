@@ -9,7 +9,7 @@ CREATE TABLE `tabel_ruangan` (
     PRIMARY KEY(id_ruangan)
 );
 
-CREATE TABLE `kode_surat` (
+CREATE TABLE `tabel_kode_surat` (
     id_kode_surat INT NOT NULL AUTO_INCREMENT,
     jenis_surat VARCHAR(50) NOT NULL,
     singkatan VARCHAR(10) NOT NULL,
