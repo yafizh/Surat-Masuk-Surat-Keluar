@@ -4,6 +4,7 @@ USE `db_surat_masuk_keluar`;
 CREATE TABLE `tabel_ruangan` (
     id_ruangan INT NOT NULL AUTO_INCREMENT,
     nama_ruangan VARCHAR(255) NOT NULL,
+    singkatan VARCHAR(10) NOT NULL,
     keterangan VARCHAR(255) NOT NULL,
     PRIMARY KEY(id_ruangan)
 );
