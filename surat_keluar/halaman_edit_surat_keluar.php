@@ -13,11 +13,11 @@ if (isset($_GET['id_surat_keluar'])) {
         "</script>";
 
 if (isset($_POST['submit'])) {
-    $unit_pengolah = $_POST['unit_pengolah'];
-    $tanggal_surat = $_POST['tanggal_surat'];
+    $id_ruangan = $_POST['id_ruangan'];
     $nomor_surat = $_POST['nomor_surat'];
-    $perihal = $_POST['perihal'];
-    $tujuan_surat = $_POST['tujuan_surat'];
+    $tanggal_surat = $_POST['tanggal_surat'];
+    $jenis_surat = $_POST['jenis_surat'];
+    $sifat_surat = $_POST['sifat_surat'];
 
 
     // $_FILES['dokumen_surat']['error'] == 4, artinya tidak ada dokumen yang diupload
@@ -26,11 +26,11 @@ if (isset($_POST['submit'])) {
 
         $sql = "UPDATE tabel_surat_keluar 
             SET 
-                unit_pengolah='$unit_pengolah', 
-                tanggal_surat='$tanggal_surat', 
+                id_ruangan='$id_ruangan', 
                 nomor_surat='$nomor_surat', 
-                perihal='$perihal', 
-                tujuan_surat='$tujuan_surat', 
+                tanggal_surat='$tanggal_surat', 
+                jenis_surat='$jenis_surat', 
+                sifat_surat='$sifat_surat', 
                 dokumen_surat='$file_name' 
             WHERE 
                 id_surat_keluar=" . $_GET['id_surat_keluar'];
@@ -55,11 +55,11 @@ if (isset($_POST['submit'])) {
             if (move_uploaded_file($_FILES["dokumen_surat"]["tmp_name"], $target_file)) {
                 $sql = "UPDATE tabel_surat_keluar 
                         SET 
-                            unit_pengolah='$unit_pengolah', 
-                            tanggal_surat='$tanggal_surat', 
+                            id_ruangan='$id_ruangan', 
                             nomor_surat='$nomor_surat', 
-                            perihal='$perihal', 
-                            tujuan_surat='$tujuan_surat', 
+                            tanggal_surat='$tanggal_surat', 
+                            jenis_surat='$jenis_surat', 
+                            sifat_surat='$sifat_surat', 
                             dokumen_surat='$file_name' 
                         WHERE 
                             id_surat_keluar=" . $_GET['id_surat_keluar'];
@@ -96,16 +96,40 @@ if (isset($_POST['submit'])) {
                     <div class="row mb-3">
                         <label for="unit_pengolah" class="col-sm-2 col-form-label">Unit Pengolah</label>
                         <div class="col-sm-10">
-                            <input type="text" class="form-control" id="unit_pengolah" name="unit_pengolah" required value="<?= $row['unit_pengolah']; ?>">
+                            <?php
+                            $sql = "SELECT * FROM tabel_ruangan ORDER BY id_ruangan DESC";
+                            $result = $mysqli->query($sql);
+                            ?>
+                            <select class="form-select" name="id_ruangan" required>
+                                <?php while ($row_ruangan = $result->fetch_assoc()) : ?>
+                                    <?php
+                                    $sql = "
+                                        SELECT 
+                                                SUBSTRING_INDEX(SUBSTRING_INDEX(nomor_surat,'/',2),'/',-1) AS data_jumlah_surat 
+                                            FROM 
+                                                tabel_surat_keluar 
+                                        WHERE 
+                                            SUBSTRING_INDEX(nomor_surat,'/',1) = '" . $row_ruangan['singkatan'] . "'";
+                                    $result2 = $mysqli->query($sql);
+                                    $data_jumlah_surat =  ($result2->num_rows > 0) ? (int)$result2->fetch_assoc()['data_jumlah_surat'] : 0;
+                                    $data_jumlah_surat += 1;
+                                    ?>
+                                    <?php if ($row_ruangan['id_ruangan'] == $row['id_ruangan']) : ?>
+                                        <option selected data-jumlah-surat="<?= $data_jumlah_surat; ?>" data-singkatan="<?= $row_ruangan['singkatan']; ?>" value="<?= $row_ruangan['id_ruangan']; ?>"><?= $row_ruangan['nama_ruangan']; ?></option>
+                                    <?php else : ?>
+                                        <option data-jumlah-surat="<?= $data_jumlah_surat; ?>" data-singkatan="<?= $row_ruangan['singkatan']; ?>" value="<?= $row_ruangan['id_ruangan']; ?>"><?= $row_ruangan['nama_ruangan']; ?></option>
+                                    <?php endif; ?>
+                                <?php endwhile; ?>
+                            </select>
                             <div class="invalid-feedback">
-                                Harap isi Unt Pengolah Surat.
+                                Harap isi Unit Pengolah Surat.
                             </div>
                         </div>
                     </div>
                     <div class="row mb-3">
                         <label for="nomor_surat" class="col-sm-2 col-form-label">Nomor Surat Keluar</label>
                         <div class="col-sm-10">
-                            <input type="text" class="form-control" id="nomor_surat" name="nomor_surat" required value="<?= $row['nomor_surat']; ?>">
+                            <input type="text" class="form-control" id="nomor_surat" readonly name="nomor_surat" required value="<?= $row['nomor_surat']; ?>">
                             <div class="invalid-feedback">
                                 Harap isi Nomor Surat.
                             </div>
@@ -121,20 +145,28 @@ if (isset($_POST['submit'])) {
                         </div>
                     </div>
                     <div class="row mb-3">
-                        <label for="perihal" class="col-sm-2 col-form-label">Perihal</label>
+                        <label for="jenis_surat" class="col-sm-2 col-form-label">Jenis Surat</label>
                         <div class="col-sm-10">
-                            <input type="text" class="form-control" id="perihal" name="perihal" required value="<?= $row['perihal']; ?>">
+                            <select class="form-select" name="jenis_surat" required>
+                                <option <?= $row['jenis_surat'] == 'SURAT TERBUKA' ? 'selected' : ''; ?> value="SURAT TERBUKA">Surat Terbuka</option>
+                                <option <?= $row['jenis_surat'] == 'SURAT TERTUTUP' ? 'selected' : ''; ?> value="SURAT TERTUTUP">Surat Tertutup</option>
+                            </select>
                             <div class="invalid-feedback">
-                                Harap isi Perihal Surat.
+                                Harap isi Jenis Surat Surat.
                             </div>
                         </div>
                     </div>
                     <div class="row mb-3">
-                        <label for="tujuan_surat" class="col-sm-2 col-form-label">Tujuan</label>
+                        <label for="sifat_surat" class="col-sm-2 col-form-label">Sifat Surat</label>
                         <div class="col-sm-10">
-                            <input type="text" class="form-control" id="tujuan_surat" name="tujuan_surat" required value="<?= $row['tujuan_surat']; ?>">
+                            <select class="form-select" name="sifat_surat" required>
+                                <option <?= $row['sifat_surat'] == 'PRIBADI' ? 'selected' : ''; ?> value="PRIBADI">Pribadi</option>
+                                <option <?= $row['sifat_surat'] == 'RESMI PRIBADI' ? 'selected' : ''; ?> value="RESMI PRIBADI">Resmi Pribadi</option>
+                                <option <?= $row['sifat_surat'] == 'DINAS' ? 'selected' : ''; ?> value="DINAS">Dinas</option>
+                                <option <?= $row['sifat_surat'] == 'NIAGA' ? 'selected' : ''; ?> value="NIAGA">Niaga</option>
+                            </select>
                             <div class="invalid-feedback">
-                                Harap isi Tujuan Surat.
+                                Harap isi Sifat Surat.
                             </div>
                         </div>
                     </div>
@@ -158,3 +190,41 @@ if (isset($_POST['submit'])) {
     </section>
 
 </main><!-- End #main -->
+<script>
+    const nomor_surat = document.querySelector("input[name=nomor_surat]");
+    let temp = "";
+    document.querySelector("select[name=id_ruangan]").addEventListener('change', function(value) {
+        temp = (nomor_surat.value).split('/');
+        temp[0] = this.options[this.selectedIndex].getAttribute('data-singkatan');
+        nomor_surat.value = temp.join("/");
+
+        temp = (nomor_surat.value).split('/');
+        temp[1] = this.options[this.selectedIndex].getAttribute('data-jumlah-surat');
+        nomor_surat.value = temp.join("/");
+    });
+
+    function romanize(num) {
+        if (isNaN(num))
+            return NaN;
+        var digits = String(+num).split(""),
+            key = ["", "C", "CC", "CCC", "CD", "D", "DC", "DCC", "DCCC", "CM",
+                "", "X", "XX", "XXX", "XL", "L", "LX", "LXX", "LXXX", "XC",
+                "", "I", "II", "III", "IV", "V", "VI", "VII", "VIII", "IX"
+            ],
+            roman = "",
+            i = 3;
+        while (i--)
+            roman = (key[+digits.pop() + (i * 10)] || "") + roman;
+        return Array(+digits.join("") + 1).join("M") + roman;
+    }
+
+    document.querySelector("input[name=tanggal_surat]").addEventListener('input', function(value) {
+        temp = (nomor_surat.value).split('/');
+        temp[2] = romanize((this.value).split("-")[1]);
+        nomor_surat.value = temp.join("/");
+
+        temp = (nomor_surat.value).split('/');
+        temp[3] = (this.value).split("-")[0];
+        nomor_surat.value = temp.join("/");
+    });
+</script>

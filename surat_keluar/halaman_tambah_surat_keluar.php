@@ -1,14 +1,12 @@
 <?php
-
+require_once "koneksi.php";
+require_once "utils.php";
 if (isset($_POST['submit'])) {
-    require_once "koneksi.php";
-    require_once "utils.php";
-
-    $unit_pengolah = $_POST['unit_pengolah'];
-    $tanggal_surat = $_POST['tanggal_surat'];
+    $id_ruangan = $_POST['id_ruangan'];
     $nomor_surat = $_POST['nomor_surat'];
-    $perihal = $_POST['perihal'];
-    $tujuan_surat = $_POST['tujuan_surat'];
+    $tanggal_surat = $_POST['tanggal_surat'];
+    $jenis_surat = $_POST['jenis_surat'];
+    $sifat_surat = $_POST['sifat_surat'];
 
     $target_dir = "surat_keluar/uploads/";
     $file_name = Date("YmdHis_") . basename($_FILES["dokumen_surat"]["name"]);
@@ -24,18 +22,18 @@ if (isset($_POST['submit'])) {
         if (move_uploaded_file($_FILES["dokumen_surat"]["tmp_name"], $target_file)) {
             $sql = "
                 INSERT INTO tabel_surat_keluar (
-                    unit_pengolah, 
-                    tanggal_surat, 
+                    id_ruangan, 
                     nomor_surat, 
-                    perihal, 
-                    tujuan_surat, 
+                    tanggal_surat, 
+                    jenis_surat, 
+                    sifat_surat, 
                     dokumen_surat
                 ) VALUES (
-                    '$unit_pengolah', 
-                    '$tanggal_surat',
+                    '$id_ruangan', 
                     '$nomor_surat', 
-                    '$perihal',
-                    '$tujuan_surat',
+                    '$tanggal_surat',
+                    '$jenis_surat',
+                    '$sifat_surat',
                     '$file_name'
                 )";
 
@@ -65,18 +63,39 @@ if (isset($_POST['submit'])) {
                 <!-- General Form Elements -->
                 <form class="needs-validation" novalidate action="" method="POST" enctype="multipart/form-data">
                     <div class="row mb-3">
-                        <label for="unit_pengolah" class="col-sm-2 col-form-label">Unit Pengolah</label>
+                        <label for="id_ruangan" class="col-sm-2 col-form-label">Unit Pengolah</label>
                         <div class="col-sm-10">
-                            <input type="text" class="form-control" id="unit_pengolah" name="unit_pengolah" required>
+                            <?php
+                            $sql = "SELECT * FROM tabel_ruangan ORDER BY id_ruangan DESC";
+                            $result = $mysqli->query($sql);
+                            ?>
+                            <select class="form-select" name="id_ruangan" required>
+                                <option value="" selected disabled>Pilih Unit Pengolah</option>
+                                <?php while ($row = $result->fetch_assoc()) : ?>
+                                    <?php
+                                    $sql = "
+                                        SELECT 
+                                                SUBSTRING_INDEX(SUBSTRING_INDEX(nomor_surat,'/',2),'/',-1) AS data_jumlah_surat 
+                                            FROM 
+                                                tabel_surat_keluar 
+                                        WHERE 
+                                            SUBSTRING_INDEX(nomor_surat,'/',1) = '" . $row['singkatan'] . "'";
+                                    $result2 = $mysqli->query($sql);
+                                    $data_jumlah_surat =  ($result2->num_rows > 0) ? (int)$result2->fetch_assoc()['data_jumlah_surat'] : 0;
+                                    $data_jumlah_surat += 1;
+                                    ?>
+                                    <option data-jumlah-surat="<?= $data_jumlah_surat; ?>" data-singkatan="<?= $row['singkatan']; ?>" value="<?= $row['id_ruangan']; ?>"><?= $row['nama_ruangan']; ?></option>
+                                <?php endwhile; ?>
+                            </select>
                             <div class="invalid-feedback">
-                                Harap isi Unt Pengolah Surat.
+                                Harap isi Unit Pengolah Surat.
                             </div>
                         </div>
                     </div>
                     <div class="row mb-3">
                         <label for="nomor_surat" class="col-sm-2 col-form-label">Nomor Surat Keluar</label>
                         <div class="col-sm-10">
-                            <input type="text" class="form-control" id="nomor_surat" name="nomor_surat" required>
+                            <input type="text" value="XX/XX/XX/XX" class="form-control" id="nomor_surat" name="nomor_surat" required readonly>
                             <div class="invalid-feedback">
                                 Harap isi Nomor Surat.
                             </div>
@@ -92,20 +111,28 @@ if (isset($_POST['submit'])) {
                         </div>
                     </div>
                     <div class="row mb-3">
-                        <label for="perihal" class="col-sm-2 col-form-label">Perihal</label>
+                        <label for="jenis_surat" class="col-sm-2 col-form-label">Jenis Surat</label>
                         <div class="col-sm-10">
-                            <input type="text" class="form-control" id="perihal" name="perihal" required>
+                            <select class="form-select" name="jenis_surat" required>
+                                <option value="SURAT TERBUKA">Surat Terbuka</option>
+                                <option value="SURAT TERTUTUP">Surat Tertutup</option>
+                            </select>
                             <div class="invalid-feedback">
-                                Harap isi Perihal Surat.
+                                Harap isi Jenis Surat.
                             </div>
                         </div>
                     </div>
                     <div class="row mb-3">
-                        <label for="tujuan_surat" class="col-sm-2 col-form-label">Tujuan</label>
+                        <label for="sifat_surat" class="col-sm-2 col-form-label">Sifat Surat</label>
                         <div class="col-sm-10">
-                            <input type="text" class="form-control" id="tujuan_surat" name="tujuan_surat" required>
+                            <select class="form-select" name="sifat_surat" required>
+                                <option value="PRIBADI">Pribadi</option>
+                                <option value="RESMI PRIBADI">Resmi Pribadi</option>
+                                <option value="DINAS">Dinas</option>
+                                <option value="NIAGA">Niaga</option>
+                            </select>
                             <div class="invalid-feedback">
-                                Harap isi Tujuan Surat.
+                                Harap isi Sifat Surat.
                             </div>
                         </div>
                     </div>
@@ -132,3 +159,41 @@ if (isset($_POST['submit'])) {
     </section>
 
 </main><!-- End #main -->
+<script>
+    const nomor_surat = document.querySelector("input[name=nomor_surat]");
+    let temp = "";
+    document.querySelector("select[name=id_ruangan]").addEventListener('change', function(value) {
+        temp = (nomor_surat.value).split('/');
+        temp[0] = this.options[this.selectedIndex].getAttribute('data-singkatan');
+        nomor_surat.value = temp.join("/");
+
+        temp = (nomor_surat.value).split('/');
+        temp[1] = this.options[this.selectedIndex].getAttribute('data-jumlah-surat');
+        nomor_surat.value = temp.join("/");
+    });
+
+    function romanize(num) {
+        if (isNaN(num))
+            return NaN;
+        var digits = String(+num).split(""),
+            key = ["", "C", "CC", "CCC", "CD", "D", "DC", "DCC", "DCCC", "CM",
+                "", "X", "XX", "XXX", "XL", "L", "LX", "LXX", "LXXX", "XC",
+                "", "I", "II", "III", "IV", "V", "VI", "VII", "VIII", "IX"
+            ],
+            roman = "",
+            i = 3;
+        while (i--)
+            roman = (key[+digits.pop() + (i * 10)] || "") + roman;
+        return Array(+digits.join("") + 1).join("M") + roman;
+    }
+
+    document.querySelector("input[name=tanggal_surat]").addEventListener('input', function(value) {
+        temp = (nomor_surat.value).split('/');
+        temp[2] = romanize((this.value).split("-")[1]);
+        nomor_surat.value = temp.join("/");
+
+        temp = (nomor_surat.value).split('/');
+        temp[3] = (this.value).split("-")[0];
+        nomor_surat.value = temp.join("/");
+    });
+</script>
