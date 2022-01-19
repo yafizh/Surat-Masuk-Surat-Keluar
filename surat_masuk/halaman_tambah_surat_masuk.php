@@ -94,12 +94,10 @@ if (isset($_POST['submit'])) {
                     <div class="row mb-3">
                         <label class="col-sm-2 col-form-label">Jenis Surat</label>
                         <div class="col-sm-10">
-                            <div class="col-sm-10">
-                                <select class="form-select" name="jenis_surat" required>
-                                    <option value="SURAT TERBUKA">Surat Terbuka</option>
-                                    <option value="SURAT TERTUTUP">Surat TErtutup</option>
-                                </select>
-                            </div>
+                            <select class="form-select" name="jenis_surat" required>
+                                <option value="SURAT TERBUKA">Surat Terbuka</option>
+                                <option value="SURAT TERTUTUP">Surat TErtutup</option>
+                            </select>
                             <div class="invalid-feedback">
                                 Harap pilih Jenis Surat.
                             </div>
