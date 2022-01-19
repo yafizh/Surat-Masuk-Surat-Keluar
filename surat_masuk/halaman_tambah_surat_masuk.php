@@ -4,10 +4,11 @@ if (isset($_POST['submit'])) {
     require_once "koneksi.php";
     require_once "utils.php";
 
-    $asal_surat = $_POST['asal_surat'];
     $nomor_surat = $_POST['nomor_surat'];
     $tanggal_surat = $_POST['tanggal_surat'];
     $perihal = $_POST['perihal'];
+    $jenis_surat = $_POST['jenis_surat'];
+    $pengirim = $_POST['pengirim'];
 
     $target_dir = "surat_masuk/uploads/";
     $file_name = Date("YmdHis_") . basename($_FILES["dokumen_surat"]["name"]);
@@ -23,16 +24,18 @@ if (isset($_POST['submit'])) {
         if (move_uploaded_file($_FILES["dokumen_surat"]["tmp_name"], $target_file)) {
             $sql = "
                 INSERT INTO tabel_surat_masuk (
-                    asal_surat, 
                     nomor_surat, 
                     tanggal_surat, 
                     perihal, 
+                    jenis_surat, 
+                    pengirim, 
                     dokumen_surat
                 ) VALUES (
-                    '$asal_surat', 
                     '$nomor_surat', 
                     '$tanggal_surat',
                     '$perihal',
+                    '$jenis_surat', 
+                    '$pengirim', 
                     '$file_name'
                 )";
 
@@ -62,15 +65,6 @@ if (isset($_POST['submit'])) {
                 <!-- General Form Elements -->
                 <form class="needs-validation" novalidate action="" method="POST" enctype="multipart/form-data">
                     <div class="row mb-3">
-                        <label for="asal_surat" class="col-sm-2 col-form-label">Asal Surat</label>
-                        <div class="col-sm-10">
-                            <input type="text" class="form-control" id="asal_surat" required name="asal_surat">
-                            <div class="invalid-feedback">
-                                Harap isi Asal Surat.
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row mb-3">
                         <label for="nomor_surat" class="col-sm-2 col-form-label">Nomor Surat</label>
                         <div class="col-sm-10">
                             <input type="text" class="form-control" id="nomor_surat" required name="nomor_surat">
@@ -94,6 +88,29 @@ if (isset($_POST['submit'])) {
                             <input type="text" class="form-control" id="perihal" required name="perihal">
                             <div class="invalid-feedback">
                                 Harap isi Perihal Surat.
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row mb-3">
+                        <label class="col-sm-2 col-form-label">Jenis Surat</label>
+                        <div class="col-sm-10">
+                            <div class="col-sm-10">
+                                <select class="form-select" name="jenis_surat" required>
+                                    <option value="SURAT TERBUKA">Surat Terbuka</option>
+                                    <option value="SURAT TERTUTUP">Surat TErtutup</option>
+                                </select>
+                            </div>
+                            <div class="invalid-feedback">
+                                Harap pilih Jenis Surat.
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row mb-3">
+                        <label for="pengirim" class="col-sm-2 col-form-label">Pengirim</label>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" id="pengirim" required name="pengirim">
+                            <div class="invalid-feedback">
+                                Harap isi Pengirim.
                             </div>
                         </div>
                     </div>

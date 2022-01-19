@@ -25,9 +25,11 @@
               <thead>
                 <tr>
                   <th scope="col">No</th>
-                  <th scope="col">Asal Surat</th>
                   <th scope="col">Nomor Surat</th>
                   <th scope="col">Tanggal Surat</th>
+                  <th scope="col">Perihal</th>
+                  <th scope="col">Jenis Surat</th>
+                  <th scope="col">Pengirim</th>
                   <th scope="col" class="text-center">Aksi</th>
                 </tr>
               </thead>
@@ -44,18 +46,13 @@
                 <?php while ($row = $result->fetch_assoc()) : ?>
                   <tr>
                     <th class="align-middle" scope="row"><?= $no++; ?></th>
-                    <td class="align-middle"><?= $row['asal_surat']; ?></td>
                     <td class="align-middle"><?= $row['nomor_surat']; ?></td>
                     <td class="align-middle"><?= $row['tanggal_surat']; ?></td>
+                    <td class="align-middle"><?= $row['perihal']; ?></td>
+                    <td class="align-middle"><?= $row['jenis_surat']; ?></td>
+                    <td class="align-middle"><?= $row['pengirim']; ?></td>
                     <td class="d-flex justify-content-center gap-1">
-                      <button onclick="showDetail({
-                          'id_surat_masuk': '<?= $row['id_surat_masuk']; ?>',
-                          'asal_surat' : '<?= $row['asal_surat']; ?>',
-                          'nomor_surat' : '<?= $row['nomor_surat']; ?>',
-                          'tanggal_surat' : '<?= $row['tanggal_surat']; ?>',
-                          'perihal' : '<?= $row['perihal']; ?>',
-                          'dokumen_surat' : '<?= $row['dokumen_surat']; ?>'
-                        })" class="btn btn-secondary" data-bs-toggle="modal" data-bs-target="#basicModal"><i class="bi bi-eye"></i></button>
+                      <a href="surat_masuk/uploads/<?= $row['dokumen_surat']; ?>" target="_blank" class="btn btn-secondary"><i class="bi bi-file-earmark"></i></a>
                       <a href="index.php?page=edit_surat&item=edit_surat_masuk&id_surat_masuk=<?= $row['id_surat_masuk']; ?>" class="btn btn-warning"><i class="bi bi-pencil"></i></a>
                       <a href="index.php?page=delete_surat&item=delete_surat_masuk&id_surat_masuk=<?= $row['id_surat_masuk']; ?>" class="btn btn-danger" onclick="return confirm('Yakin ingin menghapus data ini?')"><i class="bi bi-trash"></i></a>
                     </td>

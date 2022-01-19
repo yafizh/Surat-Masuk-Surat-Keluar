@@ -13,11 +13,11 @@ if (isset($_GET['id_surat_masuk'])) {
         "</script>";
 
 if (isset($_POST['submit'])) {
-    $asal_surat = $_POST['asal_surat'];
     $nomor_surat = $_POST['nomor_surat'];
     $tanggal_surat = $_POST['tanggal_surat'];
     $perihal = $_POST['perihal'];
-    $file_name = "";
+    $jenis_surat = $_POST['jenis_surat'];
+    $pengirim = $_POST['pengirim'];
 
     // $_FILES['dokumen_surat']['error'] == 4, artinya tidak ada dokumen yang diupload
     if ($_FILES['dokumen_surat']['error'] == 4) {
@@ -25,10 +25,11 @@ if (isset($_POST['submit'])) {
 
         $sql = "UPDATE tabel_surat_masuk 
             SET 
-                asal_surat='$asal_surat', 
                 nomor_surat='$nomor_surat', 
                 tanggal_surat='$tanggal_surat', 
                 perihal='$perihal', 
+                jenis_surat='$jenis_surat', 
+                pengirim='$pengirim', 
                 dokumen_surat='$file_name' 
             WHERE 
                 id_surat_masuk=" . $_GET['id_surat_masuk'];
@@ -91,15 +92,6 @@ if (isset($_POST['submit'])) {
                 <!-- General Form Elements -->
                 <form class="needs-validation" novalidate action="" method="POST" enctype="multipart/form-data">
                     <div class="row mb-3">
-                        <label for="asal_surat" class="col-sm-2 col-form-label">Asal Surat</label>
-                        <div class="col-sm-10">
-                            <input type="text" class="form-control" id="asal_surat" value="<?= $row['asal_surat']; ?>" name="asal_surat" required>
-                            <div class="invalid-feedback">
-                                Harap isi Asal Surat.
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row mb-3">
                         <label for="nomor_surat" class="col-sm-2 col-form-label">Nomor Surat</label>
                         <div class="col-sm-10">
                             <input type="text" class="form-control" id="nomor_surat" value="<?= $row['nomor_surat']; ?>" name="nomor_surat" required>
@@ -127,12 +119,34 @@ if (isset($_POST['submit'])) {
                         </div>
                     </div>
                     <div class="row mb-3">
+                        <label class="col-sm-2 col-form-label">Jenis Surat</label>
+                        <div class="col-sm-10">
+                            <div class="col-sm-10">
+                                <select class="form-select" name="jenis_surat" required>
+                                    <option <?= ($row['jenis_surat'] == 'SURAT TERBUKA' ? 'selected':''); ?> value="SURAT TERBUKA">Surat Terbuka</option>
+                                    <option <?= ($row['jenis_surat'] == 'SURAT TERTUTUP' ? 'selected':''); ?> value="SURAT TERTUTUP">Surat TErtutup</option>
+                                </select>
+                            </div>
+                            <div class="invalid-feedback">
+                                Harap pilih Jenis Surat.
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row mb-3">
+                        <label for="pengirim" class="col-sm-2 col-form-label">Pengirim</label>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" id="pengirim" value="<?= $row['pengirim']; ?>" name="pengirim" required>
+                            <div class="invalid-feedback">
+                                Harap isi Pengirim.
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row mb-3">
                         <label for="dokumen_surat" class="col-sm-2 col-form-label">Dokumen Surat</label>
                         <div class="col-sm-10">
                             <input class="form-control" id="dokumen_surat" type="file" accept=".pdf" name="dokumen_surat">
                         </div>
                     </div>
-
                     <div class="row mb-3">
                         <div class="col-sm-12 justify-content-end d-flex">
                             <button type="submit" name="submit" class="btn btn-primary">Edit Surat</button>
