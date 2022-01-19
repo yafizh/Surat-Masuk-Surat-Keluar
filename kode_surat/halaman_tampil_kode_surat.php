@@ -1,7 +1,7 @@
 <main id="main" class="main">
 
   <div class="pagetitle">
-    <h1>Data Ruangan</h1>
+    <h1>Data Kode Surat</h1>
     <!-- <nav>
         <ol class="breadcrumb">
           <li class="breadcrumb-item"><a href="index.html">Home</a></li>
@@ -17,7 +17,7 @@
 
         <div class="card">
           <div class="card-body">
-            <h5 class="card-title" style="flex: 1;">Ruangan</h5>
+            <h5 class="card-title" style="flex: 1;">Kode Surat</h5>
             <!-- <p>Add lightweight datatables to your project with using the <a href="https://github.com/fiduswriter/Simple-DataTables" target="_blank">Simple DataTables</a> library. Just add <code>.datatable</code> class name to any table you wish to conver to a datatable</p> -->
 
             <!-- Table with stripped rows -->
@@ -25,9 +25,8 @@
               <thead>
                 <tr>
                   <th scope="col">No</th>
-                  <th scope="col">Nama Ruangan</th>
+                  <th scope="col">Kode Surat</th>
                   <th scope="col">Singkatan</th>
-                  <th scope="col">Keterangan</th>
                   <th scope="col" class="text-center">Aksi</th>
                 </tr>
               </thead>
@@ -37,18 +36,17 @@
                 require_once "utils.php";
 
                 $no = 1;
-                $sql = "SELECT * FROM tabel_ruangan ORDER BY id_ruangan DESC";
+                $sql = "SELECT * FROM tabel_kode_surat ORDER BY id_kode_surat DESC";
                 $result = $mysqli->query($sql);
                 ?>
                 <?php while ($row = $result->fetch_assoc()) : ?>
                   <tr>
                     <th class="align-middle" scope="row"><?= $no++; ?></th>
-                    <td class="align-middle"><?= $row['nama_ruangan']; ?></td>
+                    <td class="align-middle"><?= $row['jenis_surat']; ?></td>
                     <td class="align-middle"><?= $row['singkatan']; ?></td>
-                    <td class="align-middle"><?= $row['keterangan']; ?></td>
                     <td class="d-flex justify-content-center gap-1">
-                      <a href="index.php?page=ruangan&item=edit_ruangan&id_ruangan=<?= $row['id_ruangan']; ?>" class="btn btn-warning"><i class="bi bi-pencil"></i></a>
-                      <a href="index.php?page=ruangan&item=delete_ruangan&id_ruangan=<?= $row['id_ruangan']; ?>" class="btn btn-danger" onclick="return confirm('Yakin ingin menghapus data ini?')"><i class="bi bi-trash"></i></a>
+                      <a href="index.php?page=kode_surat&item=edit_kode_surat&id_kode_surat=<?= $row['id_kode_surat']; ?>" class="btn btn-warning"><i class="bi bi-pencil"></i></a>
+                      <a href="index.php?page=kode_surat&item=delete_kode_surat&id_kode_surat=<?= $row['id_kode_surat']; ?>" class="btn btn-danger" onclick="return confirm('Yakin ingin menghapus data ini?')"><i class="bi bi-trash"></i></a>
                     </td>
                   </tr>
                 <?php endwhile; ?>
