@@ -38,7 +38,7 @@ if (isset($_POST['submit'])) {
         if ($mysqli->query($sql) === TRUE) {
             echo "<script>alert('Surat Keluar berhasil diedit.')</script>";
             echo "<script>" .
-                "window.location.href='index.php?page=tampil_surat&item=tampil_surat_keluar';" .
+                "window.location.href='index.php?page=surat_keluar&item=tampil_surat_keluar';" .
                 "</script>";
         } else echo "Error: " . $sql . "<br>" . $mysqli->error;
     } else {

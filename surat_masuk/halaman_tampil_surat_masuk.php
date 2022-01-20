@@ -53,8 +53,8 @@
                     <td class="align-middle"><?= $row['pengirim']; ?></td>
                     <td class="d-flex justify-content-center gap-1">
                       <a href="surat_masuk/uploads/<?= $row['dokumen_surat']; ?>" target="_blank" class="btn btn-secondary"><i class="bi bi-file-earmark"></i></a>
-                      <a href="index.php?page=edit_surat&item=edit_surat_masuk&id_surat_masuk=<?= $row['id_surat_masuk']; ?>" class="btn btn-warning"><i class="bi bi-pencil"></i></a>
-                      <a href="index.php?page=delete_surat&item=delete_surat_masuk&id_surat_masuk=<?= $row['id_surat_masuk']; ?>" class="btn btn-danger" onclick="return confirm('Yakin ingin menghapus data ini?')"><i class="bi bi-trash"></i></a>
+                      <a href="index.php?page=surat_masuk&item=edit_surat_masuk&id_surat_masuk=<?= $row['id_surat_masuk']; ?>" class="btn btn-warning"><i class="bi bi-pencil"></i></a>
+                      <a href="index.php?page=surat_masuk&item=delete_surat_masuk&id_surat_masuk=<?= $row['id_surat_masuk']; ?>" class="btn btn-danger" onclick="return confirm('Yakin ingin menghapus data ini?')"><i class="bi bi-trash"></i></a>
                     </td>
                   </tr>
                 <?php endwhile; ?>
