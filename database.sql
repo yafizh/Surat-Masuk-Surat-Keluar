@@ -30,13 +30,14 @@ CREATE TABLE `tabel_surat_masuk` (
 CREATE TABLE `tabel_surat_keluar` (
     id_surat_keluar INT NOT NULL AUTO_INCREMENT,
     id_ruangan INT NOT NULL,
+    id_kode_surat INT NOT NULL,
     nomor_surat VARCHAR(255) NOT NULL,
     tanggal_surat VARCHAR(255) NOT NULL,
-    jenis_surat ENUM('SURAT TERBUKA','SURAT TERTUTUP') NOT NULL,
     sifat_surat ENUM('PRIBADI','RESMI PRIBADI', 'DINAS', 'NIAGA') NOT NULL,
     dokumen_surat VARCHAR(255) NULL,
     PRIMARY KEY(id_surat_keluar),
-    FOREIGN KEY(id_ruangan) REFERENCES tabel_ruangan(id_ruangan)
+    FOREIGN KEY(id_ruangan) REFERENCES tabel_ruangan(id_ruangan),
+    FOREIGN KEY(id_kode_surat) REFERENCES tabel_kode_surat(id_kode_surat)
 );
 
 CREATE TABLE `tabel_agenda` (
@@ -67,3 +68,23 @@ CREATE TABLE `tabel_user` (
 );
 
 INSERT INTO `tabel_user` VALUES (null, 'admin', 'admin', 'admin' , 'ADMIN');
+
+INSERT INTO `tabel_kode_surat` (
+    jenis_surat,
+    singkatan
+) VALUES 
+('Surat Keputusan', 'SK'),
+('Surat Undangan', 'SU'),
+('Surat Permohonan', 'SPm'),
+('Surat Pemberitahuan', 'SPb'),
+('Surat Peminjaman', 'SPp'),
+('Surat Pernyataan', 'SPn'),
+('Surat Mandat', 'SM'),
+('Surat Tugas', 'ST'),
+('Surat Keterangan', 'Sket'),
+('Surat Rekomendasi', 'SR'),
+('Surat Balasan', 'SB'),
+('Surat Perintah Perjalanan Dinas', 'SPPD'),
+('Sertifikat', 'SRT'),
+('Surat Perjanjian Kerja ', 'PK'),
+('Surat Pengantar ', 'Speng');

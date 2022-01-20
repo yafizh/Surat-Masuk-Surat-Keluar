@@ -5,7 +5,7 @@ if (isset($_POST['submit'])) {
     $id_ruangan = $_POST['id_ruangan'];
     $nomor_surat = $_POST['nomor_surat'];
     $tanggal_surat = $_POST['tanggal_surat'];
-    $jenis_surat = $_POST['jenis_surat'];
+    $id_kode_surat = $_POST['id_kode_surat'];
     $sifat_surat = $_POST['sifat_surat'];
 
     $target_dir = "surat_keluar/uploads/";
@@ -25,14 +25,14 @@ if (isset($_POST['submit'])) {
                     id_ruangan, 
                     nomor_surat, 
                     tanggal_surat, 
-                    jenis_surat, 
+                    id_kode_surat, 
                     sifat_surat, 
                     dokumen_surat
                 ) VALUES (
                     '$id_ruangan', 
                     '$nomor_surat', 
                     '$tanggal_surat',
-                    '$jenis_surat',
+                    '$id_kode_surat',
                     '$sifat_surat',
                     '$file_name'
                 )";
@@ -72,19 +72,7 @@ if (isset($_POST['submit'])) {
                             <select class="form-select" name="id_ruangan" required>
                                 <option value="" selected disabled>Pilih Unit Pengolah</option>
                                 <?php while ($row = $result->fetch_assoc()) : ?>
-                                    <?php
-                                    $sql = "
-                                        SELECT 
-                                                SUBSTRING_INDEX(SUBSTRING_INDEX(nomor_surat,'/',2),'/',-1) AS data_jumlah_surat 
-                                            FROM 
-                                                tabel_surat_keluar 
-                                        WHERE 
-                                            SUBSTRING_INDEX(nomor_surat,'/',1) = '" . $row['singkatan'] . "'";
-                                    $result2 = $mysqli->query($sql);
-                                    $data_jumlah_surat =  ($result2->num_rows > 0) ? (int)$result2->fetch_assoc()['data_jumlah_surat'] : 0;
-                                    $data_jumlah_surat += 1;
-                                    ?>
-                                    <option data-jumlah-surat="<?= $data_jumlah_surat; ?>" data-singkatan="<?= $row['singkatan']; ?>" value="<?= $row['id_ruangan']; ?>"><?= $row['nama_ruangan']; ?></option>
+                                    <option data-singkatan="<?= $row['singkatan']; ?>" value="<?= $row['id_ruangan']; ?>"><?= $row['nama_ruangan']; ?></option>
                                 <?php endwhile; ?>
                             </select>
                             <div class="invalid-feedback">
@@ -95,7 +83,18 @@ if (isset($_POST['submit'])) {
                     <div class="row mb-3">
                         <label for="nomor_surat" class="col-sm-2 col-form-label">Nomor Surat Keluar</label>
                         <div class="col-sm-10">
-                            <input type="text" value="XX/XX/XX/XX" class="form-control" id="nomor_surat" name="nomor_surat" required readonly>
+                            <?php
+                            $sql = "
+                                SELECT 
+                                    SUBSTRING_INDEX(nomor_surat,'/',1) AS data_jumlah_surat 
+                                FROM 
+                                    tabel_surat_keluar
+                            ";
+                            $result = $mysqli->query($sql);
+                            $data_jumlah_surat =  ($result->num_rows > 0) ? (int)$result->fetch_assoc()['data_jumlah_surat'] : 0;
+                            $data_jumlah_surat += 1;
+                            ?>
+                            <input type="text" value="<?= $data_jumlah_surat; ?>/XX/XX/XX/XX" class="form-control" id="nomor_surat" name="nomor_surat" required readonly>
                             <div class="invalid-feedback">
                                 Harap isi Nomor Surat.
                             </div>
@@ -111,14 +110,20 @@ if (isset($_POST['submit'])) {
                         </div>
                     </div>
                     <div class="row mb-3">
-                        <label for="jenis_surat" class="col-sm-2 col-form-label">Jenis Surat</label>
+                        <label for="id_kode_surat" class="col-sm-2 col-form-label">Jenis Surat</label>
                         <div class="col-sm-10">
-                            <select class="form-select" name="jenis_surat" required>
-                                <option value="SURAT TERBUKA">Surat Terbuka</option>
-                                <option value="SURAT TERTUTUP">Surat Tertutup</option>
+                            <?php
+                            $sql = "SELECT * FROM tabel_kode_surat ORDER BY id_kode_surat DESC";
+                            $result = $mysqli->query($sql);
+                            ?>
+                            <select class="form-select" name="id_kode_surat" required>
+                                <option value="" selected disabled>Pilih Jenis Surat</option>
+                                <?php while ($row = $result->fetch_assoc()) : ?>
+                                    <option data-singkatan="<?= $row['singkatan']; ?>" value="<?= $row['id_kode_surat']; ?>"><?= $row['jenis_surat']; ?></option>
+                                <?php endwhile; ?>
                             </select>
                             <div class="invalid-feedback">
-                                Harap isi Jenis Surat.
+                                Harap pilih Jenis Surat.
                             </div>
                         </div>
                     </div>
@@ -164,11 +169,13 @@ if (isset($_POST['submit'])) {
     let temp = "";
     document.querySelector("select[name=id_ruangan]").addEventListener('change', function(value) {
         temp = (nomor_surat.value).split('/');
-        temp[0] = this.options[this.selectedIndex].getAttribute('data-singkatan');
+        temp[2] = this.options[this.selectedIndex].getAttribute('data-singkatan');
         nomor_surat.value = temp.join("/");
+    });
 
+    document.querySelector("select[name=id_kode_surat]").addEventListener('change', function(value) {
         temp = (nomor_surat.value).split('/');
-        temp[1] = this.options[this.selectedIndex].getAttribute('data-jumlah-surat');
+        temp[1] = this.options[this.selectedIndex].getAttribute('data-singkatan');
         nomor_surat.value = temp.join("/");
     });
 
@@ -189,11 +196,11 @@ if (isset($_POST['submit'])) {
 
     document.querySelector("input[name=tanggal_surat]").addEventListener('input', function(value) {
         temp = (nomor_surat.value).split('/');
-        temp[2] = romanize((this.value).split("-")[1]);
+        temp[3] = romanize((this.value).split("-")[1]);
         nomor_surat.value = temp.join("/");
 
         temp = (nomor_surat.value).split('/');
-        temp[3] = (this.value).split("-")[0];
+        temp[4] = (this.value).split("-")[0];
         nomor_surat.value = temp.join("/");
     });
 </script>
