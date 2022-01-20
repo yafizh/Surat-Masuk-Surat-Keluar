@@ -35,7 +35,26 @@ CREATE TABLE `tabel_surat_keluar` (
     jenis_surat ENUM('SURAT TERBUKA','SURAT TERTUTUP') NOT NULL,
     sifat_surat ENUM('PRIBADI','RESMI PRIBADI', 'DINAS', 'NIAGA') NOT NULL,
     dokumen_surat VARCHAR(255) NULL,
-    PRIMARY KEY(id_surat_keluar)
+    PRIMARY KEY(id_surat_keluar),
+    FOREIGN KEY(id_ruangan) REFERENCES tabel_ruangan(id_ruangan)
+);
+
+CREATE TABLE `tabel_agenda` (
+    id_agenda INT NOT NULL AUTO_INCREMENT,
+    id_ruangan INT NOT NULL,
+    tanggal DATE NOT NULL,
+    waktu TIME NOT NULL,
+    detail_acara TEXT NOT NULL,
+    PRIMARY KEY(id_agenda)
+);
+
+CREATE TABLE `tabel_peserta` (
+    id_peserta INT NOT NULL AUTO_INCREMENT,
+    id_ruangan INT NOT NULL,
+    id_agenda INT NOT NULL,
+    PRIMARY KEY(id_peserta),
+    FOREIGN KEY(id_ruangan) REFERENCES tabel_ruangan(id_ruangan),
+    FOREIGN KEY(id_agenda) REFERENCES tabel_agenda(id_agenda) ON DELETE CASCADE
 );
 
 CREATE TABLE `tabel_user` (

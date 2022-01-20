@@ -2,7 +2,8 @@
 <?php
 if (isset($_SESSION['id_user'])) {
   include_once "navbar.php";
-  include_once "sidebar.php";
+  if ($_SESSION['status_user'] == 'ADMIN') include_once "sidebar_admin.php";
+  else include_once "sidebar_petugas.php";
   if (isset($_GET['page'])) {
     if ($_GET['page'] == 'surat_masuk' && $_GET['item'] == 'tambah_surat_masuk')
       include_once "surat_masuk/halaman_tambah_surat_masuk.php";
@@ -14,6 +15,8 @@ if (isset($_SESSION['id_user'])) {
       include_once "kode_surat/halaman_tambah_kode_surat.php";
     else if ($_GET['page'] == 'user' && $_GET['item'] == 'tambah_user')
       include_once "user/halaman_tambah_user.php";
+    else if ($_GET['page'] == 'agenda' && $_GET['item'] == 'tambah_agenda')
+      include_once "agenda/halaman_tambah_agenda.php";
     else if ($_GET['page'] == 'surat_masuk' && $_GET['item'] == 'tampil_surat_masuk')
       include_once "surat_masuk/halaman_tampil_surat_masuk.php";
     else if ($_GET['page'] == 'surat_keluar' && $_GET['item'] == 'tampil_surat_keluar')
@@ -24,6 +27,8 @@ if (isset($_SESSION['id_user'])) {
       include_once "kode_surat/halaman_tampil_kode_surat.php";
     else if ($_GET['page'] == 'user' && $_GET['item'] == 'tampil_user')
       include_once "user/halaman_tampil_user.php";
+    else if ($_GET['page'] == 'agenda' && $_GET['item'] == 'tampil_agenda')
+      include_once "agenda/halaman_tampil_agenda.php";
     else if ($_GET['page'] == 'surat_masuk' && $_GET['item'] == 'edit_surat_masuk')
       include_once "surat_masuk/halaman_edit_surat_masuk.php";
     else if ($_GET['page'] == 'surat_masuk' && $_GET['item'] == 'delete_surat_masuk')
@@ -44,6 +49,10 @@ if (isset($_SESSION['id_user'])) {
       include_once "user/halaman_edit_user.php";
     else if ($_GET['page'] == 'user' && $_GET['item'] == 'delete_user')
       include_once "user/halaman_delete_user.php";
+    else if ($_GET['page'] == 'agenda' && $_GET['item'] == 'edit_agenda')
+      include_once "agenda/halaman_edit_agenda.php";
+    else if ($_GET['page'] == 'agenda' && $_GET['item'] == 'delete_agenda')
+      include_once "agenda/halaman_delete_agenda.php";
     else if ($_GET['page'] == 'keluar')
       include_once "auth/halaman_logout.php";
   } else {
