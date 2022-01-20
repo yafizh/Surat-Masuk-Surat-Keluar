@@ -75,13 +75,13 @@ if (isset($_POST['submit'])) {
                         <div class="col-sm-10">
                             <input type="text" class="form-control" id="keterangan" name="keterangan" required value="<?= $row['keterangan']; ?>">
                             <div class="invalid-feedback">
-                                Harap isi Tanggal Surat.
+                                Harap isi Keterangan.
                             </div>
                         </div>
                     </div>
                     <div class="row mb-3">
                         <div class="col-sm-12 justify-content-end d-flex">
-                            <button type="submit" name="submit" class="btn btn-primary">Edit Surat</button>
+                            <button type="submit" name="submit" class="btn btn-primary">Edit Rungan</button>
                         </div>
                     </div>
                 </form><!-- End General Form Elements -->
