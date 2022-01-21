@@ -67,8 +67,8 @@
             </a>
             <ul id="forms-nav2" class="nav-content collapse " data-bs-parent="#sidebar-nav">
                 <li>
-                    <a href="laporan/laporan_surat_masuk_hari_ini.php" target="_blank">
-                        <i class="bi bi-circle"></i><span>Surat Masuk Hari ini</span>
+                    <a href="index.php?page=laporan" target="_blank">
+                        <i class="bi bi-circle"></i><span>Laporan</span>
                     </a>
                 </li>
                 <li>

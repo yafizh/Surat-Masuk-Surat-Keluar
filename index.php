@@ -55,6 +55,8 @@ if (isset($_SESSION['id_user'])) {
       include_once "agenda/halaman_delete_agenda.php";
     else if ($_GET['page'] == 'keluar')
       include_once "auth/halaman_logout.php";
+      else if ($_GET['page'] == 'laporan')
+      include_once "laporan/laporan.php";
   } else {
     include_once "halaman_beranda.php";
   }
