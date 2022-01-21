@@ -39,7 +39,18 @@
                 require_once "utils.php";
 
                 $no = 1;
-                $sql = "SELECT * FROM tabel_surat_keluar INNER JOIN tabel_ruangan ON tabel_ruangan.id_ruangan=tabel_surat_keluar.id_ruangan ORDER BY id_surat_keluar DESC";
+                $sql = "
+                    SELECT 
+                      * 
+                    FROM 
+                      tabel_surat_keluar 
+                    LEFT JOIN 
+                      tabel_ruangan 
+                    ON tabel_ruangan.id_ruangan=tabel_surat_keluar.id_ruangan 
+                    LEFT JOIN 
+                      tabel_kode_surat 
+                    ON tabel_kode_surat.id_kode_surat=tabel_surat_keluar.id_kode_surat 
+                    ORDER BY id_surat_keluar DESC";
                 $result = $mysqli->query($sql);
                 ?>
                 <?php while ($row = $result->fetch_assoc()) : ?>

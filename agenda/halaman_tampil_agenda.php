@@ -1,7 +1,7 @@
 <main id="main" class="main">
 
   <div class="pagetitle">
-    <h1>Data Ruangan</h1>
+    <h1>Data Agenda</h1>
     <!-- <nav>
         <ol class="breadcrumb">
           <li class="breadcrumb-item"><a href="index.html">Home</a></li>
@@ -17,7 +17,7 @@
 
         <div class="card">
           <div class="card-body">
-            <h5 class="card-title" style="flex: 1;">Ruangan</h5>
+            <h5 class="card-title" style="flex: 1;">Agenda</h5>
             <!-- <p>Add lightweight datatables to your project with using the <a href="https://github.com/fiduswriter/Simple-DataTables" target="_blank">Simple DataTables</a> library. Just add <code>.datatable</code> class name to any table you wish to conver to a datatable</p> -->
 
             <!-- Table with stripped rows -->

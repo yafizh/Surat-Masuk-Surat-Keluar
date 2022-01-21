@@ -72,7 +72,7 @@ if (isset($_POST['submit'])) {
                         </div>
                     </div>
                     <div class="row mb-3">
-                        <label for="id_ruangan" class="col-sm-2 col-form-label">Unit Pengolah</label>
+                        <label for="id_ruangan" class="col-sm-2 col-form-label">Ruangan</label>
                         <div class="col-sm-10">
                             <?php
                             $sql = "SELECT * FROM tabel_ruangan ORDER BY id_ruangan DESC";
@@ -117,7 +117,7 @@ if (isset($_POST['submit'])) {
                     </div>
                     <div class="row mb-3">
                         <div class="col-sm-12 justify-content-end d-flex">
-                            <button type="submit" name="submit" class="btn btn-primary">Tambah Ruangan</button>
+                            <button type="submit" name="submit" class="btn btn-primary">Tambah Agenda</button>
                         </div>
                     </div>
                 </form><!-- End General Form Elements -->
