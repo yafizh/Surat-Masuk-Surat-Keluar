@@ -40,6 +40,17 @@ CREATE TABLE `tabel_surat_keluar` (
     FOREIGN KEY(id_kode_surat) REFERENCES tabel_kode_surat(id_kode_surat)
 );
 
+CREATE TABLE `tabel_surat_disposisi` (
+    id_surat_disposisi INT NOT NULL AUTO_INCREMENT,
+    nomor_surat VARCHAR(255) NOT NULL,
+    nomor_disposisi VARCHAR(255) NOT NULL,
+    tanggal VARCHAR(255) NOT NULL,
+    tujuan VARCHAR(255) NOT NULL,
+    pengirim VARCHAR(255) NOT NULL,
+    dokumen_surat VARCHAR(255) NULL,
+    PRIMARY KEY(id_surat_disposisi)
+);
+
 CREATE TABLE `tabel_agenda` (
     id_agenda INT NOT NULL AUTO_INCREMENT,
     id_ruangan INT NOT NULL,

@@ -9,6 +9,8 @@ if (isset($_SESSION['id_user'])) {
       include_once "surat_masuk/halaman_tambah_surat_masuk.php";
     else if ($_GET['page'] == 'surat_keluar' && $_GET['item'] == 'tambah_surat_keluar')
       include_once "surat_keluar/halaman_tambah_surat_keluar.php";
+    else if ($_GET['page'] == 'surat_disposisi' && $_GET['item'] == 'tambah_surat_disposisi')
+      include_once "surat_disposisi/halaman_tambah_surat_disposisi.php";
     else if ($_GET['page'] == 'ruangan' && $_GET['item'] == 'tambah_ruangan')
       include_once "ruangan/halaman_tambah_ruangan.php";
     else if ($_GET['page'] == 'kode_surat' && $_GET['item'] == 'tambah_kode_surat')
@@ -21,6 +23,8 @@ if (isset($_SESSION['id_user'])) {
       include_once "surat_masuk/halaman_tampil_surat_masuk.php";
     else if ($_GET['page'] == 'surat_keluar' && $_GET['item'] == 'tampil_surat_keluar')
       include_once "surat_keluar/halaman_tampil_surat_keluar.php";
+    else if ($_GET['page'] == 'surat_disposisi' && $_GET['item'] == 'tampil_surat_disposisi')
+      include_once "surat_disposisi/halaman_tampil_surat_disposisi.php";
     else if ($_GET['page'] == 'ruangan' && $_GET['item'] == 'tampil_ruangan')
       include_once "ruangan/halaman_tampil_ruangan.php";
     else if ($_GET['page'] == 'kode_surat' && $_GET['item'] == 'tampil_kode_surat')
@@ -37,6 +41,10 @@ if (isset($_SESSION['id_user'])) {
       include_once "surat_keluar/halaman_edit_surat_keluar.php";
     else if ($_GET['page'] == 'surat_keluar' && $_GET['item'] == 'delete_surat_keluar')
       include_once "surat_keluar/halaman_delete_surat_keluar.php";
+    else if ($_GET['page'] == 'surat_disposisi' && $_GET['item'] == 'edit_surat_disposisi')
+      include_once "surat_disposisi/halaman_edit_surat_disposisi.php";
+    else if ($_GET['page'] == 'surat_disposisi' && $_GET['item'] == 'delete_surat_disposisi')
+      include_once "surat_disposisi/halaman_delete_surat_disposisi.php";
     else if ($_GET['page'] == 'ruangan' && $_GET['item'] == 'edit_ruangan')
       include_once "ruangan/halaman_edit_ruangan.php";
     else if ($_GET['page'] == 'ruangan' && $_GET['item'] == 'delete_ruangan')
@@ -55,7 +63,7 @@ if (isset($_SESSION['id_user'])) {
       include_once "agenda/halaman_delete_agenda.php";
     else if ($_GET['page'] == 'keluar')
       include_once "auth/halaman_logout.php";
-      else if ($_GET['page'] == 'laporan')
+    else if ($_GET['page'] == 'laporan')
       include_once "laporan/laporan.php";
   } else {
     include_once "halaman_beranda.php";
