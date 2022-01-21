@@ -54,10 +54,11 @@ if (isset($_POST['submit'])) {
             if (move_uploaded_file($_FILES["dokumen_surat"]["tmp_name"], $target_file)) {
                 $sql = "UPDATE tabel_surat_masuk 
                         SET 
-                            asal_surat='$asal_surat', 
                             nomor_surat='$nomor_surat', 
                             tanggal_surat='$tanggal_surat', 
                             perihal='$perihal', 
+                            jenis_surat='$jenis_surat', 
+                            pengirim='$pengirim', 
                             dokumen_surat='$file_name' 
                         WHERE 
                             id_surat_masuk=" . $_GET['id_surat_masuk'];
@@ -123,8 +124,8 @@ if (isset($_POST['submit'])) {
                         <div class="col-sm-10">
                             <div class="col-sm-10">
                                 <select class="form-select" name="jenis_surat" required>
-                                    <option <?= ($row['jenis_surat'] == 'SURAT TERBUKA' ? 'selected':''); ?> value="SURAT TERBUKA">Surat Terbuka</option>
-                                    <option <?= ($row['jenis_surat'] == 'SURAT TERTUTUP' ? 'selected':''); ?> value="SURAT TERTUTUP">Surat TErtutup</option>
+                                    <option <?= ($row['jenis_surat'] == 'SURAT TERBUKA' ? 'selected' : ''); ?> value="SURAT TERBUKA">Surat Terbuka</option>
+                                    <option <?= ($row['jenis_surat'] == 'SURAT TERTUTUP' ? 'selected' : ''); ?> value="SURAT TERTUTUP">Surat TErtutup</option>
                                 </select>
                             </div>
                             <div class="invalid-feedback">

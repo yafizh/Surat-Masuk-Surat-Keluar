@@ -58,7 +58,7 @@ if (isset($_POST['submit'])) {
                             id_ruangan='$id_ruangan', 
                             nomor_surat='$nomor_surat', 
                             tanggal_surat='$tanggal_surat', 
-                            jenis_surat='$jenis_surat', 
+                            id_kode_surat='$id_kode_surat', 
                             sifat_surat='$sifat_surat', 
                             dokumen_surat='$file_name' 
                         WHERE 
