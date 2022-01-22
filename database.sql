@@ -57,7 +57,8 @@ CREATE TABLE `tabel_agenda` (
     tanggal DATE NOT NULL,
     waktu TIME NOT NULL,
     detail_acara TEXT NOT NULL,
-    PRIMARY KEY(id_agenda)
+    PRIMARY KEY(id_agenda),
+    FOREIGN KEY(id_ruangan) REFERENCES tabel_ruangan(id_ruangan)
 );
 
 CREATE TABLE `tabel_peserta` (

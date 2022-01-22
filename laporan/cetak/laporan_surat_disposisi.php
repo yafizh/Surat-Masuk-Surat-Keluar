@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Laporan Surat Masuk Bulan ini</title>
+    <title>Laporan Surat Disposisi</title>
     <style>
         table,
         th,
@@ -32,7 +32,7 @@
 <body>
     <div class="container">
         <div id="kop" class="d-flex justify-content-center gap-5">
-            <img src="../assets/img/Banjarbaru.png" height="150" alt="">
+            <img src="../../assets/img/Banjarbaru.png" height="150" alt="">
             <div class="text-center" style="flex: 1;">
                 <h2>
                     DINAS ARSIP DAN PERPUSTAKAAN DAERAH
@@ -47,31 +47,44 @@
             </div>
         </div>
 
-        <h2 class="text-center my-3" style="border-top: 2px solid black;">Laporan Surat Masuk Bulan ini</h2>
+        <h2 class="text-center my-3" style="border-top: 2px solid black;">Laporan Surat Disposisi</h2>
         <table>
             <thead>
                 <tr>
                     <th class="text-center">No</th>
-                    <th>Asal Surat</th>
                     <th>Nomor Surat</th>
-                    <th>Tanggal Surat</th>
-                    <th>Perihal</th>
+                    <th>Nomor Disposisi</th>
+                    <th>Tanggal</th>
+                    <th>Tujuan</th>
+                    <th>Pengirim</th>
                 </tr>
             </thead>
             <tbody>
                 <?php
+                $dari = $_POST['dari'];
+                $sampai = $_POST['sampai'];
                 $no = 1;
-                require_once "../koneksi.php";
-                $result = $mysqli->query("SELECT * FROM tabel_surat_masuk WHERE MONTH(tanggal_surat)='" . Date("m") . "' AND YEAR(tanggal_surat)='" . Date("Y") . "' ORDER BY id_surat_masuk DESC");
+                require_once "../../koneksi.php";
+                $result = $mysqli->query("
+                    SELECT 
+                        * 
+                    FROM 
+                        tabel_surat_disposisi 
+                    WHERE 
+                        tanggal >= '$dari' 
+                        AND 
+                        tanggal <= '$sampai' 
+                    ORDER BY id_surat_disposisi DESC");
                 ?>
                 <?php if ($result->num_rows) : ?>
                     <?php while ($row = $result->fetch_assoc()) : ?>
                         <tr>
                             <td class="text-center"><?= $no++; ?></td>
-                            <td><?= $row['asal_surat']; ?></td>
                             <td class="text-center"><?= $row['nomor_surat']; ?></td>
-                            <td class="text-center"><?= $row['tanggal_surat']; ?></td>
-                            <td class="text-center"><?= $row['perihal']; ?></td>
+                            <td class="text-center"><?= $row['nomor_disposisi']; ?></td>
+                            <td class="text-center"><?= $row['tanggal']; ?></td>
+                            <td class="text-center"><?= $row['tujuan']; ?></td>
+                            <td class="text-center"><?= $row['pengirim']; ?></td>
                         </tr>
                     <?php endwhile; ?>
                 <?php endif; ?>

@@ -62,37 +62,11 @@
         </li><!-- End Forms Nav -->
 
         <li class="nav-item">
-            <a class="nav-link collapsed" data-bs-target="#forms-nav2" data-bs-toggle="collapse" href="#">
-                <i class="bi bi-journal-text"></i><span>Laporan</span><i class="bi bi-chevron-down ms-auto"></i>
+            <a id="laporan" class="nav-link collapsed" href="index.php?page=laporan">
+                <i class="bi bi-journal-text"></i>
+                <span>Laporan</span>
             </a>
-            <ul id="forms-nav2" class="nav-content collapse " data-bs-parent="#sidebar-nav">
-                <li>
-                    <a href="laporan/laporan_surat_masuk_hari_ini.php" target="_blank">
-                        <i class="bi bi-circle"></i><span>Laporan Surat Masuk</span>
-                    </a>
-                </li>
-                <li>
-                    <a href="laporan/laporan_surat_masuk_bulan_ini.php" target="_blank">
-                        <i class="bi bi-circle"></i><span>Laporan Surat Keluar</span>
-                    </a>
-                </li>
-                <li>
-                    <a href="laporan/laporan_seluruh_surat_masuk.php" target="_blank">
-                        <i class="bi bi-circle"></i><span>Laporan Surat Disposisi</span>
-                    </a>
-                </li>
-                <li>
-                    <a href="laporan/laporan_surat_keluar_hari_ini.php" target="_blank">
-                        <i class="bi bi-circle"></i><span>Laporan Agenda</span>
-                    </a>
-                </li>
-                <li>
-                    <a href="laporan/laporan_surat_keluar_bulan_ini.php" target="_blank">
-                        <i class="bi bi-circle"></i><span>Laporan Kode Surat</span>
-                    </a>
-                </li>
-            </ul>
-        </li><!-- End Forms Nav -->
+        </li><!-- End Tampil Surat Nav -->
     </ul>
 
 </aside><!-- End Sidebar-->

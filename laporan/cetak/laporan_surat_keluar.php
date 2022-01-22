@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Laporan Surat Keluar Bulan ini</title>
+    <title>Laporan Surat Keluar</title>
     <style>
         table,
         th,
@@ -32,7 +32,7 @@
 <body>
     <div class="container">
         <div id="kop" class="d-flex justify-content-center gap-5">
-            <img src="../assets/img/Banjarbaru.png" height="150" alt="">
+            <img src="../../assets/img/Banjarbaru.png" height="150" alt="">
             <div class="text-center" style="flex: 1;">
                 <h2>
                     DINAS ARSIP DAN PERPUSTAKAAN DAERAH
@@ -47,33 +47,56 @@
             </div>
         </div>
 
-        <h2 class="text-center my-3" style="border-top: 2px solid black;">Laporan Surat Keluar Bulan ini</h2>
+        <h2 class="text-center my-3" style="border-top: 2px solid black;">Laporan Surat Keluar</h2>
         <table>
             <thead>
                 <tr>
                     <th class="text-center">No</th>
                     <th>Unit Pengolah</th>
-                    <th>Tanggal Surat</th>
                     <th>Nomor Surat</th>
-                    <th>Perihal</th>
-                    <th>Tujuan Surat</th>
+                    <th>Tanggal Surat</th>
+                    <th>Jenis Surat</th>
+                    <th>Sifat Surat</th>
                 </tr>
             </thead>
             <tbody>
                 <?php
+                $dari = $_POST['dari'];
+                $sampai = $_POST['sampai'];
+                $id_ruangan = $_POST['id_ruangan'];
+                $id_kode_surat = $_POST['id_kode_surat'];
                 $no = 1;
-                require_once "../koneksi.php";
-                $result = $mysqli->query("SELECT * FROM tabel_surat_keluar WHERE MONTH(tanggal_surat)='" . Date("m") . "' AND YEAR(tanggal_surat)='" . Date("Y") . "' ORDER BY id_surat_keluar DESC");
+                require_once "../../koneksi.php";
+                $result = $mysqli->query("
+                    SELECT 
+                        * 
+                    FROM 
+                        tabel_surat_keluar 
+                    LEFT JOIN 
+                        tabel_ruangan 
+                    ON tabel_ruangan.id_ruangan=tabel_surat_keluar.id_ruangan 
+                    LEFT JOIN 
+                        tabel_kode_surat 
+                    ON tabel_kode_surat.id_kode_surat=tabel_surat_keluar.id_kode_surat
+                    WHERE 
+                        tabel_ruangan.id_ruangan LIKE '%$id_ruangan%' 
+                        AND 
+                        tabel_kode_surat.id_kode_surat LIKE '%$id_kode_surat%' 
+                        AND 
+                        tanggal_surat >= '$dari' 
+                        AND 
+                        tanggal_surat <= '$sampai' 
+                    ORDER BY id_surat_keluar DESC");
                 ?>
                 <?php if ($result->num_rows) : ?>
                     <?php while ($row = $result->fetch_assoc()) : ?>
                         <tr>
                             <td class="text-center"><?= $no++; ?></td>
-                            <td><?= $row['unit_pengolah']; ?></td>
-                            <td class="text-center"><?= $row['tanggal_surat']; ?></td>
+                            <td class="text-center"><?= $row['nama_ruangan']; ?></td>
                             <td class="text-center"><?= $row['nomor_surat']; ?></td>
-                            <td class="text-center"><?= $row['perihal']; ?></td>
-                            <td class="text-center"><?= $row['tujuan_surat']; ?></td>
+                            <td class="text-center"><?= $row['tanggal_surat']; ?></td>
+                            <td class="text-center"><?= $row['jenis_surat']; ?></td>
+                            <td class="text-center"><?= $row['sifat_surat']; ?></td>
                         </tr>
                     <?php endwhile; ?>
                 <?php endif; ?>

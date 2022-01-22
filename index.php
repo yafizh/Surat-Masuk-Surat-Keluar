@@ -64,7 +64,7 @@ if (isset($_SESSION['id_user'])) {
     else if ($_GET['page'] == 'keluar')
       include_once "auth/halaman_logout.php";
     else if ($_GET['page'] == 'laporan')
-      include_once "laporan/laporan.php";
+      include_once "laporan/halaman_laporan.php";
   } else {
     include_once "halaman_beranda.php";
   }

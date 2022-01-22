@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Laporan Surat Keluar Hari ini</title>
+    <title>Laporan User</title>
     <style>
         table,
         th,
@@ -32,7 +32,7 @@
 <body>
     <div class="container">
         <div id="kop" class="d-flex justify-content-center gap-5">
-            <img src="../assets/img/Banjarbaru.png" height="150" alt="">
+            <img src="../../assets/img/Banjarbaru.png" height="150" alt="">
             <div class="text-center" style="flex: 1;">
                 <h2>
                     DINAS ARSIP DAN PERPUSTAKAAN DAERAH
@@ -47,33 +47,37 @@
             </div>
         </div>
 
-        <h2 class="text-center my-3" style="border-top: 2px solid black;">Laporan Surat Keluar Hari ini</h2>
+        <h2 class="text-center my-3" style="border-top: 2px solid black;">Laporan User</h2>
         <table>
             <thead>
                 <tr>
                     <th class="text-center">No</th>
-                    <th>Unit Pengolah</th>
-                    <th>Tanggal Surat</th>
-                    <th>Nomor Surat</th>
-                    <th>Perihal</th>
-                    <th>Tujuan Surat</th>
+                    <th>Nama</th>
+                    <th>Username</th>
+                    <th>Status</th>
                 </tr>
             </thead>
             <tbody>
                 <?php
+                $status_user = $_POST['status_user'];
                 $no = 1;
-                require_once "../koneksi.php";
-                $result = $mysqli->query("SELECT * FROM tabel_surat_keluar WHERE tanggal_surat='" . Date("Y-m-d") . "' ORDER BY id_surat_keluar DESC");
+                require_once "../../koneksi.php";
+                $result = $mysqli->query("
+                    SELECT 
+                        * 
+                    FROM 
+                        tabel_user 
+                    WHERE 
+                        status_user LIKE '%$status_user%' 
+                    ORDER BY id_user DESC");
                 ?>
                 <?php if ($result->num_rows) : ?>
                     <?php while ($row = $result->fetch_assoc()) : ?>
                         <tr>
                             <td class="text-center"><?= $no++; ?></td>
-                            <td><?= $row['unit_pengolah']; ?></td>
-                            <td class="text-center"><?= $row['tanggal_surat']; ?></td>
-                            <td class="text-center"><?= $row['nomor_surat']; ?></td>
-                            <td class="text-center"><?= $row['perihal']; ?></td>
-                            <td class="text-center"><?= $row['tujuan_surat']; ?></td>
+                            <td class="text-center"><?= $row['nama_user']; ?></td>
+                            <td class="text-center"><?= $row['username_user']; ?></td>
+                            <td class="text-center"><?= $row['status_user']; ?></td>
                         </tr>
                     <?php endwhile; ?>
                 <?php endif; ?>

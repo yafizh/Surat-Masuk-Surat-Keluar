@@ -37,20 +37,20 @@
         });
     }
 
-    if (urlParams.get('page') == 'edit_surat') {
-        const value = document.querySelector('#tampil_surat');
-        value.style.color = "#4154F1";
-        value.style.backgroundColor = "#F6F9FF";
-        value.classList.remove("collapsed");
-        value.setAttribute("aria-expanded", "false");
+    // if (urlParams.get('page') == 'edit_surat') {
+    //     const value = document.querySelector('#tampil_surat');
+    //     value.style.color = "#4154F1";
+    //     value.style.backgroundColor = "#F6F9FF";
+    //     value.classList.remove("collapsed");
+    //     value.setAttribute("aria-expanded", "false");
 
-        value.nextElementSibling.classList.add("show");
+    //     value.nextElementSibling.classList.add("show");
 
-        if (urlParams.get('item') == "edit_surat_masuk")
-            document.querySelector("#tampil_surat_masuk").classList.add("active");
-        else if (urlParams.get('item') == "edit_surat_keluar")
-            document.querySelector("#tampil_surat_keluar").classList.add("active");
-    }
+    //     if (urlParams.get('item') == "edit_surat_masuk")
+    //         document.querySelector("#tampil_surat_masuk").classList.add("active");
+    //     else if (urlParams.get('item') == "edit_surat_keluar")
+    //         document.querySelector("#tampil_surat_keluar").classList.add("active");
+    // }
 </script>
 </body>
 

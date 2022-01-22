@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Laporan Surat Masuk Hari ini</title>
+    <title>Laporan Kode Surat</title>
     <style>
         table,
         th,
@@ -32,7 +32,7 @@
 <body>
     <div class="container">
         <div id="kop" class="d-flex justify-content-center gap-5">
-            <img src="../assets/img/Banjarbaru.png" height="150" alt="">
+            <img src="../../assets/img/Banjarbaru.png" height="150" alt="">
             <div class="text-center" style="flex: 1;">
                 <h2>
                     DINAS ARSIP DAN PERPUSTAKAAN DAERAH
@@ -47,31 +47,27 @@
             </div>
         </div>
 
-        <h2 class="text-center my-3" style="border-top: 2px solid black;">Laporan Surat Masuk Hari ini</h2>
+        <h2 class="text-center my-3" style="border-top: 2px solid black;">Laporan Kode Surat</h2>
         <table>
             <thead>
                 <tr>
                     <th class="text-center">No</th>
-                    <th>Asal Surat</th>
-                    <th>Nomor Surat</th>
-                    <th>Tanggal Surat</th>
-                    <th>Perihal</th>
+                    <th>Jenis Surat</th>
+                    <th>Singkatan</th>
                 </tr>
             </thead>
             <tbody>
                 <?php
                 $no = 1;
-                require_once "../koneksi.php";
-                $result = $mysqli->query("SELECT * FROM tabel_surat_masuk WHERE tanggal_surat='" . Date("Y-m-d") . "' ORDER BY id_surat_masuk DESC");
+                require_once "../../koneksi.php";
+                $result = $mysqli->query("SELECT * FROM tabel_kode_surat ORDER BY id_kode_surat DESC");
                 ?>
                 <?php if ($result->num_rows) : ?>
                     <?php while ($row = $result->fetch_assoc()) : ?>
                         <tr>
                             <td class="text-center"><?= $no++; ?></td>
-                            <td><?= $row['asal_surat']; ?></td>
-                            <td class="text-center"><?= $row['nomor_surat']; ?></td>
-                            <td class="text-center"><?= $row['tanggal_surat']; ?></td>
-                            <td class="text-center"><?= $row['perihal']; ?></td>
+                            <td class="text-center"><?= $row['jenis_surat']; ?></td>
+                            <td class="text-center"><?= $row['singkatan']; ?></td>
                         </tr>
                     <?php endwhile; ?>
                 <?php endif; ?>
