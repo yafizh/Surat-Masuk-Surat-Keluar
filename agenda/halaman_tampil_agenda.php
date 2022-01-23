@@ -47,7 +47,7 @@
                     <td class="align-middle"><?= $row['waktu']; ?></td>
                     <td class="align-middle"><?= $row['nama_ruangan']; ?></td>
                     <td class="d-flex justify-content-center gap-1">
-                      <a href="index.php?page=agenda&item=detail_agenda&id_agenda=<?= $row['id_agenda']; ?>" class="btn btn-warning"><i class="bi bi-pencil"></i></a>
+                      <!-- <a href="index.php?page=agenda&item=detail_agenda&id_agenda=<?= $row['id_agenda']; ?>" class="btn btn-warning"><i class="bi bi-pencil"></i></a> -->
                       <a href="index.php?page=agenda&item=edit_agenda&id_agenda=<?= $row['id_agenda']; ?>" class="btn btn-warning"><i class="bi bi-pencil"></i></a>
                       <a href="index.php?page=agenda&item=delete_agenda&id_agenda=<?= $row['id_agenda']; ?>" class="btn btn-danger" onclick="return confirm('Yakin ingin menghapus data ini?')"><i class="bi bi-trash"></i></a>
                     </td>

@@ -79,6 +79,23 @@
                 </li>
             </ul>
         </li><!-- End Forms Nav -->
+        <li class="nav-item">
+            <a id="kode_surat" class="nav-link collapsed" data-bs-target="#kode-surat-nav" data-bs-toggle="collapse" href="#">
+                <i class="ri ri-mail-line"></i><span>Kode Surat</span><i class="bi bi-chevron-down ms-auto"></i>
+            </a>
+            <ul id="kode-surat-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
+                <li>
+                    <a id="tampil_kode_surat" href="index.php?page=kode_surat&item=tampil_kode_surat">
+                        <i class="bi bi-circle"></i><span>Data Kode Surat</span>
+                    </a>
+                </li>
+                <li>
+                    <a id="tambah_kode_surat" href="index.php?page=kode_surat&item=tambah_kode_surat">
+                        <i class="bi bi-circle"></i><span>Tambah Kode Surat</span>
+                    </a>
+                </li>
+            </ul>
+        </li><!-- End Components Nav -->
     </ul>
 
 </aside><!-- End Sidebar-->
