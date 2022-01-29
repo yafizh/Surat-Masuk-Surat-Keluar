@@ -43,6 +43,18 @@
                 </li>
             </ul>
         </li><!-- End Forms Nav -->
+        <li class="nav-item" id="x">
+            <a id="agenda" class="nav-link collapsed" data-bs-target="#agenda-nav" data-bs-toggle="collapse" href="#">
+                <i class="ri-mail-add-line"></i><span>Agenda</span><i class="bi bi-chevron-down ms-auto"></i>
+            </a>
+            <ul id="agenda-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
+                <li>
+                    <a id="tampil_agenda" href="index.php?page=agenda&item=tampil_agenda">
+                        <i class="bi bi-circle"></i><span>Data Agenda</span>
+                    </a>
+                </li>
+            </ul>
+        </li><!-- End Forms Nav -->
 
         <li class="nav-item">
             <a id="laporan" class="nav-link collapsed" href="index.php?page=laporan">

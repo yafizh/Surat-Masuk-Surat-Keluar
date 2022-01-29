@@ -4,17 +4,57 @@ USE `db_surat_masuk_keluar`;
 CREATE TABLE `tabel_ruangan` (
     id_ruangan INT NOT NULL AUTO_INCREMENT,
     nama_ruangan VARCHAR(255) NOT NULL,
-    singkatan VARCHAR(10) NOT NULL,
-    keterangan VARCHAR(255) NOT NULL,
+    singkatan VARCHAR(10) UNIQUE NOT NULL,
+    keterangan VARCHAR(255) NULL,
     PRIMARY KEY(id_ruangan)
 );
+
+INSERT INTO `tabel_ruangan` (
+    nama_ruangan,
+    singkatan,
+    keterangan 
+) VALUES 
+('Umum dan Kepegawaian', 'UK', ''),
+('Perencanaan dan Keuangan', 'PK', ''),
+('Sekretaris', 'S1', ''),
+('Fungsional', 'F', ''),
+('Ruanga Kepala Dinas', 'RKD', ''),
+('Studio Mini', 'SM', ''),
+('Musholla', 'M', ''),
+('Wakapitu', 'W', ''),
+('Aula', 'A', ''),
+('Brailie Corner', 'BC', ''),
+('Perpustakaan Keliling', 'PTK', ''),
+('Sirkulasi', 'S2', ''),
+('Ruangan Anak', 'RA', ''),
+('Depo Arsip', 'DA', '');
 
 CREATE TABLE `tabel_kode_surat` (
     id_kode_surat INT NOT NULL AUTO_INCREMENT,
     jenis_surat VARCHAR(50) NOT NULL,
-    singkatan VARCHAR(10) NOT NULL,
+    singkatan VARCHAR(10) UNIQUE NOT NULL,
     PRIMARY KEY(id_kode_surat)
 );
+
+INSERT INTO `tabel_kode_surat` (
+    jenis_surat,
+    singkatan
+) VALUES 
+('Surat Keputusan', 'SK'),
+('Surat Undangan', 'SU'),
+('Surat Permohonan', 'SPm'),
+('Surat Pemberitahuan', 'SPb'),
+('Surat Peminjaman', 'SPp'),
+('Surat Pernyataan', 'SPn'),
+('Surat Mandat', 'SM'),
+('Surat Tugas', 'ST'),
+('Surat Keterangan', 'Sket'),
+('Surat Rekomendasi', 'SR'),
+('Surat Balasan', 'SB'),
+('Surat Perintah Perjalanan Dinas', 'SPPD'),
+('Sertifikat', 'SRT'),
+('Surat Perjanjian Kerja ', 'PK'),
+('Surat Pengantar ', 'Speng');
 
 CREATE TABLE `tabel_surat_masuk` (
     id_surat_masuk INT NOT NULL AUTO_INCREMENT,
@@ -57,6 +97,7 @@ CREATE TABLE `tabel_agenda` (
     tanggal DATE NOT NULL,
     waktu TIME NOT NULL,
     detail_acara TEXT NOT NULL,
+    terverifikasi TINYINT(1) NOT NULL,
     PRIMARY KEY(id_agenda),
     FOREIGN KEY(id_ruangan) REFERENCES tabel_ruangan(id_ruangan)
 );
@@ -79,24 +120,6 @@ CREATE TABLE `tabel_user` (
     PRIMARY KEY(id_user)
 );
 
-INSERT INTO `tabel_user` VALUES (null, 'admin', 'admin', 'admin' , 'ADMIN');
-
-INSERT INTO `tabel_kode_surat` (
-    jenis_surat,
-    singkatan
-) VALUES 
-('Surat Keputusan', 'SK'),
-('Surat Undangan', 'SU'),
-('Surat Permohonan', 'SPm'),
-('Surat Pemberitahuan', 'SPb'),
-('Surat Peminjaman', 'SPp'),
-('Surat Pernyataan', 'SPn'),
-('Surat Mandat', 'SM'),
-('Surat Tugas', 'ST'),
-('Surat Keterangan', 'Sket'),
-('Surat Rekomendasi', 'SR'),
-('Surat Balasan', 'SB'),
-('Surat Perintah Perjalanan Dinas', 'SPPD'),
-('Sertifikat', 'SRT'),
-('Surat Perjanjian Kerja ', 'PK'),
-('Surat Pengantar ', 'Speng');
+INSERT INTO `tabel_user` VALUES 
+(null, 'admin', 'admin', 'admin' , 'ADMIN'),
+(null, 'Muhammad Iqbal', 'iqbal', 'iqbal' , 'PETUGAS');

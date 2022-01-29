@@ -13,12 +13,14 @@ if (isset($_POST['submit'])) {
             tanggal, 
             waktu, 
             detail_acara, 
-            id_ruangan 
+            id_ruangan,
+            terverifikasi 
         ) VALUES (
             '$tanggal', 
             '$waktu',
             '$detail_acara',
-            '$id_ruangan' 
+            '$id_ruangan',
+            0 
         )";
 
     if ($mysqli->query($sql) === TRUE) {
