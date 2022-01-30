@@ -1,9 +1,7 @@
 <?php
-
+require_once "koneksi.php";
+require_once "utils.php";
 if (isset($_POST['submit'])) {
-    require_once "koneksi.php";
-    require_once "utils.php";
-
     $nomor_surat = $_POST['nomor_surat'];
     $tanggal_surat = $_POST['tanggal_surat'];
     $perihal = $_POST['perihal'];
@@ -67,7 +65,18 @@ if (isset($_POST['submit'])) {
                     <div class="row mb-3">
                         <label for="nomor_surat" class="col-sm-2 col-form-label">Nomor Surat</label>
                         <div class="col-sm-10">
-                            <input type="text" class="form-control" id="nomor_surat" required name="nomor_surat">
+                            <?php
+                            $sql = "
+                                SELECT 
+                                    SUBSTRING_INDEX(nomor_surat,'/',1) AS data_jumlah_surat 
+                                FROM 
+                                    tabel_surat_masuk
+                            ";
+                            $result = $mysqli->query($sql);
+                            $data_jumlah_surat =  ($result->num_rows > 0) ? (int)$result->fetch_assoc()['data_jumlah_surat'] : 0;
+                            $data_jumlah_surat += 1;
+                            ?>
+                            <input type="text" class="form-control" id="nomor_surat" value="<?= $data_jumlah_surat; ?>/XX/XX" readonly required name="nomor_surat">
                             <div class="invalid-feedback">
                                 Harap isi Nomor Surat.
                             </div>
@@ -134,3 +143,32 @@ if (isset($_POST['submit'])) {
     </section>
 
 </main><!-- End #main -->
+<script>
+    const nomor_surat = document.querySelector("input[name=nomor_surat]");
+    let temp = "";
+
+    function romanize(num) {
+        if (isNaN(num))
+            return NaN;
+        var digits = String(+num).split(""),
+            key = ["", "C", "CC", "CCC", "CD", "D", "DC", "DCC", "DCCC", "CM",
+                "", "X", "XX", "XXX", "XL", "L", "LX", "LXX", "LXXX", "XC",
+                "", "I", "II", "III", "IV", "V", "VI", "VII", "VIII", "IX"
+            ],
+            roman = "",
+            i = 3;
+        while (i--)
+            roman = (key[+digits.pop() + (i * 10)] || "") + roman;
+        return Array(+digits.join("") + 1).join("M") + roman;
+    }
+
+    document.querySelector("input[name=tanggal_surat]").addEventListener('input', function(value) {
+        temp = (nomor_surat.value).split('/');
+        temp[1] = romanize((this.value).split("-")[1]);
+        nomor_surat.value = temp.join("/");
+
+        temp = (nomor_surat.value).split('/');
+        temp[2] = (this.value).split("-")[0];
+        nomor_surat.value = temp.join("/");
+    });
+</script>
