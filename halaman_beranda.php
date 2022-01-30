@@ -104,8 +104,11 @@
                   <thead>
                     <tr>
                       <th scope="col">No</th>
-                      <th scope="col">Asal Surat</th>
                       <th scope="col">Nomor Surat</th>
+                      <th scope="col">Tanggal Surat</th>
+                      <th scope="col">Perihal</th>
+                      <th scope="col">Jenis Surat</th>
+                      <th scope="col">Pengirim</th>
                     </tr>
                   </thead>
                   <tbody>
@@ -114,11 +117,15 @@
                     $sql = "SELECT * FROM tabel_surat_masuk ORDER BY id_surat_masuk DESC";
                     $result = $mysqli->query($sql);
                     ?>
+
                     <?php while ($row = $result->fetch_assoc()) : ?>
                       <tr>
                         <th class="align-middle" scope="row"><?= $no++; ?></th>
-                        <td class="align-middle"><?= $row['asal_surat']; ?></td>
                         <td class="align-middle"><?= $row['nomor_surat']; ?></td>
+                        <td class="align-middle"><?= $row['tanggal_surat']; ?></td>
+                        <td class="align-middle"><?= $row['perihal']; ?></td>
+                        <td class="align-middle"><?= $row['jenis_surat']; ?></td>
+                        <td class="align-middle"><?= $row['pengirim']; ?></td>
                       </tr>
                     <?php endwhile; ?>
                   </tbody>
@@ -130,19 +137,6 @@
           <div class="col-12">
             <div class="card top-selling">
 
-              <!-- <div class="filter">
-                <a class="icon" href="#" data-bs-toggle="dropdown"><i class="bi bi-three-dots"></i></a>
-                <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow">
-                  <li class="dropdown-header text-start">
-                    <h6>Filter</h6>
-                  </li>
-
-                  <li><a class="dropdown-item" href="#">Today</a></li>
-                  <li><a class="dropdown-item" href="#">This Month</a></li>
-                  <li><a class="dropdown-item" href="#">This Year</a></li>
-                </ul>
-              </div> -->
-
               <div class="card-body pb-0">
                 <h5 class="card-title">Surat Keluar Terakhir</h5>
 
@@ -152,21 +146,35 @@
                       <th scope="col">No</th>
                       <th scope="col">Unit Pengolah</th>
                       <th scope="col">Nomor Surat</th>
-                      <th scope="col">Tujuan Surat</th>
+                      <th scope="col">Tanggal Surat</th>
+                      <th scope="col">Jenis Surat</th>
+                      <th scope="col">Sifat Surat</th>
                     </tr>
                   </thead>
                   <tbody>
                     <?php
-                    $no = 1;
-                    $sql = "SELECT * FROM tabel_surat_keluar ORDER BY id_surat_keluar DESC";
+                    $sql = "
+                    SELECT 
+                      * 
+                    FROM 
+                      tabel_surat_keluar 
+                    LEFT JOIN 
+                      tabel_ruangan 
+                    ON tabel_ruangan.id_ruangan=tabel_surat_keluar.id_ruangan 
+                    LEFT JOIN 
+                      tabel_kode_surat 
+                    ON tabel_kode_surat.id_kode_surat=tabel_surat_keluar.id_kode_surat 
+                    ORDER BY id_surat_keluar DESC";
                     $result = $mysqli->query($sql);
                     ?>
                     <?php while ($row = $result->fetch_assoc()) : ?>
                       <tr>
                         <th class="align-middle" scope="row"><?= $no++; ?></th>
-                        <td class="align-middle"><?= $row['unit_pengolah']; ?></td>
+                        <td class="align-middle"><?= $row['nama_ruangan']; ?></td>
                         <td class="align-middle"><?= $row['nomor_surat']; ?></td>
-                        <td class="align-middle"><?= $row['tujuan_surat']; ?></td>
+                        <td class="align-middle"><?= $row['tanggal_surat']; ?></td>
+                        <td class="align-middle"><?= $row['jenis_surat']; ?></td>
+                        <td class="align-middle"><?= $row['sifat_surat']; ?></td>
                       </tr>
                     <?php endwhile; ?>
                   </tbody>
