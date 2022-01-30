@@ -65,6 +65,8 @@ if (isset($_SESSION['id_user'])) {
       include_once "auth/halaman_logout.php";
     else if ($_GET['page'] == 'laporan')
       include_once "laporan/halaman_laporan.php";
+    else if ($_GET['page'] == 'ganti_password')
+      include_once "halaman_ganti_password.php";
   } else {
     include_once "halaman_beranda.php";
   }

@@ -37,7 +37,7 @@
                     </li>
 
                     <li>
-                        <a class="dropdown-item d-flex align-items-center" href="users-profile.html">
+                        <a class="dropdown-item d-flex align-items-center" href="index.php?page=ganti_password">
                             <i class="bi bi-gear"></i>
                             <span>Ganti Password</span>
                         </a>
