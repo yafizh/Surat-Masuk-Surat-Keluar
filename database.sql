@@ -18,7 +18,7 @@ INSERT INTO `tabel_ruangan` (
 ('Perencanaan dan Keuangan', 'PK', ''),
 ('Sekretaris', 'S1', ''),
 ('Fungsional', 'F', ''),
-('Ruanga Kepala Dinas', 'RKD', ''),
+('Ruang Kepala Dinas', 'RKD', ''),
 ('Studio Mini', 'SM', ''),
 ('Musholla', 'M', ''),
 ('Wakapitu', 'W', ''),
