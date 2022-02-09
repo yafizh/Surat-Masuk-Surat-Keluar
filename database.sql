@@ -61,7 +61,7 @@ CREATE TABLE `tabel_surat_masuk` (
     nomor_surat VARCHAR(255) NOT NULL,
     tanggal_surat VARCHAR(255) NOT NULL,
     perihal VARCHAR(255) NOT NULL,
-    jenis_surat ENUM('SURAT TERBUKA','SURAT TERTUTUP') NOT NULL,
+    sifat_surat VARCHAR(255) NOT NULL,
     pengirim VARCHAR(255) NOT NULL,
     dokumen_surat VARCHAR(255) NULL,
     PRIMARY KEY(id_surat_masuk)
@@ -73,7 +73,7 @@ CREATE TABLE `tabel_surat_keluar` (
     id_kode_surat INT NOT NULL,
     nomor_surat VARCHAR(255) NOT NULL,
     tanggal_surat VARCHAR(255) NOT NULL,
-    sifat_surat ENUM('PRIBADI','RESMI PRIBADI', 'DINAS', 'NIAGA') NOT NULL,
+    sifat_surat VARCHAR(255) NOT NULL,
     dokumen_surat VARCHAR(255) NULL,
     PRIMARY KEY(id_surat_keluar),
     FOREIGN KEY(id_ruangan) REFERENCES tabel_ruangan(id_ruangan),

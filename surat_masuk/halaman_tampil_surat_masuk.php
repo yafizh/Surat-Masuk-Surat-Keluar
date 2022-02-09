@@ -28,7 +28,7 @@
                   <th scope="col">Nomor Surat</th>
                   <th scope="col">Tanggal Surat</th>
                   <th scope="col">Perihal</th>
-                  <th scope="col">Jenis Surat</th>
+                  <th scope="col">Sifat Surat</th>
                   <th scope="col">Pengirim</th>
                   <th scope="col" class="text-center">Aksi</th>
                 </tr>
@@ -49,7 +49,7 @@
                     <td class="align-middle"><?= $row['nomor_surat']; ?></td>
                     <td class="align-middle"><?= $row['tanggal_surat']; ?></td>
                     <td class="align-middle"><?= $row['perihal']; ?></td>
-                    <td class="align-middle"><?= $row['jenis_surat']; ?></td>
+                    <td class="align-middle"><?= $row['sifat_surat']; ?></td>
                     <td class="align-middle"><?= $row['pengirim']; ?></td>
                     <td class="d-flex justify-content-center gap-1">
                       <a href="surat_masuk/uploads/<?= $row['dokumen_surat']; ?>" target="_blank" class="btn btn-secondary"><i class="bi bi-file-earmark"></i></a>

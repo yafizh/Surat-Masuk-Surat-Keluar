@@ -5,7 +5,7 @@ if (isset($_POST['submit'])) {
     $nomor_surat = $_POST['nomor_surat'];
     $tanggal_surat = $_POST['tanggal_surat'];
     $perihal = $_POST['perihal'];
-    $jenis_surat = $_POST['jenis_surat'];
+    $sifat_surat = $_POST['sifat_surat'];
     $pengirim = $_POST['pengirim'];
 
     $target_dir = "surat_masuk/uploads/";
@@ -25,14 +25,14 @@ if (isset($_POST['submit'])) {
                     nomor_surat, 
                     tanggal_surat, 
                     perihal, 
-                    jenis_surat, 
+                    sifat_surat, 
                     pengirim, 
                     dokumen_surat
                 ) VALUES (
                     '$nomor_surat', 
                     '$tanggal_surat',
                     '$perihal',
-                    '$jenis_surat', 
+                    '$sifat_surat', 
                     '$pengirim', 
                     '$file_name'
                 )";
@@ -101,12 +101,9 @@ if (isset($_POST['submit'])) {
                         </div>
                     </div>
                     <div class="row mb-3">
-                        <label class="col-sm-2 col-form-label">Jenis Surat</label>
+                        <label class="col-sm-2 col-form-label">Sifat Surat</label>
                         <div class="col-sm-10">
-                            <select class="form-select" name="jenis_surat" required>
-                                <option value="SURAT TERBUKA">Surat Terbuka</option>
-                                <option value="SURAT TERTUTUP">Surat TErtutup</option>
-                            </select>
+                            <input type="text" class="form-control" name="sifat_surat" required>
                             <div class="invalid-feedback">
                                 Harap pilih Jenis Surat.
                             </div>

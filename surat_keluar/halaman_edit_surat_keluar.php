@@ -156,12 +156,7 @@ if (isset($_POST['submit'])) {
                     <div class="row mb-3">
                         <label for="sifat_surat" class="col-sm-2 col-form-label">Sifat Surat</label>
                         <div class="col-sm-10">
-                            <select class="form-select" name="sifat_surat" required>
-                                <option <?= $row['sifat_surat'] == 'PRIBADI' ? 'selected' : ''; ?> value="PRIBADI">Pribadi</option>
-                                <option <?= $row['sifat_surat'] == 'RESMI PRIBADI' ? 'selected' : ''; ?> value="RESMI PRIBADI">Resmi Pribadi</option>
-                                <option <?= $row['sifat_surat'] == 'DINAS' ? 'selected' : ''; ?> value="DINAS">Dinas</option>
-                                <option <?= $row['sifat_surat'] == 'NIAGA' ? 'selected' : ''; ?> value="NIAGA">Niaga</option>
-                            </select>
+                            <input type="text" class="form-control" name="sifat_surat" required>
                             <div class="invalid-feedback">
                                 Harap isi Sifat Surat.
                             </div>

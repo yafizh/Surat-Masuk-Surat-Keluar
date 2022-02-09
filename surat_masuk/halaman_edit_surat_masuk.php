@@ -16,7 +16,7 @@ if (isset($_POST['submit'])) {
     $nomor_surat = $_POST['nomor_surat'];
     $tanggal_surat = $_POST['tanggal_surat'];
     $perihal = $_POST['perihal'];
-    $jenis_surat = $_POST['jenis_surat'];
+    $sifat_surat = $_POST['sifat_surat'];
     $pengirim = $_POST['pengirim'];
 
     // $_FILES['dokumen_surat']['error'] == 4, artinya tidak ada dokumen yang diupload
@@ -28,7 +28,7 @@ if (isset($_POST['submit'])) {
                 nomor_surat='$nomor_surat', 
                 tanggal_surat='$tanggal_surat', 
                 perihal='$perihal', 
-                jenis_surat='$jenis_surat', 
+                sifat_surat='$sifat_surat', 
                 pengirim='$pengirim', 
                 dokumen_surat='$file_name' 
             WHERE 
@@ -57,7 +57,7 @@ if (isset($_POST['submit'])) {
                             nomor_surat='$nomor_surat', 
                             tanggal_surat='$tanggal_surat', 
                             perihal='$perihal', 
-                            jenis_surat='$jenis_surat', 
+                            sifat_surat='$sifat_surat', 
                             pengirim='$pengirim', 
                             dokumen_surat='$file_name' 
                         WHERE 
@@ -122,12 +122,7 @@ if (isset($_POST['submit'])) {
                     <div class="row mb-3">
                         <label class="col-sm-2 col-form-label">Jenis Surat</label>
                         <div class="col-sm-10">
-                            <div class="col-sm-10">
-                                <select class="form-select" name="jenis_surat" required>
-                                    <option <?= ($row['jenis_surat'] == 'SURAT TERBUKA' ? 'selected' : ''); ?> value="SURAT TERBUKA">Surat Terbuka</option>
-                                    <option <?= ($row['jenis_surat'] == 'SURAT TERTUTUP' ? 'selected' : ''); ?> value="SURAT TERTUTUP">Surat TErtutup</option>
-                                </select>
-                            </div>
+                            <input type="text" class="form-control" name="sifat_surat" required>
                             <div class="invalid-feedback">
                                 Harap pilih Jenis Surat.
                             </div>
