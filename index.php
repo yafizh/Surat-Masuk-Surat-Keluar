@@ -19,6 +19,8 @@ if (isset($_SESSION['id_user'])) {
       include_once "user/halaman_tambah_user.php";
     else if ($_GET['page'] == 'agenda' && $_GET['item'] == 'tambah_agenda')
       include_once "agenda/halaman_tambah_agenda.php";
+    else if ($_GET['page'] == 'arsip' && $_GET['item'] == 'tambah_arsip')
+      include_once "arsip/halaman_tambah_arsip.php";
     else if ($_GET['page'] == 'surat_masuk' && $_GET['item'] == 'tampil_surat_masuk')
       include_once "surat_masuk/halaman_tampil_surat_masuk.php";
     else if ($_GET['page'] == 'surat_keluar' && $_GET['item'] == 'tampil_surat_keluar')
@@ -33,6 +35,8 @@ if (isset($_SESSION['id_user'])) {
       include_once "user/halaman_tampil_user.php";
     else if ($_GET['page'] == 'agenda' && $_GET['item'] == 'tampil_agenda')
       include_once "agenda/halaman_tampil_agenda.php";
+    else if ($_GET['page'] == 'arsip' && $_GET['item'] == 'tampil_arsip')
+      include_once "arsip/halaman_tampil_arsip.php";
     else if ($_GET['page'] == 'surat_masuk' && $_GET['item'] == 'edit_surat_masuk')
       include_once "surat_masuk/halaman_edit_surat_masuk.php";
     else if ($_GET['page'] == 'surat_masuk' && $_GET['item'] == 'delete_surat_masuk')
@@ -61,6 +65,10 @@ if (isset($_SESSION['id_user'])) {
       include_once "agenda/halaman_edit_agenda.php";
     else if ($_GET['page'] == 'agenda' && $_GET['item'] == 'delete_agenda')
       include_once "agenda/halaman_delete_agenda.php";
+    else if ($_GET['page'] == 'arsip' && $_GET['item'] == 'edit_arsip')
+      include_once "arsip/halaman_edit_arsip.php";
+    else if ($_GET['page'] == 'arsip' && $_GET['item'] == 'delete_arsip')
+      include_once "arsip/halaman_delete_arsip.php";
     else if ($_GET['page'] == 'keluar')
       include_once "auth/halaman_logout.php";
     else if ($_GET['page'] == 'laporan')

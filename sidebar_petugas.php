@@ -79,6 +79,23 @@
                 </li>
             </ul>
         </li><!-- End Forms Nav -->
+        <li class="nav-item" id="x">
+            <a id="arsip" class="nav-link collapsed" data-bs-target="#arsip-nav" data-bs-toggle="collapse" href="#">
+                <i class="ri-mail-add-line"></i><span>Arsip</span><i class="bi bi-chevron-down ms-auto"></i>
+            </a>
+            <ul id="arsip-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
+                <li>
+                    <a id="tampil_arsip" href="index.php?page=arsip&item=tampil_arsip">
+                        <i class="bi bi-circle"></i><span>Data Arsip</span>
+                    </a>
+                </li>
+                <li>
+                    <a id="tambah_arsip" href="index.php?page=arsip&item=tambah_arsip">
+                        <i class="bi bi-circle"></i><span>Tambah Arsip</span>
+                    </a>
+                </li>
+            </ul>
+        </li><!-- End Forms Nav -->
     </ul>
 
 </aside><!-- End Sidebar-->

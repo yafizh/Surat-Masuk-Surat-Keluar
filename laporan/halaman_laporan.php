@@ -76,6 +76,30 @@ require_once "utils.php";
             </form>
           </div>
         </div><!-- End Default Card -->
+
+        <!-- Default Card -->
+        <div class="card">
+          <div class="card-body">
+            <form action="laporan/cetak/laporan_arsip.php" target="_blank" method="POST">
+              <h5 class="card-title">Laporan Arsip</h5>
+              <div class="row mb-3">
+                <div class="col-md-6">
+                  <label for="dari">Dari</label>
+                  <input type="date" value="2000-01-01" name="dari" id="dari" class="form-control">
+                </div>
+                <div class="col-md-6">
+                  <label for="sampai">Sampai</label>
+                  <input type="date" value="<?= Date("Y-m-d"); ?>" name="sampai" id="sampai" class="form-control">
+                </div>
+              </div>
+              <div class="row mb-3">
+                <div class="col-md-12">
+                  <button class="btn btn-primary w-100">Cetak</button>
+                </div>
+              </div>
+            </form>
+          </div>
+        </div><!-- End Default Card -->
       </div>
 
       <div class="col-lg-5">

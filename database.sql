@@ -1,6 +1,17 @@
 CREATE DATABASE `db_surat_masuk_keluar`;
 USE `db_surat_masuk_keluar`;
 
+CREATE TABLE `tabel_arsip` (
+    id_arsip INT NOT NULL AUTO_INCREMENT,
+    lokasi varchar(255),
+    nomor_dokumen VARCHAR(255),
+    nama_dokumen VARCHAR(255),
+    size int,
+    tanggal DATE,
+    upload VARCHAR(255),
+    PRIMARY KEY(id_arsip)
+);
+
 CREATE TABLE `tabel_ruangan` (
     id_ruangan INT NOT NULL AUTO_INCREMENT,
     nama_ruangan VARCHAR(255) NOT NULL,
