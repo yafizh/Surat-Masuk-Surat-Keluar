@@ -104,7 +104,7 @@ if (isset($_POST['submit'])) {
                     <div class="row mb-3">
                         <label for="nomor_disposisi" class="col-sm-2 col-form-label">Nomor Disposisi</label>
                         <div class="col-sm-10">
-                            <input type="text" class="form-control" id="nomor_disposisi" value="<?= $row['nomor_disposisi']; ?>" name="nomor_disposisi" required>
+                            <input type="text" class="form-control" id="nomor_disposisi" readonly value="<?= $row['nomor_disposisi']; ?>" name="nomor_disposisi" required>
                             <div class="invalid-feedback">
                                 Harap isi Nomor Disposisi.
                             </div>

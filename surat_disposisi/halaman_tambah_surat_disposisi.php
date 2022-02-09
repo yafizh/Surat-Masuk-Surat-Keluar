@@ -76,7 +76,7 @@ if (isset($_POST['submit'])) {
                             $data_jumlah_surat =  ($result->num_rows > 0) ? (int)$result->fetch_assoc()['data_jumlah_surat'] : 0;
                             $data_jumlah_surat += 1;
                             ?>
-                            <input type="text" readonly value="<?= $data_jumlah_surat; ?>/XX/XX" class="form-control" id="nomor_surat" required name="nomor_surat">
+                            <input type="text" readonly value="DPS<?= $data_jumlah_surat; ?>/XX/XX" class="form-control" id="nomor_surat" required name="nomor_surat">
                             <div class="invalid-feedback">
                                 Harap isi Nomor Surat.
                             </div>
@@ -85,7 +85,7 @@ if (isset($_POST['submit'])) {
                     <div class="row mb-3">
                         <label for="nomor_disposisi" class="col-sm-2 col-form-label">Nomor Disposisi</label>
                         <div class="col-sm-10">
-                            <input type="text" class="form-control" id="nomor_disposisi" required name="nomor_disposisi">
+                            <input type="text" class="form-control" readonly value="DPS<?= $data_jumlah_surat; ?>" id="nomor_disposisi" required name="nomor_disposisi">
                             <div class="invalid-feedback">
                                 Harap isi Nomor Disposisi.
                             </div>

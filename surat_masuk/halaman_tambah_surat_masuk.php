@@ -76,7 +76,7 @@ if (isset($_POST['submit'])) {
                             $data_jumlah_surat =  ($result->num_rows > 0) ? (int)$result->fetch_assoc()['data_jumlah_surat'] : 0;
                             $data_jumlah_surat += 1;
                             ?>
-                            <input type="text" class="form-control" id="nomor_surat" value="<?= $data_jumlah_surat; ?>/XX/XX" readonly required name="nomor_surat">
+                            <input type="text" class="form-control" id="nomor_surat" value="SM<?= $data_jumlah_surat; ?>/XX/XX" readonly required name="nomor_surat">
                             <div class="invalid-feedback">
                                 Harap isi Nomor Surat.
                             </div>
