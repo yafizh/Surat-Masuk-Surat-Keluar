@@ -13,7 +13,7 @@
     <div class="row">
 
       <!-- Left side columns -->
-      <div class="col-lg-12">
+      <div class="col-lg-8">
         <div class="row">
 
           <?php require_once "koneksi.php"; ?>
@@ -186,6 +186,40 @@
           </div><!-- End Top Selling -->
         </div>
       </div><!-- End Left side columns -->
+      <div class="col-lg-4">
+        <div class="card">
+
+          <div class="card-body">
+            <h5 class="card-title">Agenda Hari ini</h5>
+
+            <div class="activity">
+
+              <?php
+              $warna = ['text-success', 'text-danger', 'text-primary', 'text-info', 'text-warning', 'text-muted'];
+              $sql = "
+                    SELECT 
+                      * 
+                    FROM 
+                      tabel_agenda 
+                    WHERE 
+                      tanggal = CURRENT_DATE() 
+                    ORDER BY id_agenda DESC";
+              $result = $mysqli->query($sql);
+              ?>
+              <?php while ($row = $result->fetch_assoc()) : ?>
+                <div class="activity-item d-flex">
+                  <div class="activite-label"><?= explode(':', $row['waktu'])[0] . ':' . explode(':', $row['waktu'])[1]; ?></div>
+                  <i class="bi bi-circle-fill activity-badge <?= $warna[rand(0, 5)]; ?> align-self-start"></i>
+                  <div class="activity-content">
+                    <?= $row['detail_acara']; ?>
+                  </div>
+                </div><!-- End activity item-->
+              <?php endwhile; ?>
+            </div>
+
+          </div>
+        </div>
+      </div>
 
     </div>
   </section>
