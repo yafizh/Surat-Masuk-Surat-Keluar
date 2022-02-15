@@ -36,16 +36,6 @@ require_once "utils.php";
               </div>
               <div class="row mb-3">
                 <div class="col-md-12">
-                  <label for="jenis_surat">Jenis Surat</label>
-                  <select name="jenis_surat" id="jenis_surat" class="form-control">
-                    <option value="">Semua Jenis</option>
-                    <option value="TERBUKA">Terbuka</option>
-                    <option value="TERTUTUP">Tertutup</option>
-                  </select>
-                </div>
-              </div>
-              <div class="row mb-3">
-                <div class="col-md-12">
                   <button type="submit" class="btn btn-primary w-100">Cetak</button>
                 </div>
               </div>
@@ -140,7 +130,7 @@ require_once "utils.php";
                   $sql = "SELECT * FROM tabel_kode_surat ORDER BY id_kode_surat DESC";
                   $result = $mysqli->query($sql);
                   ?>
-                  <label for="id_kode_surat">Jenis Surat</label>
+                  <label for="id_kode_surat">Kode Surat</label>
                   <select name="id_kode_surat" id="id_kode_surat" class="form-control">
                     <option value="">Semua Jenis</option>
                     <?php while ($row = $result->fetch_assoc()) : ?>

@@ -36,8 +36,6 @@
               <tbody>
                 <?php
                 require_once "koneksi.php";
-                require_once "utils.php";
-
                 $no = 1;
                 $sql = "
                     SELECT 

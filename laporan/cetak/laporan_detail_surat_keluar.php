@@ -31,31 +31,18 @@
 
 <body>
     <div class="container">
-        <div id="kop" class="d-flex justify-content-center gap-5">
-            <img src="../../assets/img/Banjarbaru.png" height="150" alt="">
-            <div class="text-center" style="flex: 1;">
-                <h2>
-                    DINAS ARSIP DAN PERPUSTAKAAN DAERAH
-                    <br>
-                    BANJARBARU
-                </h2>
-                <p>
-                    Alamat: Jl. Wijaya Kusuma No.7
-                    <br>
-                    Email: darpusdabjb@banjarbarukota.go.id
-                </p>
-            </div>
-        </div>
+        <?php include_once "header.php"; ?>
         <hr>
         <?php
         require_once "../../koneksi.php";
         require_once "../../utils.php";
         $sql = "
-          SELECT * FROM tabel_surat_keluar WHERE id_surat_keluar=".$_GET['id_surat_keluar'];
+          SELECT * FROM tabel_surat_keluar WHERE id_surat_keluar=" . $_GET['id_surat_keluar'];
         $result = $mysqli->query($sql);
         $row = $result->fetch_assoc();
         ?>
         <img src="../../surat_keluar/uploads/<?= $row['dokumen_surat']; ?>">
+        <?php include_once "footer.php"; ?>
     </div>
     <script>
         window.print();
