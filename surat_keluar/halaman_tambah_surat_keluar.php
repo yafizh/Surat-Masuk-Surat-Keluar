@@ -7,7 +7,7 @@ if (isset($_POST['submit'])) {
     $tanggal_surat = $_POST['tanggal_surat'];
     $id_kode_surat = $_POST['id_kode_surat'];
     $sifat_surat = $_POST['sifat_surat'];
-
+    
     $target_dir = "surat_keluar/uploads/";
     $file_name = Date("YmdHis_") . basename($_FILES["dokumen_surat"]["name"]);
     $target_file = $target_dir . $file_name;
@@ -15,7 +15,7 @@ if (isset($_POST['submit'])) {
     $file_type = strtolower(pathinfo($target_file, PATHINFO_EXTENSION));
 
     $sizeOk = checkFileSize($_FILES["dokumen_surat"]["size"], 500000);
-    $typeOk = allowedFileType($file_type, ['pdf']);
+    $typeOk = allowedFileType($file_type, ['pdf','png','jpg','jpeg']);
 
     // Check if $uploadOk is set to 0 by an error
     if ($sizeOk != 0 && $typeOk != 0) {
@@ -110,20 +110,20 @@ if (isset($_POST['submit'])) {
                         </div>
                     </div>
                     <div class="row mb-3">
-                        <label for="id_kode_surat" class="col-sm-2 col-form-label">Jenis Surat</label>
+                        <label for="id_kode_surat" class="col-sm-2 col-form-label">Kode Surat</label>
                         <div class="col-sm-10">
                             <?php
                             $sql = "SELECT * FROM tabel_kode_surat ORDER BY id_kode_surat DESC";
                             $result = $mysqli->query($sql);
                             ?>
                             <select class="form-select" name="id_kode_surat" required>
-                                <option value="" selected disabled>Pilih Jenis Surat</option>
+                                <option value="" selected disabled>Pilih Kode Surat</option>
                                 <?php while ($row = $result->fetch_assoc()) : ?>
                                     <option data-singkatan="<?= $row['singkatan']; ?>" value="<?= $row['id_kode_surat']; ?>"><?= $row['jenis_surat']; ?></option>
                                 <?php endwhile; ?>
                             </select>
                             <div class="invalid-feedback">
-                                Harap pilih Jenis Surat.
+                                Harap pilih Kode Surat.
                             </div>
                         </div>
                     </div>
@@ -139,7 +139,7 @@ if (isset($_POST['submit'])) {
                     <div class="row mb-3">
                         <label for="dokumen_surat" class="col-sm-2 col-form-label">Dokumen Surat</label>
                         <div class="col-sm-10">
-                            <input class="form-control" id="dokumen_surat" type="file" name="dokumen_surat" accept=".pdf" required>
+                            <input class="form-control" id="dokumen_surat" type="file" name="dokumen_surat" required>
                             <div class="invalid-feedback">
                                 Harap Tambahkan Dokumen Surat.
                             </div>

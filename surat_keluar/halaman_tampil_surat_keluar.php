@@ -62,7 +62,8 @@
                     <td class="align-middle"><?= $row['jenis_surat']; ?></td>
                     <td class="align-middle"><?= $row['sifat_surat']; ?></td>
                     <td class="d-flex justify-content-center gap-1">
-                      <a href="index.php?page=surat_keluar&item=edit_surat_keluar&id_surat_keluar=<?= $row['id_surat_keluar']; ?>" class="btn btn-warning"><i class="bi bi-pencil"></i></a>
+                      <a target="_blank" href="laporan/cetak/laporan_detail_surat_keluar.php?id_surat_keluar=<?= $row['id_surat_keluar']; ?>" class="btn btn-info text-light"><i class="bi bi-printer"></i></a>
+                      <a href="index.php?page=surat_keluar&item=edit_surat_keluar&id_surat_keluar=<?= $row['id_surat_keluar']; ?>" class="btn btn-warning text-light"><i class="bi bi-pencil"></i></a>
                       <a href="index.php?page=surat_keluar&item=delete_surat_keluar&id_surat_keluar=<?= $row['id_surat_keluar']; ?>" class="btn btn-danger" onclick="return confirm('Yakin ingin menghapus data ini?')"><i class="bi bi-trash"></i></a>
                     </td>
                   </tr>
