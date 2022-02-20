@@ -41,7 +41,7 @@
                     <th>Nomor Surat</th>
                     <th>Tanggal Surat</th>
                     <th>Perihal</th>
-                    <th>Jenis Surat</th>
+                    <th>Sifat Surat</th>
                     <th>Pengirim</th>
                 </tr>
             </thead>
@@ -69,7 +69,7 @@
                             <td class="text-center"><?= $row['nomor_surat']; ?></td>
                             <td class="text-center"><?= $row['tanggal_surat']; ?></td>
                             <td class="text-center"><?= $row['perihal']; ?></td>
-                            <td class="text-center"><?= $row['jenis_surat']; ?></td>
+                            <td class="text-center"><?= $row['sifat_surat']; ?></td>
                             <td class="text-center"><?= $row['pengirim']; ?></td>
                         </tr>
                     <?php endwhile; ?>

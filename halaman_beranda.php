@@ -107,7 +107,7 @@
                       <th scope="col">Nomor Surat</th>
                       <th scope="col">Tanggal Surat</th>
                       <th scope="col">Perihal</th>
-                      <th scope="col">Jenis Surat</th>
+                      <th scope="col">Sifat Surat</th>
                       <th scope="col">Pengirim</th>
                     </tr>
                   </thead>
@@ -124,7 +124,7 @@
                         <td class="align-middle"><?= $row['nomor_surat']; ?></td>
                         <td class="align-middle"><?= $row['tanggal_surat']; ?></td>
                         <td class="align-middle"><?= $row['perihal']; ?></td>
-                        <td class="align-middle"><?= $row['jenis_surat']; ?></td>
+                        <td class="align-middle"><?= $row['sifat_surat']; ?></td>
                         <td class="align-middle"><?= $row['pengirim']; ?></td>
                       </tr>
                     <?php endwhile; ?>
