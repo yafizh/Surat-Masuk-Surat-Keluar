@@ -135,10 +135,11 @@ CREATE TABLE `tabel_user` (
     nama_user VARCHAR(255) NOT NULL,
     username_user VARCHAR(255) NOT NULL,
     password_user VARCHAR(255) NOT NULL,
-    status_user ENUM('ADMIN', 'PETUGAS') NOT NULL,
+    status_user ENUM('ADMIN', 'PETUGAS', 'PIMPINAN') NOT NULL,
     PRIMARY KEY(id_user)
 );
 
 INSERT INTO `tabel_user` VALUES 
 (null, 'admin', 'admin', 'admin' , 'ADMIN'),
-(null, 'Muhammad Iqbal', 'iqbal', 'iqbal' , 'PETUGAS');
+(null, 'Muhammad Iqbal', 'iqbal', 'iqbal' , 'PETUGAS'),
+(null, 'Muhammad Iqbal Pimpinan', 'pimpinan', 'pimpinan' , 'PIMPINAN');

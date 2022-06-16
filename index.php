@@ -3,7 +3,8 @@
 if (isset($_SESSION['id_user'])) {
   include_once "navbar.php";
   if ($_SESSION['status_user'] == 'ADMIN') include_once "sidebar_admin.php";
-  else include_once "sidebar_petugas.php";
+  else if($_SESSION['status_user'] == 'PETUGAS') include_once "sidebar_petugas.php";
+  else if($_SESSION['status_user'] == 'PIMPINAN') include_once "sidebar_pimpinan.php";
   if (isset($_GET['page'])) {
     if ($_GET['page'] == 'surat_masuk' && $_GET['item'] == 'tambah_surat_masuk')
       include_once "surat_masuk/halaman_tambah_surat_masuk.php";

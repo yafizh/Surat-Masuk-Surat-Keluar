@@ -38,10 +38,10 @@ if (isset($_POST['submit'])) {
 
                                 <div class="pt-4 pb-2">
                                     <div class="d-flex">
-                                        <img src="assets/img/Banjarbaru.png" width="100" alt="">
+                                        <img src="assets/img/kotabaru.png" width="100" alt="">
                                         <div class="d-flex flex-column">
-                                            <h5 class="card-title text-center pb-0 fs-5">Aplikasi Surat Menyurat</h5>
-                                            <p class="text-center">Dinas Arsip dan Perpustakaan Daerah Kota Banjarbaru</p>
+                                            <h5 class="card-title text-center pb-0 fs-5">Aplikasi Pengarsipan Surat, Inventaris, dan Mutasi Barang</h5>
+                                            <p class="text-center">Kecamatan Kelumpang Utara</p>
                                         </div>
                                     </div>
                                     <!-- <h5 class="card-title text-center pb-0 fs-4">Login</h5> -->
