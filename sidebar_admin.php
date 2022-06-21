@@ -74,6 +74,29 @@
         </li><!-- End Forms Nav -->
 
         <li class="nav-item">
+            <a id="inventaris" class="nav-link collapsed" data-bs-target="#inventaris-nav" data-bs-toggle="collapse" href="#">
+                <i class="ri ri-mail-line"></i><span>Inventaris</span><i class="bi bi-chevron-down ms-auto"></i>
+            </a>
+            <ul id="inventaris-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
+                <li>
+                    <a id="tampil_inventaris" href="index.php?page=inventaris&item=tampil_inventaris">
+                        <i class="bi bi-circle"></i><span>Data Inventaris</span>
+                    </a>
+                </li>
+                <li>
+                    <a id="tampil_peminjaman_inventaris" href="index.php?page=inventaris&item=tampil_peminjaman_inventaris">
+                        <i class="bi bi-circle"></i><span>Data Peminjaman Inventaris</span>
+                    </a>
+                </li>
+                <li>
+                    <a id="tambah_inventaris" href="index.php?page=inventaris&item=tambah_inventaris">
+                        <i class="bi bi-circle"></i><span>Tambah Inventaris</span>
+                    </a>
+                </li>
+            </ul>
+        </li><!-- End Components Nav -->
+
+        <li class="nav-item">
             <a id="laporan" class="nav-link collapsed" href="index.php?page=laporan">
                 <i class="bi bi-journal-text"></i>
                 <span>Laporan</span>

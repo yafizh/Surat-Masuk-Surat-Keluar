@@ -12,11 +12,27 @@ CREATE TABLE `tabel_arsip` (
     PRIMARY KEY(id_arsip)
 );
 
-CREATE TABLE `tabel_fasilitas` (
-    id INT NOT NULL AUTO_INCREMENT,
-    fasilitas VARCHAR(255) NOT NULL,
-    keterangan VARCHAR(255) NOT NULL,
-    PRIMARY KEY (id)
+CREATE TABLE `tabel_inventaris` (
+    id_inventaris INT NOT NULL AUTO_INCREMENT,
+    nama VARCHAR(255) NOT NULL,
+    merk VARCHAR(255) NOT NULL,
+    jumlah int NOT NULL,
+    harga int NOT NULL,
+    tanggal_pembelian DATE NOT NULL,
+    gambar VARCHAR(255) NOT NULL,
+    keterangan VARCHAR(255) NULL,
+    PRIMARY KEY (id_inventaris)
+);
+
+CREATE TABLE `tabel_peminjaman_inventaris` (
+    id_peminjaman_inventaris INT NOT NULL AUTO_INCREMENT,
+    id_inventaris INT NOT NULL,
+    nama VARCHAR(255) NOT NULL,
+    tanggal_pinjam DATE NOT NULL,
+    lama_pinjam int NOT NULL,
+    keperluan VARCHAR(255) NOT NULL,
+    PRIMARY KEY (id_peminjaman_inventaris),
+    FOREIGN KEY (id_inventaris) REFERENCES tabel_inventaris (id_inventaris)
 );
 
 CREATE TABLE `tabel_ruangan` (

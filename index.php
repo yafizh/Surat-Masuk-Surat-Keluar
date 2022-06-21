@@ -3,8 +3,8 @@
 if (isset($_SESSION['id_user'])) {
   include_once "navbar.php";
   if ($_SESSION['status_user'] == 'ADMIN') include_once "sidebar_admin.php";
-  else if($_SESSION['status_user'] == 'PETUGAS') include_once "sidebar_petugas.php";
-  else if($_SESSION['status_user'] == 'PIMPINAN') include_once "sidebar_pimpinan.php";
+  else if ($_SESSION['status_user'] == 'PETUGAS') include_once "sidebar_petugas.php";
+  else if ($_SESSION['status_user'] == 'PIMPINAN') include_once "sidebar_pimpinan.php";
   if (isset($_GET['page'])) {
     if ($_GET['page'] == 'surat_masuk' && $_GET['item'] == 'tambah_surat_masuk')
       include_once "surat_masuk/halaman_tambah_surat_masuk.php";
@@ -22,6 +22,10 @@ if (isset($_SESSION['id_user'])) {
       include_once "agenda/halaman_tambah_agenda.php";
     else if ($_GET['page'] == 'arsip' && $_GET['item'] == 'tambah_arsip')
       include_once "arsip/halaman_tambah_arsip.php";
+    else if ($_GET['page'] == 'inventaris' && $_GET['item'] == 'tambah_inventaris')
+      include_once "inventaris/halaman_tambah_inventaris.php";
+    else if ($_GET['page'] == 'inventaris' && $_GET['item'] == 'tambah_peminjaman_inventaris')
+      include_once "inventaris/halaman_tambah_peminjaman_inventaris.php";
     else if ($_GET['page'] == 'surat_masuk' && $_GET['item'] == 'tampil_surat_masuk')
       include_once "surat_masuk/halaman_tampil_surat_masuk.php";
     else if ($_GET['page'] == 'surat_keluar' && $_GET['item'] == 'tampil_surat_keluar')
@@ -38,6 +42,10 @@ if (isset($_SESSION['id_user'])) {
       include_once "agenda/halaman_tampil_agenda.php";
     else if ($_GET['page'] == 'arsip' && $_GET['item'] == 'tampil_arsip')
       include_once "arsip/halaman_tampil_arsip.php";
+    else if ($_GET['page'] == 'inventaris' && $_GET['item'] == 'tampil_inventaris')
+      include_once "inventaris/halaman_tampil_inventaris.php";
+    else if ($_GET['page'] == 'inventaris' && $_GET['item'] == 'tampil_peminjaman_inventaris')
+      include_once "inventaris/halaman_tampil_peminjaman_inventaris.php";
     else if ($_GET['page'] == 'surat_masuk' && $_GET['item'] == 'edit_surat_masuk')
       include_once "surat_masuk/halaman_edit_surat_masuk.php";
     else if ($_GET['page'] == 'surat_masuk' && $_GET['item'] == 'delete_surat_masuk')
@@ -70,6 +78,14 @@ if (isset($_SESSION['id_user'])) {
       include_once "arsip/halaman_edit_arsip.php";
     else if ($_GET['page'] == 'arsip' && $_GET['item'] == 'delete_arsip')
       include_once "arsip/halaman_delete_arsip.php";
+    else if ($_GET['page'] == 'inventaris' && $_GET['item'] == 'edit_inventaris')
+      include_once "inventaris/halaman_edit_inventaris.php";
+    else if ($_GET['page'] == 'inventaris' && $_GET['item'] == 'delete_inventaris')
+      include_once "inventaris/halaman_delete_inventaris.php";
+    else if ($_GET['page'] == 'inventaris' && $_GET['item'] == 'edit_peminjaman_inventaris')
+      include_once "inventaris/halaman_edit_peminjaman_inventaris.php";
+    else if ($_GET['page'] == 'inventaris' && $_GET['item'] == 'delete_peminjaman_inventaris')
+      include_once "inventaris/halaman_delete_peminjaman_inventaris.php";
     else if ($_GET['page'] == 'keluar')
       include_once "auth/halaman_logout.php";
     else if ($_GET['page'] == 'laporan')
