@@ -28,7 +28,6 @@
                   <th scope="col">Nama Barang</th>
                   <th scope="col">Merk</th>
                   <th scope="col">Jumlah</th>
-                  <th scope="col">Gambar</th>
                   <th scope="col" class="text-center">Aksi</th>
                 </tr>
               </thead>
@@ -48,9 +47,6 @@
                     <td class="align-middle"><?= $row['nama']; ?></td>
                     <td class="align-middle"><?= $row['merk']; ?></td>
                     <td class="align-middle"><?= $row['jumlah']; ?></td>
-                    <td class="align-middle">
-                      <a href="inventaris/uploads/<?= $row['gambar']; ?>" target="_blank" class="btn btn-secondary"><i class="bi bi-file-earmark"></i></a>
-                    </td>
                     <td class="d-flex justify-content-center gap-1">
                       <a href="index.php?page=inventaris&item=edit_inventaris&id_inventaris=<?= $row['id_inventaris']; ?>" class="btn btn-warning"><i class="bi bi-pencil"></i></a>
                       <a href="index.php?page=inventaris&item=delete_inventaris&id_inventaris=<?= $row['id_inventaris']; ?>" class="btn btn-danger" onclick="return confirm('Yakin ingin menghapus data ini?')"><i class="bi bi-trash"></i></a>

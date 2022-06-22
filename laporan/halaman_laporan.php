@@ -17,7 +17,7 @@ require_once "utils.php";
 
   <section class="section">
     <div class="row">
-      <div class="col-lg-5">
+      <div class="col-lg-4">
 
         <!-- Default Card -->
         <div class="card">
@@ -92,7 +92,7 @@ require_once "utils.php";
         </div><!-- End Default Card -->
       </div>
 
-      <div class="col-lg-5">
+      <div class="col-lg-4">
 
         <!-- Default Card -->
         <div class="card">
@@ -188,21 +188,21 @@ require_once "utils.php";
         </div><!-- End Default Card -->
       </div>
 
-      <div class="col-lg-2">
+      <div class="col-lg-4">
 
         <!-- Default Card -->
         <div class="card">
           <div class="card-body">
-            <form action="laporan/cetak/laporan_user.php" method="POST" target="_blank">
-              <h5 class="card-title">Laporan User</h5>
+            <form action="laporan/cetak/laporan_peminjaman_inventaris.php" method="POST" target="_blank">
+              <h5 class="card-title">Laporan Peminjaman Inventaris</h5>
               <div class="row mb-3">
-                <div class="col-md-12">
-                  <label for="status_user">Status</label>
-                  <select name="status_user" id="status_user" class="form-control">
-                    <option value="">Semua Status</option>
-                    <option value="ADMIN">Admin</option>
-                    <option value="PETUGAS">Petugas</option>
-                  </select>
+                <div class="col-md-6">
+                  <label for="dari">Dari</label>
+                  <input type="date" value="2000-01-01" name="dari" id="dari" class="form-control">
+                </div>
+                <div class="col-md-6">
+                  <label for="sampai">Sampai</label>
+                  <input type="date" value="<?= Date("Y-m-d"); ?>" name="sampai" id="sampai" class="form-control">
                 </div>
               </div>
               <div class="row mb-3">
@@ -217,8 +217,8 @@ require_once "utils.php";
         <!-- Default Card -->
         <div class="card">
           <div class="card-body">
-            <form action="laporan/cetak/laporan_ruangan.php" target="_blank">
-              <h5 class="card-title">Laporan Ruangan</h5>
+            <form action="laporan/cetak/laporan_inventaris.php" target="_blank">
+              <h5 class="card-title">Laporan Inventaris</h5>
               <div class="row mb-3">
                 <div class="col-md-12">
                   <button type="submit" class="btn btn-primary w-100">Cetak</button>
@@ -232,8 +232,8 @@ require_once "utils.php";
         <!-- Default Card -->
         <div class="card">
           <div class="card-body">
-            <form action="laporan/cetak/laporan_kode_surat.php" target="_blank">
-              <h5 class="card-title">Laporan Kode Surat</h5>
+            <form action="laporan/cetak/laporan_jumlah_inventaris_yang_dipinjam.php" target="_blank">
+              <h5 class="card-title">Laporan Jumlah Inventaris yang dipinjam</h5>
               <div class="row mb-3">
                 <div class="col-md-12">
                   <button class="btn btn-primary w-100">Cetak</button>

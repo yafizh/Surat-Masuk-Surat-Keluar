@@ -19,64 +19,27 @@ if (isset($_POST['submit'])) {
     $harga = $_POST['harga'];
     $tanggal_pembelian = $_POST['tanggal_pembelian'];
 
-    // $_FILES['dokumen_surat']['error'] == 4, artinya tidak ada dokumen yang diupload
-    if ($_FILES['gambar']['error'] == 4) {
-        $file_name = $row['gambar'];
-
-        $sql = "UPDATE tabel_inventaris 
+    $sql = "UPDATE tabel_inventaris 
             SET 
                 nama='$nama', 
                 merk='$merk', 
                 jumlah='$jumlah', 
                 harga='$harga', 
-                tanggal_pembelian='$tanggal_pembelian', 
-                gambar='$file_name' 
+                tanggal_pembelian='$tanggal_pembelian' 
             WHERE 
                 id_inventaris=" . $_GET['id_inventaris'];
-
-        if ($mysqli->query($sql) === TRUE) {
-            echo "<script>alert('Inventaris berhasil diedit.')</script>";
-            echo "<script>" .
-                "window.location.href='index.php?page=inventaris&item=tampil_inventaris';" .
-                "</script>";
-        } else echo "Error: " . $sql . "<br>" . $mysqli->error;
-    } else {
-        $target_dir = "inventaris/uploads/";
-        $file_name = Date("YmdHis_") . basename($_FILES["gambar"]["name"]);
-        $target_file = $target_dir . $file_name;
-        $file_type = strtolower(pathinfo($target_file, PATHINFO_EXTENSION));
-
-        if (move_uploaded_file($_FILES["gambar"]["tmp_name"], $target_file)) {
-            $sql = "UPDATE tabel_inventaris 
-                        SET 
-                            nama='$nama', 
-                            merk='$merk', 
-                            jumlah='$jumlah', 
-                            harga='$harga', 
-                            tanggal_pembelian='$tanggal_pembelian', 
-                            gambar='$file_name' 
-                        WHERE 
-                            id_inventaris=" . $_GET['id_inventaris'];
-            if ($mysqli->query($sql) === TRUE) {
-                echo "<script>alert('Inventaris berhasil diedit.')</script>";
-                echo "<script>" .
-                    "window.location.href='index.php?page=inventaris&item=tampil_inventaris';" .
-                    "</script>";
-            } else echo "Error: " . $sql . "<br>" . $mysqli->error;
-        }
-    }
+    if ($mysqli->query($sql) === TRUE) {
+        echo "<script>alert('Inventaris berhasil diedit.')</script>";
+        echo "<script>" .
+            "window.location.href='index.php?page=inventaris&item=tampil_inventaris';" .
+            "</script>";
+    } else echo "Error: " . $sql . "<br>" . $mysqli->error;
 }
 
 ?>
 <main id="main" class="main">
     <div class="pagetitle">
         <h1>Edit Inventaris</h1>
-        <!-- <nav>
-        <ol class="breadcrumb">
-          <li class="breadcrumb-item"><a href="index.html">Home</a></li>
-          <li class="breadcrumb-item active">Dashboard</li>
-        </ol>
-      </nav> -->
     </div><!-- End Page Title -->
     <br>
     <section class="section dashboard">
@@ -85,7 +48,7 @@ if (isset($_POST['submit'])) {
                 <h5 class="card-title">Inventaris</h5>
 
                 <!-- General Form Elements -->
-                <form class="needs-validation" novalidate action="" method="POST" enctype="multipart/form-data">
+                <form class="needs-validation" novalidate action="" method="POST">
                     <div class="row mb-3">
                         <label for="nama" class="col-sm-2 col-form-label">Nama Barang</label>
                         <div class="col-sm-10">
@@ -129,12 +92,6 @@ if (isset($_POST['submit'])) {
                             <div class="invalid-feedback">
                                 Harap isi Tanggal Pembelian Barang.
                             </div>
-                        </div>
-                    </div>
-                    <div class="row mb-3">
-                        <label for="gambar" class="col-sm-2 col-form-label">Gambar Barang</label>
-                        <div class="col-sm-10">
-                            <input class="form-control" id="gambar" type="file" name="gambar">
                         </div>
                     </div>
                     <div class="row mb-3">

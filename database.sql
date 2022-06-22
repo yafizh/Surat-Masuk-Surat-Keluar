@@ -16,13 +16,24 @@ CREATE TABLE `tabel_inventaris` (
     id_inventaris INT NOT NULL AUTO_INCREMENT,
     nama VARCHAR(255) NOT NULL,
     merk VARCHAR(255) NOT NULL,
-    jumlah int NOT NULL,
-    harga int NOT NULL,
+    jumlah INT NOT NULL,
+    harga BIGINT NOT NULL,
     tanggal_pembelian DATE NOT NULL,
-    gambar VARCHAR(255) NOT NULL,
     keterangan VARCHAR(255) NULL,
     PRIMARY KEY (id_inventaris)
 );
+
+
+INSERT INTO `tabel_inventaris` (
+    nama,
+    merk,
+    jumlah,
+    harga,
+    tanggal_pembelian,
+    keterangan 
+) VALUES 
+('Laptop ASUS', 'ASUS K513EA', 10, 10000000, CURRENT_DATE(), 'Barang Baru'),
+('Kamera Canon', 'Canon EOS-1D', 5, 15000000, CURRENT_DATE(), 'Barang Baru');
 
 CREATE TABLE `tabel_peminjaman_inventaris` (
     id_peminjaman_inventaris INT NOT NULL AUTO_INCREMENT,
@@ -32,7 +43,7 @@ CREATE TABLE `tabel_peminjaman_inventaris` (
     lama_pinjam int NOT NULL,
     keperluan VARCHAR(255) NOT NULL,
     PRIMARY KEY (id_peminjaman_inventaris),
-    FOREIGN KEY (id_inventaris) REFERENCES tabel_inventaris (id_inventaris)
+    FOREIGN KEY (id_inventaris) REFERENCES tabel_inventaris (id_inventaris) ON DELETE CASCADE
 );
 
 CREATE TABLE `tabel_ruangan` (

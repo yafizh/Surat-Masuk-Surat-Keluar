@@ -94,7 +94,7 @@ if (isset($_POST['submit'])) {
                     <div class="row mb-3">
                         <label for="keperluan" class="col-sm-2 col-form-label">Keperluan</label>
                         <div class="col-sm-10">
-                            <input type="number" class="form-control" id="keperluan" name="keperluan" required>
+                            <input type="text" class="form-control" id="keperluan" name="keperluan" required>
                             <div class="invalid-feedback">
                                 Harap isi Keperluan Peminjaman Barang.
                             </div>

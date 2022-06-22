@@ -8,33 +8,24 @@ if (isset($_POST['submit'])) {
     $harga = $_POST['harga'];
     $tanggal_pembelian = $_POST['tanggal_pembelian'];
 
-    $target_dir = "inventaris/uploads/";
-    $file_name = Date("YmdHis_") . basename($_FILES["gambar"]["name"]);
-    $target_file = $target_dir . $file_name;
-    $uploadOk = 1;
-    $file_type = strtolower(pathinfo($target_file, PATHINFO_EXTENSION));
 
-    if (move_uploaded_file($_FILES["gambar"]["tmp_name"], $target_file)) {
-        $sql = "
-                INSERT INTO tabel_inventaris (
-                    nama, 
-                    merk, 
-                    jumlah,
-                    harga,
-                    tanggal_pembelian, 
-                    gambar 
-                ) VALUES (
-                    '$nama', 
-                    '$merk',
-                    '$jumlah',
-                    '$harga',
-                    '$tanggal_pembelian',
-                    '$file_name'
-                )";
+    $sql = "
+            INSERT INTO tabel_inventaris (
+                nama, 
+                merk, 
+                jumlah,
+                harga,
+                tanggal_pembelian 
+            ) VALUES (
+                '$nama', 
+                '$merk',
+                '$jumlah',
+                '$harga',
+                '$tanggal_pembelian' 
+            )";
 
-        if ($mysqli->query($sql) === TRUE) echo "<script>alert('Inventaris berhasil ditambahkan.')</script>";
-        else echo "Error: " . $sql . "<br>" . $mysqli->error;
-    }
+    if ($mysqli->query($sql) === TRUE) echo "<script>alert('Inventaris berhasil ditambahkan.')</script>";
+    else echo "Error: " . $sql . "<br>" . $mysqli->error;
 }
 
 ?>
@@ -55,7 +46,7 @@ if (isset($_POST['submit'])) {
                 <h5 class="card-title">Inventaris</h5>
 
                 <!-- General Form Elements -->
-                <form class="needs-validation" novalidate action="" method="POST" enctype="multipart/form-data">
+                <form class="needs-validation" novalidate action="" method="POST">
                     <div class="row mb-3">
                         <label for="nama" class="col-sm-2 col-form-label">Nama Barang</label>
                         <div class="col-sm-10">
@@ -98,15 +89,6 @@ if (isset($_POST['submit'])) {
                             <input type="date" class="form-control" id="tanggal_pembelian" name="tanggal_pembelian" required>
                             <div class="invalid-feedback">
                                 Harap isi Tanggal Pembelian Barang.
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row mb-3">
-                        <label for="gambar" class="col-sm-2 col-form-label">Gambar Barang</label>
-                        <div class="col-sm-10">
-                            <input class="form-control" type="file" id="gambar" required name="gambar">
-                            <div class="invalid-feedback">
-                                Harap Tambahkan Gambar Barang.
                             </div>
                         </div>
                     </div>
