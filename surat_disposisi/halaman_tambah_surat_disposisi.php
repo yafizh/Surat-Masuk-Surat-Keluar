@@ -1,48 +1,6 @@
 <?php
 require_once "koneksi.php";
 require_once "utils.php";
-if (isset($_POST['submit'])) {
-    $nomor_surat = $_POST['nomor_surat'];
-    $nomor_disposisi = $_POST['nomor_disposisi'];
-    $tanggal = $_POST['tanggal'];
-    $tujuan = $_POST['tujuan'];
-    $pengirim = $_POST['pengirim'];
-
-    $target_dir = "surat_disposisi/uploads/";
-    $file_name = Date("YmdHis_") . basename($_FILES["dokumen_surat"]["name"]);
-    $target_file = $target_dir . $file_name;
-    $uploadOk = 1;
-    $file_type = strtolower(pathinfo($target_file, PATHINFO_EXTENSION));
-
-    $sizeOk = checkFileSize($_FILES["dokumen_surat"]["size"], 500000);
-    $typeOk = allowedFileType($file_type, ['pdf']);
-
-    // Check if $uploadOk is set to 0 by an error
-    if ($sizeOk != 0 && $typeOk != 0) {
-        if (move_uploaded_file($_FILES["dokumen_surat"]["tmp_name"], $target_file)) {
-            $sql = "
-                INSERT INTO tabel_surat_disposisi (
-                    nomor_surat, 
-                    nomor_disposisi, 
-                    tanggal, 
-                    tujuan, 
-                    pengirim, 
-                    dokumen_surat
-                ) VALUES (
-                    '$nomor_surat', 
-                    '$nomor_disposisi', 
-                    '$tanggal',
-                    '$tujuan',
-                    '$pengirim', 
-                    '$file_name'
-                )";
-
-            if ($mysqli->query($sql) === TRUE) echo "<script>alert('Surat Disposisi berhasil ditambahkan.')</script>";
-            else echo "Error: " . $sql . "<br>" . $mysqli->error;
-        }
-    }
-}
-
 ?>
 <main id="main" class="main">
     <div class="pagetitle">
@@ -110,6 +68,15 @@ if (isset($_POST['submit'])) {
                         </div>
                     </div>
                     <div class="row mb-3">
+                        <label for="nomor_telepon" class="col-sm-2 col-form-label">Nomor Telepon</label>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" id="nomor_telepon" required name="nomor_telepon">
+                            <div class="invalid-feedback">
+                                Harap isi Nomor Telepon.
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row mb-3">
                         <label for="pengirim" class="col-sm-2 col-form-label">Pengirim</label>
                         <div class="col-sm-10">
                             <input type="text" class="form-control" id="pengirim" required name="pengirim">
@@ -169,3 +136,60 @@ if (isset($_POST['submit'])) {
         nomor_surat.value = temp.join("/");
     });
 </script>
+<?php if (isset($_POST['submit'])) : ?>
+    <?php
+    $nomor_surat = $_POST['nomor_surat'];
+    $nomor_disposisi = $_POST['nomor_disposisi'];
+    $tanggal = $_POST['tanggal'];
+    $tujuan = $_POST['tujuan'];
+    $pengirim = $_POST['pengirim'];
+    $nomor_telepon = $_POST['nomor_telepon'];
+
+    $target_dir = "surat_disposisi/uploads/";
+    $file_name = Date("YmdHis_") . basename($_FILES["dokumen_surat"]["name"]);
+    $target_file = $target_dir . $file_name;
+    $uploadOk = 1;
+    $file_type = strtolower(pathinfo($target_file, PATHINFO_EXTENSION));
+
+    $sizeOk = checkFileSize($_FILES["dokumen_surat"]["size"], 500000);
+    $typeOk = allowedFileType($file_type, ['pdf']);
+
+    ?>
+    <?php if ($sizeOk != 0 && $typeOk != 0) : ?>
+        <?php if (move_uploaded_file($_FILES["dokumen_surat"]["tmp_name"], $target_file)) : ?>
+            <?php
+            $sql = "
+             INSERT INTO tabel_surat_disposisi (
+                 nomor_surat, 
+                 nomor_disposisi, 
+                 tanggal, 
+                 nomor_telepon, 
+                 tujuan, 
+                 pengirim, 
+                 dokumen_surat
+             ) VALUES (
+                 '$nomor_surat', 
+                 '$nomor_disposisi', 
+                 '$tanggal',
+                 '$nomor_telepon',
+                 '$tujuan',
+                 '$pengirim', 
+                 '$file_name'
+             )";
+            ?>
+            <?php if ($mysqli->query($sql) === TRUE) : ?>
+                <script src="utils.js"></script>
+                <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+                <script>
+                    alert('Surat Disposisi berhasil ditambahkan.');
+                    const message = `Anda menerima surat disposisi baru dari Kantor Kecamatan Kelumpang Utara. Link surat: http://<?= $_SERVER['SERVER_NAME'] . str_replace("index.php", "", explode('?', $_SERVER['REQUEST_URI'])[0]) ?><?= $target_file ?>`;
+                    const url = `https://sms.indositus.com/sendsms.php?idmesin=${id_mesin}&pin=${pin}&to=<?= $nomor_telepon; ?>&text=${message}`;
+                    $.ajax({
+                        url: url,
+                    }).done(function() {});
+                </script>;
+            <?php endif; ?>
+        <?php endif; ?>
+
+    <?php endif; ?>
+<?php endif; ?>

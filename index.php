@@ -86,6 +86,8 @@ if (isset($_SESSION['id_user'])) {
       include_once "inventaris/halaman_edit_peminjaman_inventaris.php";
     else if ($_GET['page'] == 'inventaris' && $_GET['item'] == 'delete_peminjaman_inventaris')
       include_once "inventaris/halaman_delete_peminjaman_inventaris.php";
+    else if ($_GET['page'] == 'inventaris' && $_GET['item'] == 'detail_peminjaman_inventaris')
+      include_once "inventaris/halaman_detail_peminjaman_inventaris.php";
     else if ($_GET['page'] == 'keluar')
       include_once "auth/halaman_logout.php";
     else if ($_GET['page'] == 'laporan')

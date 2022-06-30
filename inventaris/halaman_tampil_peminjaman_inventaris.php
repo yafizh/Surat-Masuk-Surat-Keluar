@@ -17,8 +17,10 @@
                   <th scope="col">No</th>
                   <th scope="col">Nama Barang</th>
                   <th scope="col">Nama Peminjam</th>
+                  <th scope="col">Nomor Telepon</th>
                   <th scope="col">Tanggal Pinjam</th>
-                  <th scope="col">Lama Pinjam</th>
+                  <th scope="col">Sampai</th>
+                  <th scope="col">Status</th>
                   <th scope="col" class="text-center">Aksi</th>
                 </tr>
               </thead>
@@ -37,9 +39,20 @@
                     <th class="align-middle" scope="row"><?= $no++; ?></th>
                     <td class="align-middle"><?= $row['nama_barang']; ?></td>
                     <td class="align-middle"><?= $row['nama']; ?></td>
+                    <td class="align-middle"><?= $row['nomor_telepon']; ?></td>
                     <td class="align-middle"><?= $row['tanggal_pinjam']; ?></td>
-                    <td class="align-middle"><?= $row['lama_pinjam']; ?></td>
+                    <td class="align-middle"><?= $row['sampai']; ?></td>
+                    <td class="align-middle">
+                      <?php if ($row['status'] === 'DITERIMA') : ?>
+                        <span class="badge bg-success">Diterima</span>
+                      <?php elseif ($row['status'] === 'DITOLAK') : ?>
+                        <span class="badge bg-danger">Ditolak</span>
+                      <?php elseif ($row['status'] === 'PENGAJUAN') : ?>
+                        <span class="badge bg-warning">Pengajuan</span>
+                      <?php endif; ?>
+                    </td>
                     <td class="d-flex justify-content-center gap-1">
+                      <a href="index.php?page=inventaris&item=detail_peminjaman_inventaris&id_peminjaman_inventaris=<?= $row['id_peminjaman_inventaris']; ?>" class="btn btn-info"><i class="bi bi-eye"></i></a>
                       <a href="index.php?page=inventaris&item=edit_peminjaman_inventaris&id_peminjaman_inventaris=<?= $row['id_peminjaman_inventaris']; ?>" class="btn btn-warning"><i class="bi bi-pencil"></i></a>
                       <a href="index.php?page=inventaris&item=delete_peminjaman_inventaris&id_peminjaman_inventaris=<?= $row['id_peminjaman_inventaris']; ?>" class="btn btn-danger" onclick="return confirm('Yakin ingin menghapus data ini?')"><i class="bi bi-trash"></i></a>
                     </td>
@@ -57,48 +70,3 @@
   </section>
 
 </main><!-- End #main -->
-
-<!-- Basic Modal -->
-<div class="modal fade" id="basicModal" tabindex="-1">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title">Nomor Surat <span id="judul_nomor_surat"></span></h5>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-      </div>
-      <div class="modal-body">
-        <div class="row mb-3">
-          <label class="col-sm-4 col-form-label">Asal Surat</label>
-          <label class="col-sm-8 col-form-label" id="asal_surat"></label>
-        </div>
-        <div class="row mb-3">
-          <label class="col-sm-4 col-form-label">Nomor Surat</label>
-          <label class="col-sm-8 col-form-label" id="nomor_surat"></label>
-        </div>
-        <div class="row mb-3">
-          <label class="col-sm-4 col-form-label">Tanggal Surat</label>
-          <label class="col-sm-8 col-form-label" id="tanggal_surat"></label>
-        </div>
-        <div class="row mb-3">
-          <label class="col-sm-4 col-form-label">Perihal</label>
-          <label class="col-sm-8 col-form-label" id="perihal"></label>
-        </div>
-        <div class="row mb-3">
-          <label class="col-sm-4 col-form-label">Dokumen Surat</label>
-          <label class="col-sm-8 col-form-label"><a href="#" target="_blank" id="dokumen_surat">Klik Disini</a></label>
-        </div>
-      </div>
-    </div>
-  </div>
-</div><!-- End Basic Modal-->
-
-<script>
-  const showDetail = (inventaris) => {
-    document.querySelector(".modal-title #judul_nomor_surat").textContent = inventaris.nomor_surat;
-    document.querySelector(".modal-body #asal_surat").textContent = inventaris.asal_surat;
-    document.querySelector(".modal-body #nomor_surat").textContent = inventaris.nomor_surat;
-    document.querySelector(".modal-body #tanggal_surat").textContent = inventaris.tanggal_surat;
-    document.querySelector(".modal-body #perihal").textContent = inventaris.perihal;
-    document.querySelector(".modal-body #dokumen_surat").setAttribute('href', 'inventaris/uploads/' + inventaris.dokumen_surat);
-  }
-</script>

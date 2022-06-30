@@ -5,22 +5,27 @@ if (isset($_POST['submit'])) {
     $id_inventaris = $_POST['id_inventaris'];
     $nama = $_POST['nama'];
     $tanggal_pinjam = $_POST['tanggal_pinjam'];
-    $lama_pinjam = $_POST['lama_pinjam'];
+    $sampai = $_POST['sampai'];
     $keperluan = $_POST['keperluan'];
+    $nomor_telepon = $_POST['nomor_telepon'];
 
     $sql = "
     INSERT INTO tabel_peminjaman_inventaris (
         id_inventaris, 
         nama, 
+        nomor_telepon, 
         tanggal_pinjam, 
-        lama_pinjam,
-        keperluan 
+        sampai,
+        keperluan,
+        status 
     ) VALUES (
         '$id_inventaris', 
         '$nama', 
+        '$nomor_telepon', 
         '$tanggal_pinjam',
-        '$lama_pinjam',
-        '$keperluan' 
+        '$sampai',
+        '$keperluan', 
+        'PENGAJUAN' 
     )";
 
     if ($mysqli->query($sql) === TRUE) echo "<script>alert('Peminjaman Inventaris berhasil ditambahkan.')</script>";
@@ -74,6 +79,15 @@ if (isset($_POST['submit'])) {
                         </div>
                     </div>
                     <div class="row mb-3">
+                        <label for="nomor_telepon" class="col-sm-2 col-form-label">Nomor Telepon</label>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" id="nomor_telepon" required name="nomor_telepon">
+                            <div class="invalid-feedback">
+                                Harap isi Nomor Telepon Peminjam.
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row mb-3">
                         <label for="tanggal_pinjam" class="col-sm-2 col-form-label">Tanggal Pinjam</label>
                         <div class="col-sm-10">
                             <input type="date" class="form-control" id="tanggal_pinjam" name="tanggal_pinjam" required>
@@ -83,9 +97,9 @@ if (isset($_POST['submit'])) {
                         </div>
                     </div>
                     <div class="row mb-3">
-                        <label for="lama_pinjam" class="col-sm-2 col-form-label">Lama Pinjam</label>
+                        <label for="sampai" class="col-sm-2 col-form-label">Sampai</label>
                         <div class="col-sm-10">
-                            <input type="number" class="form-control" id="lama_pinjam" name="lama_pinjam" required>
+                            <input type="datetime-local" class="form-control" id="sampai" name="sampai" required>
                             <div class="invalid-feedback">
                                 Harap isi Lama Peminjaman Barang.
                             </div>
@@ -113,32 +127,3 @@ if (isset($_POST['submit'])) {
     </section>
 
 </main><!-- End #main -->
-<script>
-    const nomor_surat = document.querySelector("input[name=nomor_surat]");
-    let temp = "";
-
-    function romanize(num) {
-        if (isNaN(num))
-            return NaN;
-        var digits = String(+num).split(""),
-            key = ["", "C", "CC", "CCC", "CD", "D", "DC", "DCC", "DCCC", "CM",
-                "", "X", "XX", "XXX", "XL", "L", "LX", "LXX", "LXXX", "XC",
-                "", "I", "II", "III", "IV", "V", "VI", "VII", "VIII", "IX"
-            ],
-            roman = "",
-            i = 3;
-        while (i--)
-            roman = (key[+digits.pop() + (i * 10)] || "") + roman;
-        return Array(+digits.join("") + 1).join("M") + roman;
-    }
-
-    document.querySelector("input[name=tanggal_surat]").addEventListener('input', function(value) {
-        temp = (nomor_surat.value).split('/');
-        temp[1] = romanize((this.value).split("-")[1]);
-        nomor_surat.value = temp.join("/");
-
-        temp = (nomor_surat.value).split('/');
-        temp[2] = (this.value).split("-")[0];
-        nomor_surat.value = temp.join("/");
-    });
-</script>

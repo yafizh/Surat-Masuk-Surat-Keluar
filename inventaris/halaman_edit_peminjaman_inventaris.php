@@ -16,15 +16,17 @@ if (isset($_POST['submit'])) {
     $id_inventaris = $_POST['id_inventaris'];
     $nama = $_POST['nama'];
     $tanggal_pinjam = $_POST['tanggal_pinjam'];
-    $lama_pinjam = $_POST['lama_pinjam'];
+    $sampai = $_POST['sampai'];
     $keperluan = $_POST['keperluan'];
+    $nomor_telepon = $_POST['nomor_telepon'];
 
     $sql = "UPDATE tabel_peminjaman_inventaris 
             SET 
                 id_inventaris='$id_inventaris', 
                 nama='$nama', 
+                nomor_telepon='$nomor_telepon', 
                 tanggal_pinjam='$tanggal_pinjam', 
-                lama_pinjam='$lama_pinjam', 
+                sampai='$sampai',  
                 keperluan='$keperluan' 
             WHERE 
                 id_peminjaman_inventaris=" . $_GET['id_peminjaman_inventaris'];
@@ -88,6 +90,15 @@ if (isset($_POST['submit'])) {
                         </div>
                     </div>
                     <div class="row mb-3">
+                        <label for="nomor_telepon" class="col-sm-2 col-form-label">Nomor Telepon</label>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" id="nomor_telepon" value="<?= $row['nomor_telepon']; ?>" required name="nomor_telepon">
+                            <div class="invalid-feedback">
+                                Harap isi Nomor Telepon Peminjam.
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row mb-3">
                         <label for="tanggal_pinjam" class="col-sm-2 col-form-label">Tanggal Pinjam</label>
                         <div class="col-sm-10">
                             <input type="date" class="form-control" id="tanggal_pinjam" value="<?= $row['tanggal_pinjam']; ?>" name="tanggal_pinjam" required>
@@ -97,9 +108,9 @@ if (isset($_POST['submit'])) {
                         </div>
                     </div>
                     <div class="row mb-3">
-                        <label for="lama_pinjam" class="col-sm-2 col-form-label">Lama Pinjam</label>
+                        <label for="sampai" class="col-sm-2 col-form-label">Sampai</label>
                         <div class="col-sm-10">
-                            <input type="number" class="form-control" id="lama_pinjam" value="<?= $row['lama_pinjam']; ?>" name="lama_pinjam" required>
+                            <input type="datetime-local" class="form-control" id="sampai" value="<?= date('Y-m-d\TH:i', strtotime($row['sampai'])) ?>" name="sampai" required>
                             <div class="invalid-feedback">
                                 Harap isi Lama Peminjaman Barang.
                             </div>

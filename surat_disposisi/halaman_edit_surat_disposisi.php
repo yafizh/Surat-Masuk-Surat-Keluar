@@ -18,6 +18,7 @@ if (isset($_POST['submit'])) {
     $tanggal = $_POST['tanggal'];
     $tujuan = $_POST['tujuan'];
     $pengirim = $_POST['pengirim'];
+    $nomor_telepon = $_POST['nomor_telepon'];
 
     // $_FILES['dokumen_surat']['error'] == 4, artinya tidak ada dokumen yang diupload
     if ($_FILES['dokumen_surat']['error'] == 4) {
@@ -29,6 +30,7 @@ if (isset($_POST['submit'])) {
                 nomor_disposisi='$nomor_disposisi', 
                 tanggal='$tanggal', 
                 tujuan='$tujuan', 
+                nomor_telepon='$nomor_telepon', 
                 pengirim='$pengirim', 
                 dokumen_surat='$file_name' 
             WHERE 
@@ -125,6 +127,15 @@ if (isset($_POST['submit'])) {
                             <input type="text" class="form-control" id="tujuan" value="<?= $row['tujuan']; ?>" name="tujuan" required>
                             <div class="invalid-feedback">
                                 Harap isi Tujuan.
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row mb-3">
+                        <label for="nomor_telepon" class="col-sm-2 col-form-label">Nomor Telepon</label>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" id="nomor_telepon" required name="nomor_telepon">
+                            <div class="invalid-feedback">
+                                Harap isi Nomor Telepon.
                             </div>
                         </div>
                     </div>

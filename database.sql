@@ -39,9 +39,11 @@ CREATE TABLE `tabel_peminjaman_inventaris` (
     id_peminjaman_inventaris INT NOT NULL AUTO_INCREMENT,
     id_inventaris INT NOT NULL,
     nama VARCHAR(255) NOT NULL,
+    nomor_telepon VARCHAR(255) NOT NULL,
     tanggal_pinjam DATE NOT NULL,
-    lama_pinjam int NOT NULL,
+    sampai DATETIME NOT NULL,
     keperluan VARCHAR(255) NOT NULL,
+    status ENUM('PENGAJUAN', 'DITERIMA' , 'DITOLAK') NOT NULL,
     PRIMARY KEY (id_peminjaman_inventaris),
     FOREIGN KEY (id_inventaris) REFERENCES tabel_inventaris (id_inventaris) ON DELETE CASCADE
 );
@@ -132,6 +134,7 @@ CREATE TABLE `tabel_surat_disposisi` (
     nomor_disposisi VARCHAR(255) NOT NULL,
     tanggal VARCHAR(255) NOT NULL,
     tujuan VARCHAR(255) NOT NULL,
+    nomor_telepon VARCHAR(255) NOT NULL,
     pengirim VARCHAR(255) NOT NULL,
     dokumen_surat VARCHAR(255) NULL,
     PRIMARY KEY(id_surat_disposisi)

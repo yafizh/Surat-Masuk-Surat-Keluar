@@ -96,11 +96,11 @@ if (isset($_POST['submit'])) {
                         </div>
                     </div>
                     <div class="row mb-3">
-                        <label for="upload" class="col-sm-2 col-form-label">Upload</label>
+                        <label for="upload" class="col-sm-2 col-form-label">Keterangan</label>
                         <div class="col-sm-10">
                             <input type="text" class="form-control" id="upload" name="upload" required>
                             <div class="invalid-feedback">
-                                Harap isi Nama Dokumen.
+                                Harap isi Keterangan.
                             </div>
                         </div>
                     </div>
