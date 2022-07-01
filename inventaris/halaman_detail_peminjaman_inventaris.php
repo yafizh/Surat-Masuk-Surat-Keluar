@@ -89,7 +89,6 @@ if (isset($_GET['id_peminjaman_inventaris'])) {
 </main><!-- End #main -->
 <?php if (isset($_POST['tolak'])) : ?>
     <?php
-    require_once "utils.php";
     $sql = "UPDATE tabel_peminjaman_inventaris 
        SET 
           status='DITOLAK' 
@@ -97,9 +96,7 @@ if (isset($_GET['id_peminjaman_inventaris'])) {
            id_peminjaman_inventaris=" . $_GET['id_peminjaman_inventaris'];
     ?>
     <?php if ($mysqli->query($sql) === TRUE) : ?>
-        <script>
-            alert('Peminjaman Inventaris berhasil ditolak.')
-        </script>;
+        <script src="utils.js"></script>
         <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
         <script>
             const message = `Pengajuan peminjaman atas nama <?= $_POST['nama'] ?> untuk tanggal <?= $_POST['tanggal_pinjam'] ?> dengan barang <?= $_POST['nama_barang'] ?> untuk keperluan <?= $_POST['keperluan'] ?> ditolak.`;
@@ -109,14 +106,19 @@ if (isset($_GET['id_peminjaman_inventaris'])) {
             }).done(function() {});
         </script>
         <script>
-            window.location.href = 'index.php?page=inventaris&item=tampil_peminjaman_inventaris';
+            console.log(url)
+            alert('Peminjaman Inventaris berhasil ditolak.')
         </script>
+        <!-- <script>
+            setTimeout(function() {
+                window.location.href = 'index.php?page=inventaris&item=tampil_peminjaman_inventaris';
+            }, 1000);
+        </script> -->
     <?php endif; ?>
 <?php endif; ?>
 
 <?php if (isset($_POST['terima'])) : ?>
     <?php
-    require_once "utils.php";
     $sql = "UPDATE tabel_peminjaman_inventaris 
        SET 
           status='DITERIMA' 
@@ -124,9 +126,6 @@ if (isset($_GET['id_peminjaman_inventaris'])) {
            id_peminjaman_inventaris=" . $_GET['id_peminjaman_inventaris'];
     ?>
     <?php if ($mysqli->query($sql) === TRUE) : ?>
-        <script>
-            alert('Peminjaman Inventaris berhasil diterima.')
-        </script>;
         <script src="utils.js"></script>
         <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
         <script>
@@ -137,7 +136,12 @@ if (isset($_GET['id_peminjaman_inventaris'])) {
             }).done(function() {});
         </script>
         <script>
-            window.location.href = 'index.php?page=inventaris&item=tampil_peminjaman_inventaris';
+            alert('Peminjaman Inventaris berhasil diterima.')
+        </script>
+        <script>
+            setTimeout(function() {
+                window.location.href = 'index.php?page=inventaris&item=tampil_peminjaman_inventaris';
+            }, 1000);
         </script>
     <?php endif; ?>
 <?php endif; ?>
