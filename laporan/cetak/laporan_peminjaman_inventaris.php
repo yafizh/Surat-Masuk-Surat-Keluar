@@ -41,7 +41,7 @@
                     <th>Nama Barang</th>
                     <th>Nama Peminjam</th>
                     <th>Tanggal Pinjam</th>
-                    <th>Lama Pinjam</th>
+                    <th>Sampai</th>
                     <th>Keperluan</th>
                 </tr>
             </thead>
@@ -74,7 +74,7 @@
                             <td class="text-center"><?= $row['nama']; ?></td>
                             <td class="text-center"><?= $row['nama_barang']; ?></td>
                             <td class="text-center"><?= $row['tanggal_pinjam']; ?></td>
-                            <td class="text-center"><?= $row['lama_pinjam']; ?> Hari</td>
+                            <td class="text-center"><?= $row['sampai']; ?></td>
                             <td class="text-center"><?= $row['keperluan']; ?></td>
                         </tr>
                     <?php endwhile; ?>

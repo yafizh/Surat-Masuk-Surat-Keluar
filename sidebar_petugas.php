@@ -64,7 +64,7 @@
         </li><!-- End Forms Nav -->
         <li class="nav-item" id="x">
             <a id="agenda" class="nav-link collapsed" data-bs-target="#agenda-nav" data-bs-toggle="collapse" href="#">
-                <i class="ri-mail-add-line"></i><span>Agenda</span><i class="bi bi-chevron-down ms-auto"></i>
+                <i class="bi bi-calendar-check"></i><span>Agenda</span><i class="bi bi-chevron-down ms-auto"></i>
             </a>
             <ul id="agenda-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
                 <li>
@@ -81,7 +81,7 @@
         </li><!-- End Forms Nav -->
         <li class="nav-item" id="x">
             <a id="arsip" class="nav-link collapsed" data-bs-target="#arsip-nav" data-bs-toggle="collapse" href="#">
-                <i class="ri-mail-add-line"></i><span>Arsip</span><i class="bi bi-chevron-down ms-auto"></i>
+                <i class="bi bi-archive"></i><span>Arsip</span><i class="bi bi-chevron-down ms-auto"></i>
             </a>
             <ul id="arsip-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
                 <li>
@@ -98,7 +98,7 @@
         </li><!-- End Forms Nav -->
         <li class="nav-item">
             <a id="inventaris" class="nav-link collapsed" data-bs-target="#inventaris-nav" data-bs-toggle="collapse" href="#">
-                <i class="ri ri-mail-line"></i><span>Inventaris</span><i class="bi bi-chevron-down ms-auto"></i>
+                <i class="ri-book-2-line"></i><span>Inventaris</span><i class="bi bi-chevron-down ms-auto"></i>
             </a>
             <ul id="inventaris-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
                 <li>

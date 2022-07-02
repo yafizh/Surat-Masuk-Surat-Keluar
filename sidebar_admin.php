@@ -28,7 +28,7 @@
         </li><!-- End Components Nav -->
         <li class="nav-item">
             <a id="ruangan" class="nav-link collapsed" data-bs-target="#ruangan-nav" data-bs-toggle="collapse" href="#">
-                <i class="ri ri-mail-line"></i><span>Ruangan</span><i class="bi bi-chevron-down ms-auto"></i>
+                <i class="bi bi-building"></i><span>Ruangan</span><i class="bi bi-chevron-down ms-auto"></i>
             </a>
             <ul id="ruangan-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
                 <li>
@@ -45,7 +45,7 @@
         </li><!-- End Components Nav -->
         <li class="nav-item" id="x">
             <a id="user" class="nav-link collapsed" data-bs-target="#user-nav" data-bs-toggle="collapse" href="#">
-                <i class="ri-mail-add-line"></i><span>User</span><i class="bi bi-chevron-down ms-auto"></i>
+                <i class="bi bi-people-fill"></i><span>User</span><i class="bi bi-chevron-down ms-auto"></i>
             </a>
             <ul id="user-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
                 <li>
@@ -62,7 +62,7 @@
         </li><!-- End Forms Nav -->
         <li class="nav-item" id="x">
             <a id="agenda" class="nav-link collapsed" data-bs-target="#agenda-nav" data-bs-toggle="collapse" href="#">
-                <i class="ri-mail-add-line"></i><span>Agenda</span><i class="bi bi-chevron-down ms-auto"></i>
+                <i class="bi bi-calendar-check"></i><span>Agenda</span><i class="bi bi-chevron-down ms-auto"></i>
             </a>
             <ul id="agenda-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
                 <li>
@@ -75,7 +75,7 @@
 
         <li class="nav-item">
             <a id="inventaris" class="nav-link collapsed" data-bs-target="#inventaris-nav" data-bs-toggle="collapse" href="#">
-                <i class="ri ri-mail-line"></i><span>Inventaris</span><i class="bi bi-chevron-down ms-auto"></i>
+                <i class="ri-book-2-line"></i><span>Inventaris</span><i class="bi bi-chevron-down ms-auto"></i>
             </a>
             <ul id="inventaris-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
                 <li>

@@ -32,7 +32,7 @@ if (isset($_POST['submit'])) {
                 id_peminjaman_inventaris=" . $_GET['id_peminjaman_inventaris'];
 
     if ($mysqli->query($sql) === TRUE) {
-        echo "<script>alert('Peminjaman Inventaris berhasil diedit.')</script>";
+        echo "<script>alert('Edit Pengajuan Peminjaman Inventaris berhasil.')</script>";
         echo "<script>" .
             "window.location.href='index.php?page=inventaris&item=tampil_peminjaman_inventaris';" .
             "</script>";

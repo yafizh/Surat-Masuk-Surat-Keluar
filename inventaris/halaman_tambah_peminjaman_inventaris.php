@@ -28,7 +28,7 @@ if (isset($_POST['submit'])) {
         'PENGAJUAN' 
     )";
 
-    if ($mysqli->query($sql) === TRUE) echo "<script>alert('Peminjaman Inventaris berhasil ditambahkan.')</script>";
+    if ($mysqli->query($sql) === TRUE) echo "<script>alert('Pengajuan Peminjaman Inventaris berhasil.')</script>";
     else echo "Error: " . $sql . "<br>" . $mysqli->error;
 }
 
