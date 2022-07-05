@@ -18,7 +18,7 @@ if (isset($_POST['submit'])) {
     $nomor_dokumen = $_POST['nomor_dokumen'];
     $size = $_POST['size'];
     $tanggal = $_POST['tanggal'];
-    $upload = $_POST['upload'];
+    $keterangan = $_POST['keterangan'];
 
 
     $sql = "UPDATE tabel_arsip 
@@ -28,7 +28,7 @@ if (isset($_POST['submit'])) {
                 nomor_dokumen='$nomor_dokumen', 
                 size='$size', 
                 tanggal='$tanggal', 
-                upload='$upload' 
+                keterangan='$keterangan' 
             WHERE 
                 id_arsip=" . $_GET['id_arsip'];
 
@@ -87,7 +87,7 @@ if (isset($_POST['submit'])) {
                         </div>
                     </div>
                     <div class="row mb-3">
-                        <label for="size" class="col-sm-2 col-form-label">Size</label>
+                        <label for="size" class="col-sm-2 col-form-label">Jumlah</label>
                         <div class="col-sm-9">
                             <input type="text" class="form-control" id="size" value="<?= $row['size']; ?>" name="size" required>
                             <div class="invalid-feedback">
@@ -106,9 +106,9 @@ if (isset($_POST['submit'])) {
                         </div>
                     </div>
                     <div class="row mb-3">
-                        <label for="upload" class="col-sm-2 col-form-label">Keterangan</label>
+                        <label for="keterangan" class="col-sm-2 col-form-label">Keterangan</label>
                         <div class="col-sm-10">
-                            <input type="text" class="form-control" id="upload" value="<?= $row['upload']; ?>" name="upload" required>
+                            <input type="text" class="form-control" id="keterangan" value="<?= $row['keterangan']; ?>" name="keterangan" required>
                             <div class="invalid-feedback">
                                 Harap isi Keterangan.
                             </div>

@@ -71,8 +71,8 @@
                     <?php while ($row = $result->fetch_assoc()) : ?>
                         <tr>
                             <td class="text-center"><?= $no++; ?></td>
-                            <td class="text-center"><?= $row['nama']; ?></td>
                             <td class="text-center"><?= $row['nama_barang']; ?></td>
+                            <td class="text-center"><?= $row['nama']; ?></td>
                             <td class="text-center"><?= $row['tanggal_pinjam']; ?></td>
                             <td class="text-center"><?= $row['sampai']; ?></td>
                             <td class="text-center"><?= $row['keperluan']; ?></td>

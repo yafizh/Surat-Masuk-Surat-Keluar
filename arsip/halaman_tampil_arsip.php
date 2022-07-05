@@ -46,7 +46,7 @@ if (isset($_GET['id_arsip'])) {
                   <th scope="col">Nama Dokumen</th>
                   <th scope="col">Lokasi</th>
                   <th scope="col">Size</th>
-                  <th scope="col">Upload</th>
+                  <th scope="col">Keterangan</th>
                   <th scope="col" class="text-center">Aksi</th>
                 </tr>
               </thead>
@@ -63,7 +63,7 @@ if (isset($_GET['id_arsip'])) {
                     <td class="align-middle"><?= $row['nama_dokumen']; ?></td>
                     <td class="align-middle"><?= $row['lokasi']; ?></td>
                     <td class="align-middle"><?= $row['size']; ?></td>
-                    <td class="align-middle"><?= $row['upload']; ?></td>
+                    <td class="align-middle"><?= $row['keterangan']; ?></td>
                     <td class="d-flex justify-content-center gap-1">
                       <a href="index.php?page=arsip&item=edit_arsip&id_arsip=<?= $row['id_arsip']; ?>" class="btn btn-warning"><i class="bi bi-pencil"></i></a>
                       <a href="index.php?page=arsip&item=delete_arsip&id_arsip=<?= $row['id_arsip']; ?>" class="btn btn-danger" onclick="return confirm('Yakin ingin menghapus data ini?')"><i class="bi bi-trash"></i></a>

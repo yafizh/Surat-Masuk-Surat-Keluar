@@ -41,8 +41,8 @@
                     <th>Nomor Dokumen</th>
                     <th>Nama Dokumen</th>
                     <th>Lokasi</th>
-                    <th>Size</th>
-                    <th>Upload</th>
+                    <th>Jumlah</th>
+                    <th>Keterangan</th>
                 </tr>
             </thead>
             <tbody>
@@ -69,8 +69,8 @@
                             <td class="text-center"><?= $row['nomor_dokumen']; ?></td>
                             <td class="text-center"><?= $row['nama_dokumen']; ?></td>
                             <td class="text-center"><?= $row['lokasi']; ?></td>
-                            <td class="text-center"><?= $row['size']; ?></td>
-                            <td class="text-center"><?= $row['upload']; ?></td>
+                            <td class="text-center"><?= $row['size']; ?> Lembar</td>
+                            <td class="text-center"><?= $row['keterangan']; ?></td>
                         </tr>
                     <?php endwhile; ?>
                 <?php endif; ?>

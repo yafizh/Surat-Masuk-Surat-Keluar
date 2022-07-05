@@ -7,7 +7,7 @@ if (isset($_POST['submit'])) {
     $nomor_dokumen = $_POST['nomor_dokumen'];
     $size = $_POST['size'];
     $tanggal = $_POST['tanggal'];
-    $upload = $_POST['upload'];
+    $keterangan = $_POST['keterangan'];
 
     $sql = "
         INSERT INTO tabel_arsip (
@@ -16,14 +16,14 @@ if (isset($_POST['submit'])) {
             nomor_dokumen, 
             size, 
             tanggal, 
-            upload  
+            keterangan  
         ) VALUES (
             '$lokasi',
             '$nama_dokumen',
             '$nomor_dokumen',
             '$size', 
             '$tanggal',
-            '$upload' 
+            '$keterangan' 
         )";
 
     if ($mysqli->query($sql) === TRUE) echo "<script>alert('Arsip berhasil ditambahkan.')</script>";
@@ -77,7 +77,7 @@ if (isset($_POST['submit'])) {
                         </div>
                     </div>
                     <div class="row mb-3">
-                        <label for="size" class="col-sm-2 col-form-label">Size</label>
+                        <label for="size" class="col-sm-2 col-form-label">Jumlah</label>
                         <div class="col-sm-9">
                             <input type="text" class="form-control" id="size" name="size" required>
                             <div class="invalid-feedback">
@@ -96,9 +96,9 @@ if (isset($_POST['submit'])) {
                         </div>
                     </div>
                     <div class="row mb-3">
-                        <label for="upload" class="col-sm-2 col-form-label">Keterangan</label>
+                        <label for="keterangan" class="col-sm-2 col-form-label">Keterangan</label>
                         <div class="col-sm-10">
-                            <input type="text" class="form-control" id="upload" name="upload" required>
+                            <input type="text" class="form-control" id="keterangan" name="keterangan" required>
                             <div class="invalid-feedback">
                                 Harap isi Keterangan.
                             </div>

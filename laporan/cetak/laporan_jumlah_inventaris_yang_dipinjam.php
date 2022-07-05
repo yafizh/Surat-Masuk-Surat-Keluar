@@ -44,12 +44,14 @@
             </thead>
             <tbody>
                 <?php
+                $dari = $_POST['dari'];
+                $sampai = $_POST['sampai'];
                 $no = 1;
                 require_once "../../koneksi.php";
                 $result = $mysqli->query("
                     SELECT 
                         nama,
-                        (SELECT COUNT(id_peminjaman_inventaris) FROM tabel_peminjaman_inventaris WHERE tabel_peminjaman_inventaris.id_inventaris=tabel_inventaris.id_inventaris) AS jumlah
+                        (SELECT COUNT(id_peminjaman_inventaris) FROM tabel_peminjaman_inventaris WHERE (tabel_peminjaman_inventaris.tanggal_pinjam >= '$dari' AND tabel_peminjaman_inventaris.tanggal_pinjam <= '$sampai') AND tabel_peminjaman_inventaris.id_inventaris=tabel_inventaris.id_inventaris) AS jumlah
                     FROM 
                     tabel_inventaris");
                 ?>

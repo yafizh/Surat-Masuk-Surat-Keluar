@@ -232,11 +232,21 @@ require_once "utils.php";
         <!-- Default Card -->
         <div class="card">
           <div class="card-body">
-            <form action="laporan/cetak/laporan_jumlah_inventaris_yang_dipinjam.php" target="_blank">
-              <h5 class="card-title">Laporan Jumlah Inventaris yang dipinjam</h5>
+            <form action="laporan/cetak/laporan_jumlah_inventaris_yang_dipinjam.php" method="POST" target="_blank">
+              <h5 class="card-title">Laporan Jumlah Inventaris yang Dipinjam</h5>
+              <div class="row mb-3">
+                <div class="col-md-6">
+                  <label for="dari">Dari</label>
+                  <input type="date" value="2000-01-01" name="dari" id="dari" class="form-control">
+                </div>
+                <div class="col-md-6">
+                  <label for="sampai">Sampai</label>
+                  <input type="date" value="<?= Date("Y-m-d"); ?>" name="sampai" id="sampai" class="form-control">
+                </div>
+              </div>
               <div class="row mb-3">
                 <div class="col-md-12">
-                  <button class="btn btn-primary w-100">Cetak</button>
+                  <button type="submit" class="btn btn-primary w-100">Cetak</button>
                 </div>
               </div>
             </form>

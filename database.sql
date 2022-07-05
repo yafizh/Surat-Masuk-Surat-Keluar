@@ -8,7 +8,7 @@ CREATE TABLE `tabel_arsip` (
     nama_dokumen VARCHAR(255),
     size int,
     tanggal DATE,
-    upload VARCHAR(255),
+    keterangan VARCHAR(255),
     PRIMARY KEY(id_arsip)
 );
 
