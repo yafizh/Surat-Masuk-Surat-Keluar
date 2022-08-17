@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Laporan Surat Keluar</title>
+    <title>Laporan Jumlah Peminjaman Inventaris</title>
     <style>
         table,
         th,
@@ -33,51 +33,48 @@
     <div class="container">
         <?php include_once "header.php"; ?>
 
-        <h2 class="text-center my-3" style="border-top: 2px solid black;">Laporan Surat Keluar</h2>
+        <h2 class="text-center my-3" style="border-top: 2px solid black;">Laporan Riwayat Peminjaman Barang <?= $_POST['nama_barang'] ?></h2>
         <table>
             <thead>
                 <tr>
                     <th class="text-center">No</th>
-                    <th>Unit Pengolah</th>
-                    <th>Nomor Surat</th>
-                    <th>Tanggal Surat</th>
-                    <th>Jenis Surat</th>
-                    <th>Sifat Surat</th>
+                    <th>Nama Peminjam</th>
+                    <th>Nomor Telepon</th>
+                    <th>Tanggal Pinjam</th>
+                    <th>Keperluan Peminjaman</th>
                 </tr>
             </thead>
             <tbody>
                 <?php
                 $dari = $_POST['dari'];
                 $sampai = $_POST['sampai'];
+                $id_inventaris = $_POST['id_inventaris'];
                 $no = 1;
                 require_once "../../koneksi.php";
                 $result = $mysqli->query("
                     SELECT 
                         * 
                     FROM 
-                        tabel_surat_keluar 
-                    LEFT JOIN 
-                        tabel_ruangan 
-                    ON tabel_ruangan.id_ruangan=tabel_surat_keluar.id_ruangan 
-                    LEFT JOIN 
-                        tabel_kode_surat 
-                    ON tabel_kode_surat.id_kode_surat=tabel_surat_keluar.id_kode_surat
+                        tabel_peminjaman_inventaris 
                     WHERE 
-                        tanggal_surat >= '$dari' 
+                        id_inventaris = $id_inventaris 
                         AND 
-                        tanggal_surat <= '$sampai' 
-                    ORDER BY 
-                        id_surat_keluar DESC");
+                        (tanggal_pinjam >= '$dari' AND tanggal_pinjam <= '$sampai')
+                    ");
                 ?>
                 <?php if ($result->num_rows) : ?>
                     <?php while ($row = $result->fetch_assoc()) : ?>
                         <tr>
                             <td class="text-center"><?= $no++; ?></td>
-                            <td class="text-center"><?= $row['nama_ruangan']; ?></td>
-                            <td class="text-center"><?= $row['nomor_surat']; ?></td>
-                            <td class="text-center"><?= $row['tanggal_surat']; ?></td>
-                            <td class="text-center"><?= $row['jenis_surat']; ?></td>
-                            <td class="text-center"><?= $row['sifat_surat']; ?></td>
+                            <td class="text-center"><?= $row['nama']; ?></td>
+                            <td class="text-center"><?= $row['nomor_telepon']; ?></td>
+                            <?php
+                            $day = explode('-', $row['tanggal_pinjam'])[2];
+                            $month = explode('-', $row['tanggal_pinjam'])[1];
+                            $year = explode('-', $row['tanggal_pinjam'])[0];
+                            ?>
+                            <td class="text-center"><?= $day . ' ' . BULAN_DALAM_INDONESIA[$month - 1] . ' ' . $year;  ?></td>
+                            <td class="text-center"><?= $row['keperluan']; ?></td>
                         </tr>
                     <?php endwhile; ?>
                 <?php endif; ?>
